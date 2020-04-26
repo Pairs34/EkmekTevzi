@@ -405,9 +405,9 @@ object frmBagisEx: TfrmBagisEx
   end
   object cxGrid: TcxGrid
     Left = 0
-    Top = 576
+    Top = 568
     Width = 1004
-    Height = 118
+    Height = 126
     Align = alBottom
     Enabled = False
     Font.Charset = DEFAULT_CHARSET
