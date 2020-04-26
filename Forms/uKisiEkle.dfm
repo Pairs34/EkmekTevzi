@@ -3,7 +3,7 @@ object frmKisiEkle: TfrmKisiEkle
   Top = 0
   BorderStyle = bsNone
   Caption = 'Ki'#351'i Ekle'
-  ClientHeight = 378
+  ClientHeight = 343
   ClientWidth = 610
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
