@@ -1,7 +1,5 @@
 unit uLogin;
 
-// Burasý muþtur adý yokuþtur giden gelmiyor acep nere gidem
-
 interface
 
 uses
