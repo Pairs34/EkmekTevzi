@@ -24,7 +24,7 @@ uses
   dxNavBarCollns, cxFilter,
   dxNavBarGroupItems, dxBarBuiltInMenu, cxPC, dxStatusBar,
    cxStyles, dxSkinOffice2019Colorful, cxImageList, System.ImageList,
-  Vcl.ImgList, dxNavBarBase, cxSplitter, dxGDIPlusClasses;
+  Vcl.ImgList, dxNavBarBase, cxSplitter, dxGDIPlusClasses,FileCtrl,Uni;
 
 type
   TfrmMain = class(TForm)
@@ -59,6 +59,8 @@ type
     itmMazeretList: TdxNavBarItem;
     cxSplitter1: TcxSplitter;
     Image1: TImage;
+    itmBackupAndRestore: TdxNavBarItem;
+    folderSelector: TOpenDialog;
     procedure btnConnectClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure btnDisconnectClick(Sender: TObject);
@@ -67,6 +69,7 @@ type
     procedure ShowFormInTab(I : TComponentClass;var Referance;L : TdxNavBarItemLink);
     procedure pageContainerCanCloseEx(Sender: TObject; ATabIndex: Integer;
       var ACanClose: Boolean);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
   private
     procedure OnReceiveText(ASender: TObject; const Reader: IReader; ReaderId: Byte;
                                                              const Data: WideString);
@@ -86,7 +89,7 @@ var
 implementation
 
 uses ComObj,IniFiles, uKisiEkle, uKisiList, uBagis, uSettings,
-  uBagisEx, uLogin, uMazeretList, uHareketler, uSplash;
+  uBagisEx, uLogin, uMazeretList, uHareketler, uSplash, uDbHelper;
 
 {$R *.dfm}
 
@@ -114,6 +117,9 @@ begin
 end;
 
 procedure TfrmMain.dxNavbarLinkClick(Sender: TObject; ALink: TdxNavBarItemLink);
+var
+  sDir:String;
+  bQuery: TUniQuery;
 begin
     if ALink.Item.Name = 'itmKisiAdd' then
     begin
@@ -139,6 +145,31 @@ begin
     end else if ALink.Item.Name = 'itmMazeretList' then
     begin
        ShowFormInTab(TfrmMazeretList,frmMazeretList,ALink);
+    end else if ALink.Item.Name = 'itmBackupAndRestore' then
+    begin
+       SelectDirectory('Veritabaný Yedeði Alýnacak Dizini Seçiniz','',sDir);
+
+       if sDir <> '' then
+       begin
+         try
+             with uDbHelper.frmDb do begin
+             bQuery := TUniQuery.Create(nil);
+             with bQuery do begin
+               Connection := frmDb.dbHelper;
+               SQL.Clear;
+               SQL.Add('use [master] backup database AskidaEkmek ');
+               SQL.Add(format('to disk = ''%s\%s-%s.bak''',[sDir,'backup_ekmektevzi',FormatDateTime('yyyymmdd',Now)]));
+               Execute;
+             end;
+             bQuery.FreeOnRelease;
+             ShowMessage('Yedek alýndý');
+         end;
+           except on E: Exception do begin
+              ShowMessage(E.Message);
+           end;
+         end;
+       end;
+
     end;
 
 
@@ -161,6 +192,14 @@ end;
 procedure TfrmMain.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
     //mReaderManager.FreeOnRelease;
+end;
+
+procedure TfrmMain.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if (Key = VK_F7) and (ssShift in Shift) then begin
+      showmessage('A');
+  end;
 end;
 
 procedure TfrmMain.FormShow(Sender: TObject);

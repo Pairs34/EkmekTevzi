@@ -4,7 +4,6 @@ uses
   Vcl.Forms,
   uMain in 'uMain.pas' {frmMain},
   AksReader_Library_3_0_TLB in 'AksReader_Library_3_0_TLB.pas',
-  mscorlib_TLB in 'mscorlib_TLB.pas',
   uKisiEkle in 'Forms\uKisiEkle.pas',
   uDbHelper in 'Helpers\uDbHelper.pas' {frmDb: TDataModule},
   uKisiList in 'Forms\uKisiList.pas' {frmKisiList},

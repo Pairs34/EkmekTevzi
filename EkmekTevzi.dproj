@@ -218,15 +218,15 @@
                 <Platform value="Win64">True</Platform>
             </Platforms>
             <Deployment Version="3">
-                <DeployFile LocalName="Win32\Release\EkmekTevzi.exe" Configuration="Release" Class="ProjectOutput">
+                <DeployFile LocalName="EkmekTevzi.manifest" Configuration="Debug" Class="ProjectFile">
                     <Platform Name="Win32">
-                        <RemoteName>EkmekTevzi.exe</RemoteName>
+                        <RemoteDir>.\</RemoteDir>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="AskidaEkmek.manifest" Configuration="Debug" Class="ProjectFile">
+                <DeployFile LocalName="Win32\Release\EkmekTevzi.exe" Configuration="Release" Class="ProjectOutput">
                     <Platform Name="Win32">
-                        <RemoteDir>.\</RemoteDir>
+                        <RemoteName>EkmekTevzi.exe</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
