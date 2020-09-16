@@ -19,7 +19,8 @@ uses
   uSplash in 'Forms\uSplash.pas' {frmSplash},
   Vcl.Themes,
   Vcl.Styles,
-  uMazeretEdit in 'Forms\uMazeretEdit.pas' {frmMazeretEdit};
+  uMazeretEdit in 'Forms\uMazeretEdit.pas' {frmMazeretEdit},
+  uSQLEditor in 'Forms\uSQLEditor.pas' {frmSQLEditor};
 
 {$R *.res}
 
