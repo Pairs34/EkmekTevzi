@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.768,=D:\Profile\Cloud\OneDrive\Projects\AskidaEkmek-10.3\Delphi\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.940,=D:\Profile\Cloud\OneDrive\Projects\AskidaEkmek-10.3\Delphi\Unit1.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.499,=D:\Profile\Cloud\OneDrive\Projects\AskidaEkmek-10.3\Delphi\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.336,=D:\Profile\Cloud\OneDrive\Projects\AskidaEkmek-10.3\Delphi\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.805,=D:\Profile\Cloud\OneDrive\Projects\AskidaEkmek-10.3\Delphi\Unit1.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.867,D:\Profile\Cloud\OneDrive\Projects\AskidaEkmek-10.3\Delphi\Forms\uMazeretEdit.pas=D:\Profile\Cloud\OneDrive\Projects\AskidaEkmek-10.3\Delphi\Unit1.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.359,D:\Profile\Cloud\OneDrive\Projects\AskidaEkmek-10.3\Delphi\EkmekTevzi.manifest=D:\Profile\Cloud\OneDrive\Projects\AskidaEkmek-10.3\Delphi\AskidaEkmek.manifest</Transaction>
     <Transaction>1899.12.30 00:00:00.000.867,D:\Profile\Cloud\OneDrive\Projects\AskidaEkmek-10.3\Delphi\Forms\uMazeretEdit.dfm=D:\Profile\Cloud\OneDrive\Projects\AskidaEkmek-10.3\Delphi\Unit1.dfm</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.768,=D:\Profile\Cloud\OneDrive\Projects\AskidaEkmek-10.3\Delphi\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.336,=D:\Profile\Cloud\OneDrive\Projects\AskidaEkmek-10.3\Delphi\Unit1.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.464,=D:\Profile\PairsX\desktop\Projects\EkmekTevzi\Unit1.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.141,=D:\Profile\PairsX\desktop\Projects\EkmekTevzi\Unit1.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.900,D:\Profile\Cloud\OneDrive\Projects\AskidaEkmek-10.3\Delphi\Forms\uMazeret.dfm=D:\Profile\Cloud\OneDrive\Projects\AskidaEkmek-10.3\Delphi\Unit1.dfm</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.940,=D:\Profile\Cloud\OneDrive\Projects\AskidaEkmek-10.3\Delphi\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.805,=D:\Profile\Cloud\OneDrive\Projects\AskidaEkmek-10.3\Delphi\Unit1.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.401,D:\Profile\PairsX\desktop\Temps\AskidaEkmek-10.3\Delphi\mscorlib_TLB.pas=</Transaction>
     <Transaction>1899.12.30 00:00:00.000.711,C:\Users\PairsX\OneDrive\Projects\AskidaEkmek-10.3\Delphi\AskidaEkmek.manifest=C:\Users\PairsX\OneDrive\Projects\AskidaEkmek-10.3\Delphi\New1.manifest</Transaction>
     <Transaction>1899.12.30 00:00:00.000.966,D:\Profile\PairsX\desktop\Projects\EkmekTevzi\Forms\uDbPrepare.pas=</Transaction>
@@ -54,6 +54,8 @@
     <File Path="Forms\uSettings.dfm"/>
     <File Path="Forms\uSplash.pas"/>
     <File Path="Forms\uSplash.dfm"/>
+    <File Path="Forms\uSQLEditor.pas"/>
+    <File Path="Forms\uSQLEditor.dfm"/>
     <File Path="Helpers"/>
     <File Path="Helpers\uDbHelper.pas"/>
     <File Path="Helpers\uDbHelper.dfm"/>

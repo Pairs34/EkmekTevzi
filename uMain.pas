@@ -66,7 +66,7 @@ type
     procedure btnDisconnectClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure dxNavbarLinkClick(Sender: TObject; ALink: TdxNavBarItemLink);
-    procedure ShowFormInTab(I : TComponentClass;var Referance;L : TdxNavBarItemLink);
+    procedure ShowFormInTab(I : TComponentClass;var Referance;L : TdxNavBarItemLink;HiddenForm : Boolean = false;HiddenCaption : string = '');
     procedure pageContainerCanCloseEx(Sender: TObject; ATabIndex: Integer;
       var ACanClose: Boolean);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -89,7 +89,7 @@ var
 implementation
 
 uses ComObj,IniFiles, uKisiEkle, uKisiList, uBagis, uSettings,
-  uBagisEx, uLogin, uMazeretList, uHareketler, uSplash, uDbHelper;
+  uBagisEx, uLogin, uMazeretList, uHareketler, uSplash, uDbHelper, uSQLEditor;
 
 {$R *.dfm}
 
@@ -196,10 +196,13 @@ end;
 
 procedure TfrmMain.FormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
+var
+  bNavbarLink : TdxNavBarItemLink;
 begin
   if (Key = VK_F7) and (ssShift in Shift) then begin
-      showmessage('A');
+     ShowFormInTab(TfrmSQLEditor,frmSQLEditor,nil,true,'SQL Editor');
   end;
+
 end;
 
 procedure TfrmMain.FormShow(Sender: TObject);
@@ -300,7 +303,7 @@ begin
   end;
 end;
 
-procedure TfrmMain.ShowFormInTab(I: TComponentClass; var Referance;L : TdxNavBarItemLink);
+procedure TfrmMain.ShowFormInTab(I: TComponentClass; var Referance;L : TdxNavBarItemLink;HiddenForm : Boolean = false;HiddenCaption : string = '');
 var
   nPanel : TPanel;
   nTab : TcxTabSheet;
@@ -308,8 +311,14 @@ var
 begin
       nTab := TcxTabSheet.Create(pageContainer);
       with nTab do begin
-        Caption := L.Item.Caption;
-        Name := L.Item.Name;
+        if HiddenForm = true then
+        begin
+          Caption := HiddenCaption;
+        end else begin
+          Caption := L.Item.Caption;
+          Name := L.Item.Name;
+        end;
+
       end;
 
       nTab.Parent := pageContainer;

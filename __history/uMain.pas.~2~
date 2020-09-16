@@ -89,7 +89,7 @@ var
 implementation
 
 uses ComObj,IniFiles, uKisiEkle, uKisiList, uBagis, uSettings,
-  uBagisEx, uLogin, uMazeretList, uHareketler, uSplash, uDbHelper;
+  uBagisEx, uLogin, uMazeretList, uHareketler, uSplash, uDbHelper, uSQLEditor;
 
 {$R *.dfm}
 
@@ -196,10 +196,16 @@ end;
 
 procedure TfrmMain.FormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
+var
+  bNavbarLink : TdxNavBarItemLink;
 begin
   if (Key = VK_F7) and (ssShift in Shift) then begin
-      showmessage('A');
+      bNavbarLink := dxNavbar.Items.Add;
+      bNavbarLink.Item.Name := 'itmSQLEditor';
+      bNavbarLink.Item.Caption := 'SQL Editor';
+     ShowFormInTab(TfrmSQLEditor,frmSQLEditor,bNavbarLink);
   end;
+
 end;
 
 procedure TfrmMain.FormShow(Sender: TObject);
@@ -297,7 +303,8 @@ begin
   end;
 end;
 
-procedure TfrmMain.ShowFormInTab(I: TComponentClass; var Referance;L : TdxNavBarItemLink);
+procedure TfrmMain.ShowFormInTab(I: TComponentClass; var Referance;L : TdxNavBarItemLink;
+      IsHidden : Boolean = false;HiddenCaption : string = '');
 var
   nPanel : TPanel;
   nTab : TcxTabSheet;
