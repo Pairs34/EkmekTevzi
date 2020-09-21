@@ -1,0 +1,1 @@
+sqlcmd -S .\SQLEXPRESS -i VERITABANI.sql
