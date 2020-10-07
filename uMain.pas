@@ -24,7 +24,10 @@ uses
   dxNavBarCollns, cxFilter,
   dxNavBarGroupItems, dxBarBuiltInMenu, cxPC, dxStatusBar,
    cxStyles, dxSkinOffice2019Colorful, cxImageList, System.ImageList,
-  Vcl.ImgList, dxNavBarBase, cxSplitter, dxGDIPlusClasses,FileCtrl,Uni;
+  Vcl.ImgList, dxNavBarBase, cxSplitter, dxGDIPlusClasses,FileCtrl,Uni,IdHTTP,
+  IdBaseComponent, IdComponent, IdServerIOHandler, IdSSL, IdSSLOpenSSL,
+  IdIOHandler, IdIOHandlerSocket, IdIOHandlerStack, IdTCPConnection, IdTCPClient,
+  System.Net.URLClient, System.Net.HttpClient, System.Net.HttpClientComponent;
 
 type
   TfrmMain = class(TForm)
@@ -36,7 +39,6 @@ type
     txtBaud: TEdit;
     btnDisconnect: TButton;
     imgList: TImageList;
-    pageContainer: TcxPageControl;
     statusBar: TdxStatusBar;
     dxStatusBar1Container2: TdxStatusBarContainerControl;
     cxImageList1: TcxImageList;
@@ -61,6 +63,8 @@ type
     Image1: TImage;
     itmBackupAndRestore: TdxNavBarItem;
     folderSelector: TOpenDialog;
+    itmUpdate: TdxNavBarItem;
+    pageContainer: TcxPageControl;
     procedure btnConnectClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure btnDisconnectClick(Sender: TObject);
@@ -120,6 +124,7 @@ procedure TfrmMain.dxNavbarLinkClick(Sender: TObject; ALink: TdxNavBarItemLink);
 var
   sDir:String;
   bQuery: TUniQuery;
+  bVersionUri,bVersion : string;
 begin
     if ALink.Item.Name = 'itmKisiAdd' then
     begin
