@@ -238,12 +238,13 @@ begin
     begin
       if pageContainer.ActivePage.Name = 'itmBagis' then begin
         frmBagis.txtCardID.Text := '';
-        frmBagis.txtCardID.Text := Data;
+        frmBagis.txtCardID.Text := Trim(Data)
       end else if pageContainer.ActivePage.Name = 'itmKisiAdd' then begin
-        frmKisiEkle.txtCardId.Text := Data;
+        frmKisiEkle.txtCardID.Text := '';
+        frmKisiEkle.txtCardId.Text := Trim(Data);
       end else if pageContainer.ActivePage.Name = 'itmBagisEx' then begin
-        frmBagisEx.txtCardId.Text := '';
-        frmBagisEx.txtCardId.Text := Data;
+        frmBagisEx.txtCardID.Text := '';
+        frmBagisEx.txtCardId.Text := Trim(Data);
       end else if pageContainer.ActivePage.Name = 'itmKisiList' then begin
         with frmKisiList do begin
           with cxGridDBTableView do begin

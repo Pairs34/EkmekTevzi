@@ -439,7 +439,6 @@ object frmBagis: TfrmBagis
     ParentFont = False
     TabOrder = 5
     LookAndFeel.NativeStyle = False
-    ExplicitTop = 464
     object cxGridDBTableView: TcxGridDBTableView
       Navigator.Buttons.CustomButtons = <>
       DataController.DataSource = tblVAylikHareket
