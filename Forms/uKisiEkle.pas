@@ -125,11 +125,11 @@ begin
             SQL.Add('KartId = :kartid,TelNo = :tel,Adres = :adres,Nufus = :nufus,SonIslemTarihi = :SIslemTarih,SonIslemTipi = :SIslemTip');
             SQL.Add(' where Id = :kisiid');
           end;
-          ParamByName('user').Value := Kisi.AdSoyad;
+          ParamByName('user').Value := QuotedStr(Kisi.AdSoyad);
           ParamByName('adet').Value := Kisi.EkmekAdedi;
           ParamByName('aktif').Value := IfThen(btnKartIptal.Checked,'Aktif','Pasif');
-          ParamByName('aciklama').Value := Kisi.Aciklama;
-          ParamByName('kartid').Value := Kisi.CardId;
+          ParamByName('aciklama').Value := QuotedStr(Kisi.Aciklama);
+          ParamByName('kartid').Value := Trim(Kisi.CardId);
           ParamByName('tel').Value := Kisi.TelNo;
           ParamByName('adres').Value := Kisi.Adres;
           ParamByName('nufus').Value := Kisi.Nufus;
@@ -138,7 +138,7 @@ begin
             ParamByName('kisiid').Value := Kisi.Id;
             ParamByName('SIslemTip').Value := 'Aktif Edildi';
           end else if Kisi.Action = 'create' then begin
-            ParamByName('SIslemTip').Value := 'Kayýt Edildi';
+            ParamByName('SIslemTip').Value := 'Kayıt Edildi';
           end;
           ExecSQL;
           ShowMessage(IfThen(Kisi.Action = 'edit','Kayıt Güncellendi','Kayıt Yapıldı'));
