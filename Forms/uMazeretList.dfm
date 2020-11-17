@@ -97,7 +97,7 @@ object frmMazeretList: TfrmMazeretList
       Left = 1
       Top = 1
       Width = 207
-      Height = 16
+      Height = 39
       Align = alLeft
       Caption = 'Toplam Mazeretli Ekmek Say'#305's'#305' : '
       Font.Charset = DEFAULT_CHARSET
@@ -108,16 +108,17 @@ object frmMazeretList: TfrmMazeretList
       Font.Quality = fqClearType
       ParentFont = False
       Layout = tlCenter
+      ExplicitHeight = 16
     end
     object lblTpMzEkmAdt: TLabel
       Left = 208
       Top = 1
       Width = 8
-      Height = 16
+      Height = 39
       Margins.Left = 6
       Align = alLeft
       Caption = '0'
-      Color = clBlack
+      Color = clInactiveBorder
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clRed
       Font.Height = -13
@@ -125,7 +126,9 @@ object frmMazeretList: TfrmMazeretList
       Font.Style = [fsBold]
       ParentColor = False
       ParentFont = False
+      Transparent = True
       Layout = tlCenter
+      ExplicitHeight = 16
     end
   end
   object localizer: TcxLocalizer

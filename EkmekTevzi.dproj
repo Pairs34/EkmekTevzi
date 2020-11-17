@@ -191,6 +191,10 @@
             <Form>frmSQLEditor</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="Forms\uViewHareket.pas">
+            <Form>frmKisiHareketleri</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <None Include="EkmekTevzi.manifest"/>
         <BuildConfiguration Include="Debug">
             <Key>Cfg_2</Key>

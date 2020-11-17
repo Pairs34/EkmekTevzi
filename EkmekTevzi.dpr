@@ -20,7 +20,8 @@ uses
   Vcl.Themes,
   Vcl.Styles,
   uMazeretEdit in 'Forms\uMazeretEdit.pas' {frmMazeretEdit},
-  uSQLEditor in 'Forms\uSQLEditor.pas' {frmSQLEditor};
+  uSQLEditor in 'Forms\uSQLEditor.pas' {frmSQLEditor},
+  uViewHareket in 'Forms\uViewHareket.pas' {frmKisiHareketleri};
 
 {$R *.res}
 
@@ -31,6 +32,5 @@ begin
   Application.CreateForm(TfrmMain, frmMain);
   Application.CreateForm(TfrmSplash, frmSplash);
   Application.CreateForm(TfrmLogin, frmLogin);
-  Application.CreateForm(TfrmMazeretEdit, frmMazeretEdit);
   Application.Run;
 end.

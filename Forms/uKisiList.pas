@@ -56,6 +56,8 @@ type
     KartIDKopyala1: TMenuItem;
     btnMazeretEkle: TMenuItem;
     statusKisilist: TdxStatusBar;
+    btnExportUsers: TMenuItem;
+    btnGunlukHareketler: TMenuItem;
     procedure FormShow(Sender: TObject);
     procedure btnRefreshClick(Sender: TObject);
     procedure btnSilClick(Sender: TObject);
@@ -66,6 +68,8 @@ type
     procedure KartIDKopyala1Click(Sender: TObject);
     procedure btnMazeretEkleClick(Sender: TObject);
     procedure cxGridDBTableViewDataControllerDataChanged(Sender: TObject);
+    procedure btnExportUsersClick(Sender: TObject);
+    procedure btnGunlukHareketlerClick(Sender: TObject);
   private
     procedure LoadKisiler;
     { Private declarations }
@@ -80,7 +84,8 @@ implementation
 
 {$R *.dfm}
 
-uses uDbHelper, uKisiEkle, Uni, uReports, uMazeret;
+uses uDbHelper, uKisiEkle, Uni, uReports, uMazeret,cxGridExportLink,Vcl.FileCtrl,
+  uViewHareket;
 
 procedure TfrmKisiList.btnDegistirClick(Sender: TObject);
 var
@@ -228,6 +233,30 @@ procedure TfrmKisiList.KartIDKopyala1Click(Sender: TObject);
 begin
     Clipboard.AsText := cxGridDBTableView.Controller.FocusedRow
                         .Values[cxGridDBTableView.GetColumnByFieldName('KartId').Index];
+end;
+
+procedure TfrmKisiList.btnExportUsersClick(Sender: TObject);
+var
+  sDir : string;
+  MyClass: TComponent;
+begin
+   SelectDirectory('Veritabaný Yedeði Alýnacak Dizini Seçiniz','',sDir);
+
+   if sDir <> '' then
+   begin
+     try
+       ExportGridToXLSX(sDir + PathDelim + 'KisiListesi',cxGrid,true,true,true,'xlsx',nil);
+     except on E: Exception do begin
+       ShowMessage('Excel''e aktarýlýrkan hata oluþtu.' + E.Message);
+     end;
+     end;
+   end;
+end;
+
+procedure TfrmKisiList.btnGunlukHareketlerClick(Sender: TObject);
+begin
+    Application.CreateForm(TfrmKisiHareketleri,frmKisiHareketleri);
+    frmKisiHareketleri.ShowModal;
 end;
 
 procedure TfrmKisiList.btnMazeretEkleClick(Sender: TObject);
