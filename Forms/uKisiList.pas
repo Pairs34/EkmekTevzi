@@ -58,6 +58,7 @@ type
     statusKisilist: TdxStatusBar;
     btnExportUsers: TMenuItem;
     btnGunlukHareketler: TMenuItem;
+    KiiHareketleri1: TMenuItem;
     procedure FormShow(Sender: TObject);
     procedure btnRefreshClick(Sender: TObject);
     procedure btnSilClick(Sender: TObject);
@@ -70,6 +71,7 @@ type
     procedure cxGridDBTableViewDataControllerDataChanged(Sender: TObject);
     procedure btnExportUsersClick(Sender: TObject);
     procedure btnGunlukHareketlerClick(Sender: TObject);
+    procedure KiiHareketleri1Click(Sender: TObject);
   private
     procedure LoadKisiler;
     { Private declarations }
@@ -233,6 +235,14 @@ procedure TfrmKisiList.KartIDKopyala1Click(Sender: TObject);
 begin
     Clipboard.AsText := cxGridDBTableView.Controller.FocusedRow
                         .Values[cxGridDBTableView.GetColumnByFieldName('KartId').Index];
+end;
+
+procedure TfrmKisiList.KiiHareketleri1Click(Sender: TObject);
+begin
+    Application.CreateForm(TfrmKisiHareketleri,frmKisiHareketleri);
+    frmKisiHareketleri.bKartIdFilter := cxGridDBTableView.Controller.FocusedRow
+                        .Values[cxGridDBTableView.GetColumnByFieldName('KartId').Index];
+    frmKisiHareketleri.ShowModal;
 end;
 
 procedure TfrmKisiList.btnExportUsersClick(Sender: TObject);

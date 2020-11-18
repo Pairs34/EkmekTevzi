@@ -1,0 +1,67 @@
+unit uViewHareket;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, cxGraphics, cxControls, cxLookAndFeels,
+  cxLookAndFeelPainters, cxStyles, dxSkinsCore, dxSkinsDefaultPainters,
+  cxCustomData, cxFilter, cxData, cxDataStorage, cxEdit, cxNavigator,
+  dxDateRanges, Data.DB, cxDBData, cxGridLevel, cxClasses, cxGridCustomView,
+  cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid,Uni, MemDS,
+  DBAccess;
+
+type
+  TfrmKisiHareketleri = class(TForm)
+    cxGridDBTableView: TcxGridDBTableView;
+    cxGridLevel: TcxGridLevel;
+    cxGrid: TcxGrid;
+    HareketListSource: TUniDataSource;
+    HareketListQuery: TUniQuery;
+    procedure FormActivate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    bKartIdFilter : string;
+  end;
+
+var
+  frmKisiHareketleri: TfrmKisiHareketleri;
+
+implementation
+
+{$R *.dfm}
+
+uses uDbHelper;
+
+procedure TfrmKisiHareketleri.FormActivate(Sender: TObject);
+begin
+
+  with HareketListQuery do begin
+    Close;
+    SQL.Clear;
+    if bKartIdFilter <> '' then
+    begin
+      SQL.Add(format('select * from GetLastAction where KartID = %s',[QuotedStr(bKartIdFilter)]));
+    end else begin
+      SQL.Add('select * from GetLastAction');
+    end;
+
+    Open;
+  end;
+
+  cxGridDBTableView.ClearItems;
+  cxGridDBTableView.DataController.DataSource := nil;
+  cxGridDBTableView.DataController.DataSource := HareketListSource;
+  cxGridDBTableView.DataController.CreateAllItems;
+end;
+
+procedure TfrmKisiHareketleri.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  Action := TCloseAction.caFree;
+end;
+
+end.

@@ -12,6 +12,7 @@ object frmKisiHareketleri: TfrmKisiHareketleri
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poOwnerFormCenter
   OnActivate = FormActivate
   OnClose = FormClose
   PixelsPerInch = 96
@@ -24,10 +25,6 @@ object frmKisiHareketleri: TfrmKisiHareketleri
     Align = alClient
     TabOrder = 0
     LookAndFeel.NativeStyle = False
-    ExplicitLeft = 120
-    ExplicitTop = 136
-    ExplicitWidth = 250
-    ExplicitHeight = 200
     object cxGridDBTableView: TcxGridDBTableView
       Navigator.Buttons.CustomButtons = <>
       DataController.Summary.DefaultGroupSummaryItems = <>
@@ -41,5 +38,15 @@ object frmKisiHareketleri: TfrmKisiHareketleri
     object cxGridLevel: TcxGridLevel
       GridView = cxGridDBTableView
     end
+  end
+  object HareketListSource: TUniDataSource
+    DataSet = HareketListQuery
+    Left = 376
+    Top = 432
+  end
+  object HareketListQuery: TUniQuery
+    Connection = frmDb.dbHelper
+    Left = 232
+    Top = 432
   end
 end

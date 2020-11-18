@@ -8,19 +8,23 @@ uses
   cxLookAndFeelPainters, cxStyles, dxSkinsCore, dxSkinsDefaultPainters,
   cxCustomData, cxFilter, cxData, cxDataStorage, cxEdit, cxNavigator,
   dxDateRanges, Data.DB, cxDBData, cxGridLevel, cxClasses, cxGridCustomView,
-  cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid,Uni;
+  cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid,Uni, MemDS,
+  DBAccess;
 
 type
   TfrmKisiHareketleri = class(TForm)
     cxGridDBTableView: TcxGridDBTableView;
     cxGridLevel: TcxGridLevel;
     cxGrid: TcxGrid;
+    HareketListSource: TUniDataSource;
+    HareketListQuery: TUniQuery;
     procedure FormActivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
     { Public declarations }
+    bKartIdFilter : string;
   end;
 
 var
@@ -33,24 +37,24 @@ implementation
 uses uDbHelper;
 
 procedure TfrmKisiHareketleri.FormActivate(Sender: TObject);
-var
-  bQuery : TUniQuery;
-  bDataSource : TUniDataSource;
 begin
-  bQuery := TUniQuery.Create(nil);
-  bDataSource := TUniDataSource.Create(nil);
-  bDataSource.DataSet := bQuery;
 
-  with uDbHelper.frmDb do begin
-    bQuery.Connection := dbHelper;
-    bQuery.SQL.Clear;
-    bQUery.SQL.Add('select * from GetLastAction');
-    bQuery.Execute;
+  with HareketListQuery do begin
+    Close;
+    SQL.Clear;
+    if bKartIdFilter <> '' then
+    begin
+      SQL.Add(format('select * from GetLastAction where KartID = %s',[QuotedStr(bKartIdFilter)]));
+    end else begin
+      SQL.Add('select * from GetLastAction where FORMAT(IslemZamani,''yyyy-MM-dd'') = FORMAT(GETDATE(),''yyyy-MM-dd'')');
+    end;
+
+    Open;
   end;
 
   cxGridDBTableView.ClearItems;
   cxGridDBTableView.DataController.DataSource := nil;
-  cxGridDBTableView.DataController.DataSource := bDataSource;
+  cxGridDBTableView.DataController.DataSource := HareketListSource;
   cxGridDBTableView.DataController.CreateAllItems;
 end;
 
