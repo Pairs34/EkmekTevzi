@@ -6,14 +6,13 @@ object frmDb: TfrmDb
     ProviderName = 'SQL Server'
     Port = 1433
     Database = 'AskidaEkmek'
-    Username = 'sa'
-    Server = '.'
-    Connected = True
+    Username = 'admin'
+    Server = 'awssqlserver.cdib5b6yqxru.us-east-1.rds.amazonaws.com'
     LoginPrompt = False
     BeforeConnect = dbHelperBeforeConnect
     Left = 24
     Top = 16
-    EncryptedPassword = '9EFF8CFF'
+    EncryptedPassword = 'A6FF93FF9BFF8DFF92FFDEFFCCFFCBFF'
   end
   object myQuery: TUniQuery
     Connection = dbHelper

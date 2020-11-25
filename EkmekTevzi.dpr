@@ -21,7 +21,8 @@ uses
   Vcl.Styles,
   uMazeretEdit in 'Forms\uMazeretEdit.pas' {frmMazeretEdit},
   uSQLEditor in 'Forms\uSQLEditor.pas' {frmSQLEditor},
-  uViewHareket in 'Forms\uViewHareket.pas' {frmKisiHareketleri};
+  uViewHareket in 'Forms\uViewHareket.pas' {frmKisiHareketleri},
+  uCustomDialog in 'Forms\uCustomDialog.pas' {frmCustomDialog};
 
 {$R *.res}
 
@@ -32,5 +33,6 @@ begin
   Application.CreateForm(TfrmMain, frmMain);
   Application.CreateForm(TfrmSplash, frmSplash);
   Application.CreateForm(TfrmLogin, frmLogin);
+  Application.CreateForm(TfrmCustomDialog, frmCustomDialog);
   Application.Run;
 end.

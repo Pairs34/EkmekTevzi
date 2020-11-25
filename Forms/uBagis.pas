@@ -103,7 +103,7 @@ type
     sLineBreak = {$IFDEF LINUX} AnsiChar(#10) {$ENDIF}
 {$IFDEF MSWINDOWS} AnsiString(#13#10) {$ENDIF};
   public
-    { Public declarations }
+    procedure Custommessage(msg : string);
   end;
 
 TYPE
@@ -119,7 +119,7 @@ implementation
 
 {$R *.dfm}
 
-uses uDbHelper, uMazeret, uGlobals;
+uses uDbHelper, uMazeret, uGlobals, uCustomDialog;
 
 FUNCTION TStringListHelper.ToSQL: STRING;
 
@@ -152,6 +152,12 @@ begin
   begin
     ShowMessage('Kart ID boþ olmamalý.');
   end;
+end;
+
+procedure TfrmBagis.Custommessage(msg: string);
+begin
+    frmCustomDialog.lblCaption.Caption := msg;
+    frmCustomDialog.ShowModal;
 end;
 
 procedure TfrmBagis.cxGridDBTableViewStylesGetContentStyle
@@ -217,7 +223,7 @@ begin
         ExecSQL;
         if (RecordCount > 0) and (txtCardID.Text <> '') then
         begin
-          ShowMessage('Bu arkadaş 24 saat içinde ekmek almış.');
+           Custommessage('Bugün ekmek almış.');
           Exit;
         end;
 
@@ -230,7 +236,8 @@ begin
         if (RecordCount = 0) and (txtCardID.Text <> '') then
         begin
           Beep;
-          ShowMessage('Bu kart sistemde kayıtlı değil.');
+          CustomMessage('Bu kart sistemde kayıtlı değil.');
+          //ShowMessage('Bu kart sistemde kayıtlı değil.');
           Exit;
         end;
 
@@ -238,17 +245,14 @@ begin
         begin
           if not btnSadeceSorgu.Checked then
           begin
-            MResult := MessageDlg(format('%s nolu kart şu sebeple pasiftir : ' +
+            CustomMessage(format('%s nolu kart şu sebeple pasiftir : ' +
               sLineBreak + '%s', [txtCardID.Text, FieldByName('Aciklama')
-              .AsString]), mtInformation, [mbYes, mbCancel], 0);
-            if MResult = mrCancel then
-            begin
-              Exit;
-            end;
+              .AsString]));
+              Exit
           end
           else
           begin
-            ShowMessage(format('%s nolu kart şu sebeple pasiftir : ' +
+            Custommessage(format('%s nolu kart şu sebeple pasiftir : ' +
               sLineBreak + '%s', [txtCardID.Text, FieldByName('Aciklama')
               .AsString]));
           end;
