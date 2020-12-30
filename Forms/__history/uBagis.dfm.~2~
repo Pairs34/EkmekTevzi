@@ -65,7 +65,7 @@ object frmBagis: TfrmBagis
   object txtCardID: TEdit
     Left = 8
     Top = 8
-    Width = 593
+    Width = 705
     Height = 68
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -321,7 +321,7 @@ object frmBagis: TfrmBagis
     ParentFont = False
   end
   object btnMazeretEkle: TcxButton
-    Left = 607
+    Left = 719
     Top = 8
     Width = 130
     Height = 68

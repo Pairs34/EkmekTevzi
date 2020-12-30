@@ -311,7 +311,7 @@ begin
       begin
         try
           SQL.Clear;
-          SQL.Text := 'select * from users';
+          SQL.Text := 'select * from users order by Id asc';
           Close;
           Open;
         except
