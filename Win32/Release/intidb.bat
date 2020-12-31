@@ -1,0 +1,1 @@
+sqlcmd -U sa -P as -S . -i VERITABANI.sql

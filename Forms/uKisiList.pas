@@ -59,6 +59,7 @@ type
     btnExportUsers: TMenuItem;
     btnGunlukHareketler: TMenuItem;
     KiiHareketleri1: TMenuItem;
+    btnSaveLayout: TMenuItem;
     procedure FormShow(Sender: TObject);
     procedure btnRefreshClick(Sender: TObject);
     procedure btnSilClick(Sender: TObject);
@@ -72,8 +73,10 @@ type
     procedure btnExportUsersClick(Sender: TObject);
     procedure btnGunlukHareketlerClick(Sender: TObject);
     procedure KiiHareketleri1Click(Sender: TObject);
+    procedure btnSaveLayoutClick(Sender: TObject);
   private
     procedure LoadKisiler;
+    procedure LoadLayout;
     { Private declarations }
   public
     { Public declarations }
@@ -229,6 +232,8 @@ begin
   cxGridDBTableView.BeginUpdate();
   cxGridDBTableView.ApplyBestFit();
   cxGridDBTableView.EndUpdate();
+
+  LoadLayout;
 end;
 
 procedure TfrmKisiList.KartIDKopyala1Click(Sender: TObject);
@@ -321,6 +326,29 @@ begin
       end;
       cxGridDBTableView.DataController.CreateAllItems();
     end;
+end;
+
+procedure TfrmKisiList.LoadLayout;
+var
+  KisiListLayoutPath: string;
+begin
+  KisiListLayoutPath := ExtractFilePath(Application.ExeName) + 'KisiList.ini';
+  if FileExists(KisiListLayoutPath) then
+  begin
+    cxGridDBTableView.RestoreFromIniFile('KisiList.ini');
+  end;
+end;
+
+procedure TfrmKisiList.btnSaveLayoutClick(Sender: TObject);
+begin
+  try
+    cxGridDBTableView.StoreToIniFile('KisiList.ini',True);
+
+    ShowMessage('Ayarlar kaydedildi.');
+  except on E: Exception do begin
+    ShowMessage(E.Message);
+  end;
+  end;
 end;
 
 procedure TfrmKisiList.btnSilClick(Sender: TObject);
