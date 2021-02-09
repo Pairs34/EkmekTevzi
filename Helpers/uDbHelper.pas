@@ -21,12 +21,13 @@ type
     qMazeretList: TUniQuery;
     AylikHareket: TUniQuery;
     tblAylikHareket: TUniDataSource;
-    qSumBagis: TUniQuery;
+    monthlyCount: TUniQuery;
     SQLServerUniProvider1: TSQLServerUniProvider;
     GetAylikRapor: TUniStoredProc;
     tblAylikRapor: TUniDataSource;
     GetBagisList: TUniStoredProc;
     tblBagisList: TUniDataSource;
+    dailyCount: TUniQuery;
     procedure dbHelperBeforeConnect(Sender: TObject);
   private
     { Private declarations }

@@ -6,13 +6,14 @@ object frmDb: TfrmDb
     ProviderName = 'SQL Server'
     Port = 1433
     Database = 'AskidaEkmek'
-    Username = 'admin'
-    Server = 'awssqlserver.cdib5b6yqxru.us-east-1.rds.amazonaws.com'
+    Username = 'sa'
+    Server = '.'
+    Connected = True
     LoginPrompt = False
     BeforeConnect = dbHelperBeforeConnect
     Left = 24
     Top = 16
-    EncryptedPassword = 'A6FF93FF9BFF8DFF92FFDEFFCCFFCBFF'
+    EncryptedPassword = '9EFF8CFF'
   end
   object myQuery: TUniQuery
     Connection = dbHelper
@@ -193,14 +194,14 @@ object frmDb: TfrmDb
     Left = 32
     Top = 168
   end
-  object qSumBagis: TUniQuery
+  object monthlyCount: TUniQuery
     Connection = dbHelper
     SQL.Strings = (
       'select SUM(Adet) as '#39'Adet'#39
       'from hareket h join users u on h.KartId = u.KartId'
       'where YEAR(IslemZamani) = :Yil and MONTH(IslemZamani) = :Ay')
     Left = 496
-    Top = 328
+    Top = 344
     ParamData = <
       item
         DataType = ftUnknown
@@ -313,5 +314,14 @@ object frmDb: TfrmDb
     DataSet = GetBagisList
     Left = 248
     Top = 192
+  end
+  object dailyCount: TUniQuery
+    Connection = dbHelper
+    SQL.Strings = (
+      'select SUM(u.Adet) as '#39'Adet'#39
+      'from hareket h join users u on h.KartId = u.KartId'
+      'where CAST(GETDATE() as DATE) = CAST(IslemZamani as DATE)')
+    Left = 416
+    Top = 344
   end
 end

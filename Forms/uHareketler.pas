@@ -1,4 +1,4 @@
-unit uHareketler;
+﻿unit uHareketler;
 
 interface
 
@@ -30,7 +30,7 @@ uses
   cxProgressBar, Datasnap.DBClient,DateUtils,System.Diagnostics,
   dxSkinOffice2019Colorful,
   System.ImageList, Vcl.ImgList, cxImageList, cxCustomData, cxFilter, cxData,
-  dxDateRanges;
+  dxDateRanges,FileCtrl,cxGridExportLink;
 
 type
   TfrmHareket = class(TForm)
@@ -43,8 +43,6 @@ type
     txtAy: TcxComboBox;
     btnFilter: TcxButton;
     pnlFooter: TPanel;
-    lblAylikToplam: TcxLabel;
-    txtAylikToplam: TcxLabel;
     cxStyleRepository: TcxStyleRepository;
     cxRedStyle: TcxStyle;
     cxGreenStyle: TcxStyle;
@@ -59,6 +57,11 @@ type
     btnAddEkmek: TMenuItem;
     cbBagisTuru: TcxComboBox;
     lblBagisTuru: TLabel;
+    btnExportXls: TMenuItem;
+    lblMonthlyCount: TcxLabel;
+    txtMonthlyCount: TcxLabel;
+    lblDailyCount: TcxLabel;
+    txtDailyCount: TcxLabel;
     procedure FormShow(Sender: TObject);
     procedure btnReportClick(Sender: TObject);
     procedure CloseUniq(Sender : TObject; var Action : TCloseAction);
@@ -69,6 +72,7 @@ type
     procedure KartIdKopyala1Click(Sender: TObject);
     procedure btnAddEkmekClick(Sender: TObject);
     procedure popupMenuPopup(Sender: TObject);
+    procedure btnExportXlsClick(Sender: TObject);
   private
     procedure LoadHareketlerYeni;
     procedure GetHareketler(Yil,Ay : integer);
@@ -126,7 +130,7 @@ begin
 
   if bValue = 'X' then
   begin
-    ShowMessage('Daha �nce ' + cbBagisTuru.Text + ' verilmi�');
+    ShowMessage('Daha önce ' + cbBagisTuru.Text + ' verilmiþ');
     Exit;
   end;
 
@@ -142,6 +146,24 @@ begin
   LoadHareketlerYeni;
 
   ShowMessage(cbBagisTuru.Text + ' verildi.');
+end;
+
+procedure TfrmHareket.btnExportXlsClick(Sender: TObject);
+var
+  sDir : string;
+  MyClass: TComponent;
+begin
+   SelectDirectory('Hareket Listesi Yedeği Alınacak Dizini Seçiniz','',sDir);
+
+   if sDir <> '' then
+   begin
+     try
+       ExportGridToXLSX(sDir + PathDelim + 'BagisListesi',cxGrid,true,true,true,'xlsx',nil);
+     except on E: Exception do begin
+       ShowMessage('Excel''e aktarýlýrkan hata oluþtu.' + E.Message);
+     end;
+     end;
+   end;
 end;
 
 procedure TfrmHareket.btnFilterClick(Sender: TObject);
@@ -244,11 +266,6 @@ begin
 end;
 
 procedure TfrmHareket.LoadHareketlerYeni;
-var
-  I: integer;
-  X,Y,LastDay : integer;
-  IsAvailable : string;
-  bQuery : TUniQuery;
 begin
     cxGridDBTableView.ClearItems;
 
@@ -264,83 +281,23 @@ begin
 
     cxGridDBTableView.DataController.DataSource := frmDb.tblBagisList;
     cxGridDBTableView.DataController.CreateAllItems;
+    with frmDb do begin
+      with monthlyCount do
+      begin
+        Close;
+        ParamByName('Yil').AsString := txtYil.Text;
+        ParamByName('Ay').AsString := Format('%.*d',[2, txtAy.SelectedItem + 1]);
+        Open;
 
-    Exit;
+        txtMonthlyCount.Caption := FieldByName('Adet').AsString;
+      end;
 
-    bQuery := TUniQuery.Create(Self);
-
-    if Assigned(MyDataset) then
-       MyDataset.Free;
-
-    LastDay := DayOf(EndOfAMonth(StrToInt(txtYil.Text),txtAy.SelectedItem + 1));
-
-    MyDataset := TClientDataSet.Create(nil);
-    with frmDb do
-    begin
-        if not dbHelper.Connected then
-           dbHelper.Connect;
-
-           cxGridDBTableView.ClearItems;
-
-           with bQuery do begin
-              Connection := frmDb.dbHelper;
-              SQL.Clear;
-              SQL.Add('select * from users');
-              Open;
-              First;
-
-              while not eof do
-              begin
-                 SetLength(HareketList,I+1);
-                 HareketList[I].KartId := FieldByName('KartId').AsString;
-                 HareketList[I].Name := FieldByName('AdSoyad').AsString;
-                 Next;
-                 I := I+1;
-              end;
-              SetLength(HareketList,I);
-           end;
-
-          MyDataset.FieldDefs.Add('KartId',ftString,15);
-          MyDataset.FieldDefs.Add('Name',ftString,30);
-          for I := 1 to LastDay do
-          begin
-             MyDataset.FieldDefs.Add(I.ToString, ftString, 3);
-          end;
-          MyDataset.CreateDataSet;
-
-          GetHareketler(StrToInt(txtYil.Text),StrToInt(Format('%.*d',[2, txtAy.SelectedItem + 1])));
-
-          for Y := 0 to Length(HareketList) -1 do
-          begin
-              MyDataset.Open;
-              MyDataset.Append;
-              MyDataset.FieldByName('KartId').Value := HareketList[Y].KartId;
-              MyDataset.FieldByName('Name').Value := HareketList[Y].Name;
-              for X := 1 to LastDay do
-              begin
-
-                IsAvailable := HareketList[Y].Days[X];
-                MyDataset.FieldByName(''+ X.ToString +'').AsString := IfThen(IsAvailable = 'X',IsAvailable,
-                                CheckMazeret(HareketList[Y].KartId,StrToInt(txtYil.Text),
-                                StrToInt(Format('%.*d',[2, txtAy.SelectedItem + 1])),X));
-
-              end;
-          end;
-
-          MyDataSource.DataSet := MyDataset;
-          cxGridDBTableView.DataController.DataSource := MyDataSource;
-          cxGridDBTableView.DataController.CreateAllItems;
-
-          with qSumBagis do
-          begin
-            Close;
-            ParamByName('Yil').AsString := txtYil.Text;
-            ParamByName('Ay').AsString := Format('%.*d',[2, txtAy.SelectedItem + 1]);
-            Open;
-
-            txtAylikToplam.Caption := FieldByName('Adet').AsString;
-          end;
-          cxGridDBTableView.Controller.TopRowIndex := 0;
+      with dailyCount do
+      begin
+        Close;
+        Open;
+        txtDailyCount.Caption := FieldByName('Adet').AsString;
+      end;
     end;
 end;
 

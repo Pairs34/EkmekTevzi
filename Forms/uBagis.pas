@@ -53,39 +53,6 @@ type
     cxGrid: TcxGrid;
     cxGridDBTableView: TcxGridDBTableView;
     cxGridLevel: TcxGridLevel;
-    cxGridDBTableViewKartId: TcxGridDBColumn;
-    cxGridDBTableViewAdSoyad: TcxGridDBColumn;
-    cxGridDBTableViewBaTr: TcxGridDBColumn;
-    cxGridDBTableViewDBColumn01: TcxGridDBColumn;
-    cxGridDBTableViewDBColumn02: TcxGridDBColumn;
-    cxGridDBTableViewDBColumn03: TcxGridDBColumn;
-    cxGridDBTableViewDBColumn04: TcxGridDBColumn;
-    cxGridDBTableViewDBColumn05: TcxGridDBColumn;
-    cxGridDBTableViewDBColumn06: TcxGridDBColumn;
-    cxGridDBTableViewDBColumn07: TcxGridDBColumn;
-    cxGridDBTableViewDBColumn08: TcxGridDBColumn;
-    cxGridDBTableViewDBColumn09: TcxGridDBColumn;
-    cxGridDBTableViewDBColumn10: TcxGridDBColumn;
-    cxGridDBTableViewDBColumn11: TcxGridDBColumn;
-    cxGridDBTableViewDBColumn12: TcxGridDBColumn;
-    cxGridDBTableViewDBColumn13: TcxGridDBColumn;
-    cxGridDBTableViewDBColumn14: TcxGridDBColumn;
-    cxGridDBTableViewDBColumn15: TcxGridDBColumn;
-    cxGridDBTableViewDBColumn16: TcxGridDBColumn;
-    cxGridDBTableViewDBColumn17: TcxGridDBColumn;
-    cxGridDBTableViewDBColumn18: TcxGridDBColumn;
-    cxGridDBTableViewDBColumn19: TcxGridDBColumn;
-    cxGridDBTableViewDBColumn20: TcxGridDBColumn;
-    cxGridDBTableViewDBColumn22: TcxGridDBColumn;
-    cxGridDBTableViewDBColumn23: TcxGridDBColumn;
-    cxGridDBTableViewDBColumn24: TcxGridDBColumn;
-    cxGridDBTableViewDBColumn25: TcxGridDBColumn;
-    cxGridDBTableViewDBColumn26: TcxGridDBColumn;
-    cxGridDBTableViewDBColumn27: TcxGridDBColumn;
-    cxGridDBTableViewDBColumn28: TcxGridDBColumn;
-    cxGridDBTableViewDBColumn29: TcxGridDBColumn;
-    cxGridDBTableViewDBColumn30: TcxGridDBColumn;
-    cxGridDBTableViewDBColumn31: TcxGridDBColumn;
     cxStyleRepository: TcxStyleRepository;
     cxRedStyle: TcxStyle;
     cxGreenStyle: TcxStyle;
@@ -167,7 +134,7 @@ begin
   if not Assigned(AItem) then
     Exit;
 
-  if AItem.Index > 3 then
+  if AItem.Index > 1 then
   begin
     if ARecord.Values[AItem.Index] = 'X' then
     begin
@@ -323,6 +290,7 @@ begin
 
     cxGridDBTableView.DataController.DataSource := frmDb.tblAylikRapor;
     cxGridDBTableView.DataController.CreateAllItems;
+    cxGridDBTableView.ApplyBestFit();
   end;
 end;
 

@@ -163,14 +163,47 @@ object frmHareket: TfrmHareket
     Color = clGradientActiveCaption
     ParentBackground = False
     TabOrder = 1
-    object lblAylikToplam: TcxLabel
+    ExplicitLeft = -32
+    ExplicitTop = 638
+    object lblMonthlyCount: TcxLabel
       Left = 16
-      Top = 8
-      Caption = 'Ayl'#305'k Toplam :'
+      Top = 6
+      Caption = 'Ayl'#305'k Toplam : '
+      ParentFont = False
+      Style.Font.Charset = DEFAULT_CHARSET
+      Style.Font.Color = clWindowText
+      Style.Font.Height = -13
+      Style.Font.Name = 'Tahoma'
+      Style.Font.Style = [fsBold]
+      Style.IsFontAssigned = True
     end
-    object txtAylikToplam: TcxLabel
-      Left = 112
-      Top = 8
+    object txtMonthlyCount: TcxLabel
+      Left = 119
+      Top = 6
+      Caption = '0'
+      ParentFont = False
+      Style.Font.Charset = DEFAULT_CHARSET
+      Style.Font.Color = clRed
+      Style.Font.Height = -13
+      Style.Font.Name = 'Tahoma'
+      Style.Font.Style = [fsBold]
+      Style.IsFontAssigned = True
+    end
+    object lblDailyCount: TcxLabel
+      Left = 216
+      Top = 6
+      Caption = 'G'#252'nl'#252'k Toplam : '
+      ParentFont = False
+      Style.Font.Charset = DEFAULT_CHARSET
+      Style.Font.Color = clWindowText
+      Style.Font.Height = -13
+      Style.Font.Name = 'Tahoma'
+      Style.Font.Style = [fsBold]
+      Style.IsFontAssigned = True
+    end
+    object txtDailyCount: TcxLabel
+      Left = 330
+      Top = 6
       Caption = '0'
       ParentFont = False
       Style.Font.Charset = DEFAULT_CHARSET
@@ -236,6 +269,11 @@ object frmHareket: TfrmHareket
       Caption = 'Ekmek Ver'
       ImageIndex = 2
       OnClick = btnAddEkmekClick
+    end
+    object btnExportXls: TMenuItem
+      Caption = 'Excel'#39'e Aktar'
+      ImageIndex = 3
+      OnClick = btnExportXlsClick
     end
   end
   object cxStyleRepository: TcxStyleRepository
@@ -363,6 +401,28 @@ object frmHareket: TfrmHareket
           D24C0212A8F210EAAED3D01969BB3FD0BCDDE32BEB06D56AD5D09CCDDA66EE62
           EED6EF43A9AB2331008603ABCEFF019D3AAD15CCD8D2E00000000049454E44AE
           426082}
+      end
+      item
+        ImageClass = 'TdxPNGImage'
+        Image.Data = {
+          89504E470D0A1A0A0000000D49484452000000100000001008060000001FF3FF
+          610000001D744558745469746C65004578706F72743B586C733B4578706F7274
+          546F586C733B4CA099FE000001DD49444154785E8D53BB6E134114BDB36C2022
+          54FC004A9D86062571E42C523AA4144097262028E90C45522414AC11B8A78970
+          E8D2B988446B05AD6DF111F00D29E23CBCBB3393B36766562BDC30D6F83EF69E
+          73CFDD995522F2EF9660E77D2E8B5D5A2C5889B1D597A3DFC34845897B8A9F75
+          2863F98F18D6C2225B9637D9C1BBA75BC015812012AB92CEDB27357FEDCC8792
+          7E9BB461EE340954690D81B35C134071B4814431BF7857892E8DB0299727D0B9
+          66A02B4000FB57426E653D3146D0AC554D02B06A42AC27B04AD1B7AE34F8244B
+          561F494A684341A10D0B0CAA3FFEDC91ECCF29891C29DCE01BE73F3E8CA7D815
+          601071042A406C84E0F1FB29F159674AA20C7100BF5EDF9333E4CF9043DB1754
+          9017DA77B2BE1375736663495C8FB7DBDA97CDAF4B8ECDF8B75978055A3BD0F7
+          498AEE97D28775E74F30498EC75D74BF605D95742368AFC05541E6BE6CF4EECB
+          ABB53DE691AB151C8F3E81E4B30C3B17C4C4810011A50600B9828B3C6606B82B
+          BB203748FE80BA9AA0342CE683D6F236BA2FB1639BB3C2F66809E86769F3C807
+          E11E90E0C1622CE9F3132F809DBD6FEA5C36F92B2F9FAD3C04C179B807657E7D
+          F5EBCD874162808AFCC5A97CA5C289081722C9679723B879F3538DB0EF612FFC
+          C7276DFD47748D263CBA5B445552645BC908B30000000049454E44AE426082}
       end>
   end
   object MyDataSource: TDataSource

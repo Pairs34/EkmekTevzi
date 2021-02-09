@@ -105,8 +105,8 @@ object frmKisiList: TfrmKisiList
   end
   object PopupMenu: TPopupMenu
     Images = imgList
-    Left = 760
-    Top = 168
+    Left = 344
+    Top = 304
     object KartIDKopyala1: TMenuItem
       Caption = 'Kart ID Kopyala'
       ImageIndex = 4
@@ -1039,7 +1039,7 @@ object frmKisiList: TfrmKisiList
       end>
   end
   object reporter: TfrxReport
-    Version = '6.4.10'
+    Version = '6.8.6'
     DotMatrixReport = False
     IniFile = '\Software\Fast Reports'
     PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick, pbCopy, pbSelection]
@@ -1053,8 +1053,8 @@ object frmKisiList: TfrmKisiList
       'begin'
       ''
       'end.')
-    Left = 272
-    Top = 504
+    Left = 248
+    Top = 304
     Datasets = <
       item
         DataSet = frmDb.frxUserList
@@ -1079,7 +1079,7 @@ object frmKisiList: TfrmKisiList
     end
   end
   object localizer: TcxLocalizer
-    Left = 352
-    Top = 504
+    Left = 288
+    Top = 304
   end
 end
