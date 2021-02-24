@@ -7,13 +7,12 @@ object frmDb: TfrmDb
     Port = 1433
     Database = 'AskidaEkmek'
     Username = 'sa'
-    Server = '.'
-    Connected = True
+    Server = 'ekmektevzi.czxit1umzlwt.us-east-2.rds.amazonaws.com'
     LoginPrompt = False
     BeforeConnect = dbHelperBeforeConnect
     Left = 24
     Top = 16
-    EncryptedPassword = '9EFF8CFF'
+    EncryptedPassword = 'A6FF93FF9BFF8DFF92FFDEFFCCFFCBFF'
   end
   object myQuery: TUniQuery
     Connection = dbHelper
