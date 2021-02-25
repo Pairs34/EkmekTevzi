@@ -134,7 +134,7 @@ begin
   if not Assigned(AItem) then
     Exit;
 
-  if AItem.Index > 1 then
+  if AItem.Index > 2 then
   begin
     if ARecord.Values[AItem.Index] = 'X' then
     begin
