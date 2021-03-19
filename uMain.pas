@@ -24,14 +24,14 @@ uses
   dxNavBarCollns, cxFilter,
   dxNavBarGroupItems, dxBarBuiltInMenu, cxPC, dxStatusBar,
    cxStyles, dxSkinOffice2019Colorful, cxImageList, System.ImageList,
-  Vcl.ImgList, dxNavBarBase, cxSplitter, dxGDIPlusClasses,FileCtrl,Uni;
+  Vcl.ImgList, dxNavBarBase, cxSplitter, dxGDIPlusClasses,FileCtrl,Uni,
+  cxContainer, cxEdit, cxTextEdit, cxMaskEdit, cxDropDownEdit;
 
 type
   TfrmMain = class(TForm)
     btnConnect: TButton;
     pnlConnection: TPanel;
     lblComport: TLabel;
-    txtComport: TEdit;
     lblBaud: TLabel;
     txtBaud: TEdit;
     btnDisconnect: TButton;
@@ -61,6 +61,7 @@ type
     Image1: TImage;
     itmBackupAndRestore: TdxNavBarItem;
     folderSelector: TOpenDialog;
+    cbComportList: TcxComboBox;
     procedure btnConnectClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure btnDisconnectClick(Sender: TObject);
@@ -100,13 +101,11 @@ begin
       mReaderManager.OnReceviceText := OnReceiveText;
       mReaderManager.OnDisconnected := OnDisconnected;
       if not mReaderManager.IsReady then begin
-        if mReaderManager.OpenPort(txtComport.Text,StrToInt(txtBaud.Text)) then
+        if mReaderManager.OpenPort('COM' + cbComportList.Text,StrToInt(txtBaud.Text)) then
         begin
-           SaveData('COM',txtComport.Text);
            SaveData('BAUD',txtBaud.Text);
         end;
       end else begin
-           SaveData('COM' ,txtComport.Text);
            SaveData('BAUD',txtBaud.Text);
       end;
 end;
@@ -207,11 +206,9 @@ end;
 
 procedure TfrmMain.FormShow(Sender: TObject);
 var
-  Com,Baud : string;
+    Baud : string;
 begin
-    Com := ReadData('COM','COM3');
     Baud := ReadData('BAUD','9600');
-    txtComport.Text := IfThen(Com = '' , 'COM3' , Com);
     txtBaud.Text := IfThen(Baud = '' , '9600' , Baud);
     mReaderManager:= TReaderManager.Create(Self);
     frmSplash.ShowModal;
@@ -219,14 +216,12 @@ end;
 
 procedure TfrmMain.OnConnected(ASender: TObject; const Reader: IReader);
 begin
-    txtComport.Color := RGB(164,214,58);
     txtBaud.Color := RGB(164,214,58);
     statusBar.Panels[0].Text := 'Baðlý';
 end;
 
 procedure TfrmMain.OnDisconnected(ASender: TObject; const Reader: IReader);
 begin
-    txtComport.Color := clWindow;
     txtBaud.Color := clWindow;
     statusBar.Panels[0].Text := 'Baðlý Deðil';
 end;
@@ -251,10 +246,10 @@ begin
       end else if pageContainer.ActivePage.Name = 'itmKisiList' then begin
         with frmKisiList do begin
           with cxGridDBTableView do begin
-            //if not frmKisiEkle.Visible then begin
+              DataController.Filter.Active := False;
+              DataController.Filter.Root.Clear;
               DataController.Filter.Root.AddItem(DataController.GetItemByFieldName('KartId'),foEqual, Data, Data);
               DataController.Filter.Active := True;
-            //end;
           end;
         end;
       end;

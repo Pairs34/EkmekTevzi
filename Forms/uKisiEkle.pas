@@ -125,10 +125,10 @@ begin
             SQL.Add('KartId = :kartid,TelNo = :tel,Adres = :adres,Nufus = :nufus,SonIslemTarihi = :SIslemTarih,SonIslemTipi = :SIslemTip');
             SQL.Add(' where Id = :kisiid');
           end;
-          ParamByName('user').Value := QuotedStr(Kisi.AdSoyad);
+          ParamByName('user').Value := Kisi.AdSoyad;
           ParamByName('adet').Value := Kisi.EkmekAdedi;
           ParamByName('aktif').Value := IfThen(btnKartIptal.Checked,'Aktif','Pasif');
-          ParamByName('aciklama').Value := QuotedStr(Kisi.Aciklama);
+          ParamByName('aciklama').Value := Kisi.Aciklama;
           ParamByName('kartid').Value := Trim(Kisi.CardId);
           ParamByName('tel').Value := Kisi.TelNo;
           ParamByName('adres').Value := Kisi.Adres;
