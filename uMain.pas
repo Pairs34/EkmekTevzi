@@ -97,6 +97,7 @@ uses ComObj,IniFiles, uKisiEkle, uKisiList, uBagis, uSettings,
 
 procedure TfrmMain.btnConnectClick(Sender: TObject);
 begin
+SaveData('COM',cbComportList.Text);
       mReaderManager.OnConnected := OnConnected;
       mReaderManager.OnReceviceText := OnReceiveText;
       mReaderManager.OnDisconnected := OnDisconnected;
@@ -104,9 +105,11 @@ begin
         if mReaderManager.OpenPort('COM' + cbComportList.Text,StrToInt(txtBaud.Text)) then
         begin
            SaveData('BAUD',txtBaud.Text);
+           SaveData('COM',cbComportList.Text);
         end;
       end else begin
            SaveData('BAUD',txtBaud.Text);
+           SaveData('COM',cbComportList.Text);
       end;
 end;
 
@@ -208,6 +211,7 @@ procedure TfrmMain.FormShow(Sender: TObject);
 var
     Baud : string;
 begin
+    cbComportList.SelText := ReadData('COM','3');
     Baud := ReadData('BAUD','9600');
     txtBaud.Text := IfThen(Baud = '' , '9600' , Baud);
     mReaderManager:= TReaderManager.Create(Self);

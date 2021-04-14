@@ -125,12 +125,16 @@ begin
 
   bClName := cxGridDBTableView.Controller.FocusedColumn.Caption;
 
-  bValue := cxGridDBTableView.Controller.FocusedRow
+  try
+      bValue := cxGridDBTableView.Controller.FocusedRow
                           .Values[cxGridDBTableView.GetColumnByFieldName(bClName).Index];
+  Except
+      bValue := '';
+  end;
 
   if bValue = 'X' then
   begin
-    ShowMessage('Daha önce ' + cbBagisTuru.Text + ' verilmiþ');
+    ShowMessage('Daha önce ' + cbBagisTuru.Text + ' verilmiş');
     Exit;
   end;
 
@@ -160,7 +164,7 @@ begin
      try
        ExportGridToXLSX(sDir + PathDelim + 'BagisListesi',cxGrid,true,true,true,'xlsx',nil);
      except on E: Exception do begin
-       ShowMessage('Excel''e aktarýlýrkan hata oluþtu.' + E.Message);
+       ShowMessage('Excel''e aktarılırken hata oluþtu.' + E.Message);
      end;
      end;
    end;

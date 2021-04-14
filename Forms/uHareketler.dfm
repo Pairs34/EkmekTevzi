@@ -163,8 +163,6 @@ object frmHareket: TfrmHareket
     Color = clGradientActiveCaption
     ParentBackground = False
     TabOrder = 1
-    ExplicitLeft = -32
-    ExplicitTop = 638
     object lblMonthlyCount: TcxLabel
       Left = 16
       Top = 6
