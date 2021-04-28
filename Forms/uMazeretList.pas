@@ -85,6 +85,7 @@ begin
     Application.CreateForm(TfrmMazeretEdit,frmMazeretEdit);
     frmMazeretEdit.txtKartID.Text := bKartId;
     frmMazeretEdit.bId := bId;
+    frmMazeretEdit.bTopluMazeret := false;
     frmMazeretEdit.ShowModal;
 end;
 

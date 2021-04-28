@@ -29,7 +29,7 @@ uses
   frxDesgn, frxClass,  cxLocalization,ClipBrd,
   dxSkinOffice2019Colorful,
   dxStatusBar, cxCustomData, cxFilter, cxData, dxDateRanges, System.ImageList,
-  Vcl.ImgList, cxImageList;
+  Vcl.ImgList, cxImageList, uMazeretEdit;
 
 type
   TfrmKisiList = class(TForm)
@@ -60,6 +60,7 @@ type
     btnGunlukHareketler: TMenuItem;
     KiiHareketleri1: TMenuItem;
     btnSaveLayout: TMenuItem;
+    btnTopluMazeretEkle: TMenuItem;
     procedure FormShow(Sender: TObject);
     procedure btnRefreshClick(Sender: TObject);
     procedure btnSilClick(Sender: TObject);
@@ -74,6 +75,7 @@ type
     procedure btnGunlukHareketlerClick(Sender: TObject);
     procedure KiiHareketleri1Click(Sender: TObject);
     procedure btnSaveLayoutClick(Sender: TObject);
+    procedure btnTopluMazeretEkleClick(Sender: TObject);
   private
     procedure LoadKisiler;
     procedure LoadLayout;
@@ -380,6 +382,13 @@ begin
       end;
     end;
 
+end;
+
+procedure TfrmKisiList.btnTopluMazeretEkleClick(Sender: TObject);
+begin
+    Application.CreateForm(TfrmMazeretEdit,frmMazeretEdit);
+    frmMazeretEdit.bTopluMazeret := true;
+    frmMazeretEdit.ShowModal;
 end;
 
 end.
