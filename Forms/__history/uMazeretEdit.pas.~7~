@@ -118,9 +118,9 @@ begin
 
                ParamByName('KartID').AsString := frmDb.qUserList.FieldByName('KartId').Value;
                ParamByName('MGun').AsInteger := StrToInt(txtMazeretGun.Text);
-               ParamByName('ITarih').AsDateTime := dtStart.Date;
-               ParamByName('GTarih').AsDateTime := IncDay(dtStart.Date, StrToInt(txtMazeretGun.Text));
-               ParamByName('EATarih').AsDateTime := IncDay(dtStart.Date, StrToInt(txtMazeretGun.Text) + 1);
+               ParamByName('ITarih').AsDateTime := Now;
+               ParamByName('GTarih').AsDateTime := IncDay(Now,StrToInt(txtMazeretGun.Text));
+               ParamByName('EATarih').AsDateTime := IncDay(Now,StrToInt(txtMazeretGun.Text) + 1);
                Execute;
             end;
 

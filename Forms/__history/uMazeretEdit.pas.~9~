@@ -116,7 +116,7 @@ begin
                SQL.Add('insert into mazeretler (KartID,MazeretGun,IslemTarihi,GelecegiTarih,EkmekAlacagiTarih) ');
                SQL.Add('values(:KartID,:MGun,:ITarih,:GTarih,:EATarih)');
 
-               ParamByName('KartID').AsString := frmDb.qUserList.FieldByName('KartId').Value;
+               ParamByName('bId').AsInteger := bId;
                ParamByName('MGun').AsInteger := StrToInt(txtMazeretGun.Text);
                ParamByName('ITarih').AsDateTime := dtStart.Date;
                ParamByName('GTarih').AsDateTime := IncDay(dtStart.Date, StrToInt(txtMazeretGun.Text));
