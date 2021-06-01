@@ -1,56 +1,98 @@
 ﻿unit uGlobals;
 
 interface
-  uses System.IniFiles,System.SysUtils,Uni,Vcl.Dialogs,cxLocalization,System.Classes,cxGridDBTableView,Generics.Collections,
-  StrUtils,WinSvc,ShellAPI;
 
-  procedure SaveData(SECTION : string;KEY : string;VALUE : string);
-  function ReadData(SECTION : string;KEY, VALUE: string): string;
-  function FromDatabase(SqlCode: string): TUniQuery;
-  function ToDatabase(SqlCode: string): boolean;
-  procedure ToTranslate(localizer : TcxLocalizer);
-  function LoadFileToStr(const FileName: TFileName): String;
-  procedure KartKapat(KartId,KartGun: string);
-  procedure ClearGrid(grid : TcxGridDBTableView);
-  function CheckEkmek(bKartId : string;Yil,Ay,Gun : integer) : string;
-  function CheckEkmekX(XKartId : string;Yil,Ay,Gun : integer) : string;
-  function CheckMazeret(KartId : string;Yil,Ay,Gun : integer) : string;
-  function CheckIfMazeret(KartId : string) : TUniQuery;
-  function GetKartKapatmaGunu :string;
-  procedure CheckKartKapat;
-  procedure UpdateSonIslemHareketi(bKartId,bIslemTip : string);
-  procedure EkmekVer(KartId,Tip,AdSoyad : string;Zaman : TDateTime);
-  function FirstDayOfMonth(Date: TDateTime): TDateTime;
-  function LastDayCurrMon: TDate;
-  procedure GetLastHareket;
-  function StartNTService(const ServiceName: string): Boolean;
-  function StopNTService(const ServiceName: string): Boolean;
+uses
+  System.IniFiles, System.SysUtils, Uni, Vcl.Dialogs, cxLocalization,
+  System.Classes, cxGridDBTableView, Generics.Collections, StrUtils, WinSvc,
+  ShellAPI;
+
+procedure SaveData(SECTION: string; KEY: string; VALUE: string);
+
+function ReadData(SECTION: string; KEY, VALUE: string): string;
+
+function FromDatabase(SqlCode: string): TUniQuery;
+
+function ToDatabase(SqlCode: string): boolean;
+
+procedure ToTranslate(localizer: TcxLocalizer);
+
+function LoadFileToStr(const FileName: TFileName): string;
+
+procedure KartKapat(KartId, KartGun: string);
+
+procedure ClearGrid(grid: TcxGridDBTableView);
+
+function CheckEkmek(bKartId: string; Yil, Ay, Gun: integer): string;
+
+function CheckEkmekX(XKartId: string; Yil, Ay, Gun: integer): string;
+
+function CheckMazeret(KartId: string; Yil, Ay, Gun: integer): string;
+
+function CheckIfMazeret(KartId: string): TUniQuery;
+
+function GetKartKapatmaGunu: string;
+
+procedure CheckKartKapat;
+
+procedure UpdateSonIslemHareketi(bKartId, bIslemTip: string);
+
+procedure EkmekVer(KartId, Tip, AdSoyad: string; Zaman: TDateTime);
+
+function FirstDayOfMonth(Date: TDateTime): TDateTime;
+
+function LastDayCurrMon: TDate;
+
+procedure GetLastHareket;
+
+function StartNTService(const ServiceName: string): Boolean;
+
+function StopNTService(const ServiceName: string): Boolean;
+
+function IsStrANumber(const S: string): Boolean;
+
 type
   THareket = record
-    KartId : string;
-    IslemZamani : TDateTime;
+    KartId: string;
+    IslemZamani: TDateTime;
   end;
 
 var
-  AllLastHareket : TList<THareket>;
+  AllLastHareket: TList<THareket>;
 
 implementation
 
-uses uDbHelper,DateUtils;
+uses
+  uDbHelper, DateUtils;
+
+function IsStrANumber(const S: string): Boolean;
+var
+  P: PChar;
+begin
+  P := PChar(S);
+  Result := False;
+  while P^ <> #0 do
+  begin
+    if not (P^ in ['0'..'9']) then
+      Exit;
+    Inc(P);
+  end;
+  Result := True;
+end;
 
 function StartNTService(const ServiceName: string): Boolean;
 var
- SCM: SC_HANDLE;
- ServiceHandle: SC_HANDLE;
- Res: Boolean;
- Temp: PChar;
- Status: SERVICE_STATUS;
- Err: Integer;
+  SCM: SC_HANDLE;
+  ServiceHandle: SC_HANDLE;
+  Res: Boolean;
+  Temp: PChar;
+  Status: SERVICE_STATUS;
+  Err: Integer;
 begin
   Result := False;
   SCM := OpenSCManager(nil, nil, SC_MANAGER_ALL_ACCESS);
   if SCM = 0 then
-   raise Exception.Create('Servis Kontrol Yöneticisi açılamadı. Hata: ' + SysErrorMessage(getLastError));
+    raise Exception.Create('Servis Kontrol Yöneticisi açılamadı. Hata: ' + SysErrorMessage(getLastError));
   ServiceHandle := OpenService(SCM, PChar(ServiceName), SERVICE_ALL_ACCESS);
   if ServiceHandle = 0 then
   begin
@@ -67,34 +109,37 @@ begin
       begin
         Result := True;
         Break;
-      end else if Status.dwCurrentState = SERVICE_STOPPED then
+      end
+      else if Status.dwCurrentState = SERVICE_STOPPED then
       begin
         Result := False;
         Break;
       end;
       QueryServiceStatus(ServiceHandle, Status);
     end;
-  end else begin
+  end
+  else
+  begin
     Err := GetLastError;
-    if  Err <> SERVICE_RUNNING then
-    raise Exception.Create(ServiceName + ' isimli servis başlatılamadı. Hata:' + SysErrorMessage(Err));
+    if Err <> SERVICE_RUNNING then
+      raise Exception.Create(ServiceName + ' isimli servis başlatılamadı. Hata:' + SysErrorMessage(Err));
   end;
   CloseServiceHandle(SCM);
   if not Result then
     raise Exception.Create(ServiceName + ' isimli servis başlatılamadı');
- end;
+end;
 
 function StopNTService(const ServiceName: string): Boolean;
 var
- SCM: SC_HANDLE;
- ServiceHandle: SC_HANDLE;
- Res: Boolean;
- Status: SERVICE_STATUS;
+  SCM: SC_HANDLE;
+  ServiceHandle: SC_HANDLE;
+  Res: Boolean;
+  Status: SERVICE_STATUS;
 begin
   Result := False;
   SCM := OpenSCManager(nil, nil, SC_MANAGER_ALL_ACCESS);
   if SCM = 0 then
-   raise Exception.Create('Servis Kontrol Yöneticisi açılamadı');
+    raise Exception.Create('Servis Kontrol Yöneticisi açılamadı');
   ServiceHandle := OpenService(SCM, PChar(ServiceName), SERVICE_ALL_ACCESS);
   if ServiceHandle = 0 then
   begin
@@ -106,49 +151,55 @@ begin
   begin
     if GetLastError <> SERVICE_DISABLED then
       raise Exception.Create('Servis durdurulamadı');
-  end else Result := True;
+  end
+  else
+    Result := True;
 end;
 
-function CheckEkmekX(XKartId : string;Yil,Ay,Gun : integer) : string;
+function CheckEkmekX(XKartId: string; Yil, Ay, Gun: integer): string;
 var
- bHareket : THareket;
- I : integer;
- bFound : boolean;
+  bHareket: THareket;
+  I: integer;
+  bFound: boolean;
 begin
 
   bFound := False;
 
-  with bHareket do begin
-    KartId := XKartId;
-    IslemZamani := EncodeDate(Yil,Ay,Gun);
-  end;
-
-  for I := 0 to AllLastHareket.Count -1 do
+  with bHareket do
   begin
-    if (AllLastHareket[I].KartId = bHareket.KartId) and
-          (FormatDateTime('dd.mm.yyyy',AllLastHareket[I].IslemZamani) = FormatDateTime('dd.mm.yyyy',bHareket.IslemZamani))
-      then begin
-        bFound := true;
-      end
+    KartId := XKartId;
+    IslemZamani := EncodeDate(Yil, Ay, Gun);
   end;
 
-  Result := IfThen(bFound,'X','');
+  for I := 0 to AllLastHareket.Count - 1 do
+  begin
+    if (AllLastHareket[I].KartId = bHareket.KartId) and (FormatDateTime('dd.mm.yyyy', AllLastHareket[I].IslemZamani) = FormatDateTime('dd.mm.yyyy', bHareket.IslemZamani)) then
+    begin
+      bFound := true;
+    end
+  end;
+
+  Result := IfThen(bFound, 'X', '');
 end;
 
 procedure GetLastHareket;
 var
-  bQuery : TUniQuery;
-  bHareket : THareket;
+  bQuery: TUniQuery;
+  bHareket: THareket;
 begin
   bQuery := TUniQuery.Create(nil);
 
-  if not Assigned(AllLastHareket) then begin
+  if not Assigned(AllLastHareket) then
+  begin
     AllLastHareket := TList<THareket>.Create;
-  end else begin
+  end
+  else
+  begin
     AllLastHareket.Clear;
   end;
 
-  with bQuery do begin
+  with bQuery do
+  begin
     Connection := frmDb.dbHelper;
     Close;
     SQL.Clear;
@@ -157,9 +208,10 @@ begin
 
     while not EOF do
     begin
-      with bHareket do begin
-          KartId := FieldByName('KartId').AsString;
-          IslemZamani := FieldByName('IslemZamani').AsDateTime;
+      with bHareket do
+      begin
+        KartId := FieldByName('KartId').AsString;
+        IslemZamani := FieldByName('IslemZamani').AsDateTime;
       end;
 
       AllLastHareket.Add(bHareket);
@@ -193,12 +245,13 @@ begin
   result := encodedate(y, m, 1) - 1;
 end;
 
-procedure EkmekVer(KartId,Tip,AdSoyad : string;Zaman : TDateTime);
+procedure EkmekVer(KartId, Tip, AdSoyad: string; Zaman: TDateTime);
 var
-  bQuery : TUniQuery;
+  bQuery: TUniQuery;
 begin
   bQuery := TUniQuery.Create(nil);
-  with bQuery do begin
+  with bQuery do
+  begin
     Connection := frmDb.dbHelper;
     Close;
     SQL.Clear;
@@ -212,12 +265,13 @@ begin
   end;
 end;
 
-procedure UpdateSonIslemHareketi(bKartId,bIslemTip : string);
+procedure UpdateSonIslemHareketi(bKartId, bIslemTip: string);
 var
-  bQuery : TUniQuery;
+  bQuery: TUniQuery;
 begin
   bQuery := TUniQuery.Create(nil);
-  with bQuery do begin
+  with bQuery do
+  begin
     Connection := frmDb.dbHelper;
     Close;
     SQL.Clear;
@@ -230,12 +284,13 @@ begin
   end;
 end;
 
-function GetKartKapatmaGunu :string;
+function GetKartKapatmaGunu: string;
 var
-  bQuery : TUniQuery;
+  bQuery: TUniQuery;
 begin
   bQuery := TUniQuery.Create(nil);
-  with bQuery do begin
+  with bQuery do
+  begin
     Connection := frmDb.dbHelper;
     Close;
     SQL.Clear;
@@ -246,33 +301,34 @@ begin
   end;
 end;
 
-procedure KartKapat(KartId,KartGun: string);
+procedure KartKapat(KartId, KartGun: string);
 begin
-    with frmDb do
-    begin
-      if not dbHelper.Connected then
-        dbHelper.Connect;
+  with frmDb do
+  begin
+    if not dbHelper.Connected then
+      dbHelper.Connect;
 
-      with myQuery do
-      begin
-          Close;
-          SQL.Clear;
-          SQL.Add('update users set Aktif = ''Pasif'',SonIslemTarihi = :SIslemTarih,SonIslemTipi = :SIslemTip,Aciklama = :Aciklama where KartId = :KartId');
-          ParamByName('KartId').AsString := KartId;
-          ParamByName('SIslemTarih').AsDateTime := now;
-          ParamByName('SIslemTip').AsString := 'Kart Kapatıldı';
-          ParamByName('Aciklama').AsString := 'Bu kart ' + KartGun + ' gün hareket görmediği için kapatılmıştır.';
-          ExecSql;
-      end;
+    with myQuery do
+    begin
+      Close;
+      SQL.Clear;
+      SQL.Add('update users set Aktif = ''Pasif'',SonIslemTarihi = :SIslemTarih,SonIslemTipi = :SIslemTip,Aciklama = :Aciklama where KartId = :KartId');
+      ParamByName('KartId').AsString := KartId;
+      ParamByName('SIslemTarih').AsDateTime := now;
+      ParamByName('SIslemTip').AsString := 'Kart Kapatıldı';
+      ParamByName('Aciklama').AsString := 'Bu kart ' + KartGun + ' gün hareket görmediği için kapatılmıştır.';
+      ExecSql;
     end;
+  end;
 end;
 
-function CheckIfMazeret(KartId : string) : TUniQuery;
+function CheckIfMazeret(KartId: string): TUniQuery;
 var
-  bQuery : TUniQuery;
+  bQuery: TUniQuery;
 begin
   bQuery := TUniQuery.Create(nil);
-  with bQuery do begin
+  with bQuery do
+  begin
     Connection := frmDb.dbHelper;
     Close;
     SQL.Clear;
@@ -286,17 +342,18 @@ end;
 
 procedure CheckKartKapat;
 var
-  bQuery,bMazeretResult : TUniQuery;
-  bKartId,bCCDay : string;
-  bMazeretsiz,bGunFarki,I : integer;
-  bStartDate,bEndDate,bIslemDate : TDateTime;
+  bQuery, bMazeretResult: TUniQuery;
+  bKartId, bCCDay: string;
+  bMazeretsiz, bGunFarki, I: integer;
+  bStartDate, bEndDate, bIslemDate: TDateTime;
 begin
   GetLastHareket;
 
   bMazeretsiz := 0;
 
   bQuery := TUniQuery.Create(nil);
-  with bQuery do begin
+  with bQuery do
+  begin
     Connection := frmDb.dbHelper;
     Close;
     SQL.Clear;
@@ -305,176 +362,193 @@ begin
 
     bCCDay := GetKartKapatmaGunu;
 
-    while not eof do begin
+    while not eof do
+    begin
 
-        if FieldByName('SonIslemTarihi').IsNull then begin
-        
-            bGunFarki := DaysBetween(Now,FirstDayOfMonth(Now));
+      if FieldByName('SonIslemTarihi').IsNull then
+      begin
+
+        bGunFarki := DaysBetween(Now, FirstDayOfMonth(Now));
+        bKartId := FieldByName('KartId').AsString;
+        bMazeretsiz := 0;
+        for I := 1 to bGunFarki do
+        begin
+          if CheckEkmekX(bKartId, YearOf(Now), MonthOf(Now), I) <> 'X' then
+          begin
+            bMazeretResult := CheckIfMazeret(bKartId);
+            if bMazeretResult.RecordCount > 0 then
+            begin
+              bStartDate := bMazeretResult.FieldByName('IslemTarihi').AsDateTime;
+              bEndDate := bMazeretResult.FieldByName('GelecegiTarih').AsDateTime;
+
+              if not DateInRange(EncodeDate(YearOf(Now), MonthOf(Now), I), bStartDate, bEndDate) then
+              begin
+                bMazeretsiz := bMazeretsiz + 1;
+              end;
+            end
+            else
+            begin
+              bMazeretsiz := bMazeretsiz + 1;
+            end;
+          end;
+        end;
+
+        if bMazeretsiz >= StrToInt(bCCDay) then
+          KartKapat(bKartId, bCCDay);
+
+        Next;
+      end
+      else
+      begin
+        if DateInRange(FieldByName('SonIslemTarihi').AsDateTime, FirstDayOfMonth(Now), LastDayCurrMon, True) then
+        begin
+          bIslemDate := FieldByName('SonIslemTarihi').AsDateTime;
+
+          bGunFarki := DaysBetween(Now, bIslemDate);
+          if bGunFarki <= 31 then
+          begin
             bKartId := FieldByName('KartId').AsString;
             bMazeretsiz := 0;
             for I := 1 to bGunFarki do
             begin
-               if CheckEkmekX(bKartId,YearOf(Now),MonthOf(Now),I) <> 'X' then
-               begin
-                   bMazeretResult := CheckIfMazeret(bKartId);
-                   if bMazeretResult.RecordCount > 0 then
-                   begin
-                      bStartDate := bMazeretResult.FieldByName('IslemTarihi').AsDateTime;
-                      bEndDate := bMazeretResult.FieldByName('GelecegiTarih').AsDateTime;
-
-                      if not DateInRange(EncodeDate(YearOf(Now),MonthOf(Now),I),bStartDate,bEndDate) then begin
-                         bMazeretsiz := bMazeretsiz + 1;
-                      end;
-                   end else begin
-                      bMazeretsiz := bMazeretsiz + 1;
-                   end;
-               end;
-            end;
-
-            if bMazeretsiz >= StrToInt(bCCDay) then
-               KartKapat(bKartId,bCCDay);
-
-            Next;             
-        end else
-        begin
-            if DateInRange(FieldByName('SonIslemTarihi').AsDateTime,
-                        FirstDayOfMonth(Now),LastDayCurrMon,True) then
-            begin
-                bIslemDate := FieldByName('SonIslemTarihi').AsDateTime;
-
-                bGunFarki := DaysBetween(Now,bIslemDate);
-                if bGunFarki <= 31 then begin          
-                  bKartId := FieldByName('KartId').AsString;
-                  bMazeretsiz := 0;
-                  for I := 1 to bGunFarki do
-                  begin
-                   if CheckEkmekX(bKartId,YearOf(bIslemDate),MonthOf(bIslemDate),I) <> 'X' then
-                   begin
-                       bMazeretResult := CheckIfMazeret(bKartId);
-                       bIslemDate := IncDay(bIslemDate,1);
-                       if bMazeretResult.RecordCount > 0 then
-                       begin
-                          bStartDate := bMazeretResult.FieldByName('IslemTarihi').AsDateTime;
-                          bEndDate := bMazeretResult.FieldByName('GelecegiTarih').AsDateTime;
-
-                          if not DateInRange(bIslemDate,bStartDate,bEndDate) then begin
-                             bMazeretsiz := bMazeretsiz + 1;
-                          end;
-                       end else begin
-                          bMazeretsiz := bMazeretsiz + 1;
-                       end;
-                    end;
-                  end;
-                end;
-
-                if bMazeretsiz >= StrToInt(bCCDay) then
-                   KartKapat(bKartId,bCCDay);
-
-                Next;
-            end else begin
-                bGunFarki := DaysBetween(Now,FirstDayOfMonth(Now));
-                bKartId := FieldByName('KartId').AsString;
-                bMazeretsiz := 0;
-                for I := 1 to bGunFarki do
+              if CheckEkmekX(bKartId, YearOf(bIslemDate), MonthOf(bIslemDate), I) <> 'X' then
+              begin
+                bMazeretResult := CheckIfMazeret(bKartId);
+                bIslemDate := IncDay(bIslemDate, 1);
+                if bMazeretResult.RecordCount > 0 then
                 begin
-                   if CheckEkmekX(bKartId,YearOf(Now),MonthOf(Now),I) <> 'X' then
-                   begin
-                       bMazeretResult := CheckIfMazeret(bKartId);
-                       if bMazeretResult.RecordCount > 0 then
-                       begin
-                          bStartDate := bMazeretResult.FieldByName('IslemTarihi').AsDateTime;
-                          bEndDate := bMazeretResult.FieldByName('GelecegiTarih').AsDateTime;
+                  bStartDate := bMazeretResult.FieldByName('IslemTarihi').AsDateTime;
+                  bEndDate := bMazeretResult.FieldByName('GelecegiTarih').AsDateTime;
 
-                          if not DateInRange(EncodeDate(YearOf(Now),MonthOf(Now),I),bStartDate,bEndDate) then begin
-                             bMazeretsiz := bMazeretsiz + 1;
-                          end;
-                       end else begin
-                          bMazeretsiz := bMazeretsiz + 1;
-                       end;
-                   end;
+                  if not DateInRange(bIslemDate, bStartDate, bEndDate) then
+                  begin
+                    bMazeretsiz := bMazeretsiz + 1;
+                  end;
+                end
+                else
+                begin
+                  bMazeretsiz := bMazeretsiz + 1;
                 end;
+              end;
+            end;
+          end;
 
-                if bMazeretsiz >= StrToInt(bCCDay) then
-                   KartKapat(bKartId,bCCDay);
+          if bMazeretsiz >= StrToInt(bCCDay) then
+            KartKapat(bKartId, bCCDay);
 
-                Next;
-            end;            
+          Next;
+        end
+        else
+        begin
+          bGunFarki := DaysBetween(Now, FirstDayOfMonth(Now));
+          bKartId := FieldByName('KartId').AsString;
+          bMazeretsiz := 0;
+          for I := 1 to bGunFarki do
+          begin
+            if CheckEkmekX(bKartId, YearOf(Now), MonthOf(Now), I) <> 'X' then
+            begin
+              bMazeretResult := CheckIfMazeret(bKartId);
+              if bMazeretResult.RecordCount > 0 then
+              begin
+                bStartDate := bMazeretResult.FieldByName('IslemTarihi').AsDateTime;
+                bEndDate := bMazeretResult.FieldByName('GelecegiTarih').AsDateTime;
+
+                if not DateInRange(EncodeDate(YearOf(Now), MonthOf(Now), I), bStartDate, bEndDate) then
+                begin
+                  bMazeretsiz := bMazeretsiz + 1;
+                end;
+              end
+              else
+              begin
+                bMazeretsiz := bMazeretsiz + 1;
+              end;
+            end;
+          end;
+
+          if bMazeretsiz >= StrToInt(bCCDay) then
+            KartKapat(bKartId, bCCDay);
+
+          Next;
         end;
+      end;
     end;
 
   end;
 end;
 
-procedure ToTranslate(localizer : TcxLocalizer);
+procedure ToTranslate(localizer: TcxLocalizer);
 begin
-  localizer.FileName := Format('%s\turkce.ini',[GetCurrentDir]);
+  localizer.FileName := Format('%s\turkce.ini', [GetCurrentDir]);
   localizer.Active := true;
   localizer.Locale := 1055;
 end;
 
 function CheckEkmek(bKartId: string; Yil, Ay, Gun: integer): string;
 var
- bHareket : THareket;
- I : integer;
- bFound : boolean;
+  bHareket: THareket;
+  I: integer;
+  bFound: boolean;
 begin
 
   bFound := false;
 
-  with bHareket do begin
+  with bHareket do
+  begin
     KartId := bKartId;
-    IslemZamani := EncodeDate(Yil,Ay,Gun);
+    IslemZamani := EncodeDate(Yil, Ay, Gun);
   end;
 
-
-  for I := 0 to AllLastHareket.Count -1 do
+  for I := 0 to AllLastHareket.Count - 1 do
   begin
-    if (AllLastHareket[I].KartId = bHareket.KartId) and
-          (FormatDateTime('dd.mm.yyyy',AllLastHareket[I].IslemZamani) = FormatDateTime('dd.mm.yyyy',bHareket.IslemZamani))
-    then begin
+    if (AllLastHareket[I].KartId = bHareket.KartId) and (FormatDateTime('dd.mm.yyyy', AllLastHareket[I].IslemZamani) = FormatDateTime('dd.mm.yyyy', bHareket.IslemZamani)) then
+    begin
       bFound := true;
     end;
   end;
 
-  Result := IfThen(bFound,'X','');
+  Result := IfThen(bFound, 'X', '');
 end;
 
-function CheckMazeret(KartId: string; Yil, Ay,
-  Gun: integer): string;
+function CheckMazeret(KartId: string; Yil, Ay, Gun: integer): string;
 var
-    bYil,bAy,bGun : string;
-    bQuery : TUniQuery;
+  bYil, bAy, bGun: string;
+  bQuery: TUniQuery;
 begin
-    bQuery := TUniQuery.Create(nil);
-    bYil :=  Yil.ToString;
-    bAy := IfThen(Ay > 9,Ay.ToString,'0'+Ay.ToString);
-    bGun :=  IfThen(Gun > 9,Gun.ToString,'0'+Gun.ToString);
+  bQuery := TUniQuery.Create(nil);
+  bYil := Yil.ToString;
+  bAy := IfThen(Ay > 9, Ay.ToString, '0' + Ay.ToString);
+  bGun := IfThen(Gun > 9, Gun.ToString, '0' + Gun.ToString);
 
-    with bQuery do begin
-      Connection := frmDb.dbHelper;
+  with bQuery do
+  begin
+    Connection := frmDb.dbHelper;
+    Close;
+    SQL.Add('select KartId from mazeretler where CONVERT(DATETIME,''' + bYil + '-' + bAy + '-' + bGun + ''',102)');
+    SQL.Add('between FORMAT(IslemTarihi,''yyyy-MM-dd'') and FORMAT(GelecegiTarih,''yyyy-MM-dd'') and ');
+    SQL.Add('KartId = :KartId');
+
+    ParamByName('KartId').Value := KartId;
+
+    try
+      ExecSql;
+    except
+      on E: Exception do
+        ShowMessage(E.Message + Format('%s - %s - %s', [bYil, bAy, bGun]));
+    end;
+
+    if (RecordCount > 0) then
+    begin
       Close;
-      SQL.Add('select KartId from mazeretler where CONVERT(DATETIME,'''+bYil+'-'+bAy+'-'+bGun+''',102)');
-      SQL.Add('between FORMAT(IslemTarihi,''yyyy-MM-dd'') and FORMAT(GelecegiTarih,''yyyy-MM-dd'') and ');
-      SQL.Add('KartId = :KartId');
-
-      ParamByName('KartId').Value := KartId;
-
-      try
-        ExecSql;
-      except on E: Exception do
-        ShowMessage(E.Message + Format('%s - %s - %s',[bYil,bAy,bGun]));
-      end;
-
-      if(RecordCount > 0) then begin
-        Close;
-        Result := 'M';
-      end else begin
-        Result := '';
-      end;
+      Result := 'M';
     end
+    else
+    begin
+      Result := '';
+    end;
+  end
 end;
 
-procedure ClearGrid(grid : TcxGridDBTableView);
+procedure ClearGrid(grid: TcxGridDBTableView);
 begin
   with grid.DataController do
   begin
@@ -488,36 +562,40 @@ begin
   end;
 end;
 
-
 function ToDatabase(SqlCode: string): boolean;
 begin
-  with frmDb do begin
-      if not dbHelper.Connected then
-         dbHelper.Connect;
+  with frmDb do
+  begin
+    if not dbHelper.Connected then
+      dbHelper.Connect;
 
-      with myQuery do begin
-        try
-          SQL.Clear;
-          SQL.Text := SqlCode;
-          Execute;
-          Result := true;
-        Except on E : Exception do
-          begin
-            ShowMessage(E.Message);
-            Result := false;
-          end;
+    with myQuery do
+    begin
+      try
+        SQL.Clear;
+        SQL.Text := SqlCode;
+        Execute;
+        Result := true;
+      except
+        on E: Exception do
+        begin
+          ShowMessage(E.Message);
+          Result := false;
         end;
       end;
+    end;
   end;
 end;
 
 function FromDatabase(SqlCode: string): TUniQuery;
 begin
-   with frmDb do begin
+  with frmDb do
+  begin
     if not dbHelper.Connected then
-       dbHelper.Connect;
+      dbHelper.Connect;
 
-    with myQuery do begin
+    with myQuery do
+    begin
       try
         Close;
         SQL.Clear;
@@ -527,7 +605,8 @@ begin
         if RecordCount > 0 then
           Result := myQuery;
 
-      Except on E : Exception do
+      except
+        on E: Exception do
         begin
           Result := nil;
         end;
@@ -536,40 +615,42 @@ begin
   end;
 end;
 
-function LoadFileToStr(const FileName: TFileName): String;
-var LStrings: TStringList;
-begin
-    LStrings := TStringList.Create;
-    try
-      LStrings.Loadfromfile(FileName);
-      Result := LStrings.text;
-    finally
-      FreeAndNil(LStrings);
-    end;
-end;
-
-procedure SaveData(SECTION : string;KEY : string;VALUE : string);
+function LoadFileToStr(const FileName: TFileName): string;
 var
-  IniF: TIniFile;
+  LStrings: TStringList;
 begin
-  IniF := TIniFile.Create(GetCurrentDir + '\Settings.ini');
+  LStrings := TStringList.Create;
   try
-     IniF.WriteString(SECTION,KEY,VALUE);
+    LStrings.Loadfromfile(FileName);
+    Result := LStrings.text;
   finally
-     IniF.Free;
+    FreeAndNil(LStrings);
   end;
 end;
 
-function ReadData(SECTION : string;KEY, VALUE: string): string;
+procedure SaveData(SECTION: string; KEY: string; VALUE: string);
 var
   IniF: TIniFile;
 begin
   IniF := TIniFile.Create(GetCurrentDir + '\Settings.ini');
   try
-     Result := IniF.ReadString(SECTION,KEY,VALUE);
+    IniF.WriteString(SECTION, KEY, VALUE);
   finally
-     IniF.Free;
+    IniF.Free;
+  end;
+end;
+
+function ReadData(SECTION: string; KEY, VALUE: string): string;
+var
+  IniF: TIniFile;
+begin
+  IniF := TIniFile.Create(GetCurrentDir + '\Settings.ini');
+  try
+    Result := IniF.ReadString(SECTION, KEY, VALUE);
+  finally
+    IniF.Free;
   end;
 end;
 
 end.
+

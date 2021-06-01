@@ -134,7 +134,7 @@ begin
   if not Assigned(AItem) then
     Exit;
 
-  if AItem.Index > 2 then
+  if AItem.Index > 3 then
   begin
     if ARecord.Values[AItem.Index] = 'X' then
     begin
@@ -181,12 +181,11 @@ begin
       try
         Close;
         SQL.Clear;
-        SQL.Add('select * from hareket where convert(date,IslemZamani) = convert(date,:tarih) ');
+        SQL.Add('select * from hareket where DAY(IslemZamani) = DAY(GETDATE()) ');
         SQL.Add('and KartId = :kartid ');
         SQL.Add('and BagisTuru = :BagisTuru');
         ParamByName('kartid').Value := txtCardID.Text;
         ParamByName('BagisTuru').Value := 'Ekmek';
-        ParamByName('tarih').Value := Now;
         ExecSQL;
         if (RecordCount > 0) and (txtCardID.Text <> '') then
         begin
