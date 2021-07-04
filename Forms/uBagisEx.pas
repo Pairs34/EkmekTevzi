@@ -267,7 +267,7 @@ begin
       begin
         try
           SQL.Clear;
-          SQL.Add('select * from hareket where convert(date,IslemZamani) = convert(date,:tarih) ');
+          SQL.Add('select * from hareket where Day(IslemZamani) = DAY(GETDATE()) and MONTH(IslemZamani) = MONTH(GETDATE()) and YEAR(IslemZamani) = YEAR(GETDATE()) ');
           SQL.Add('and KartId = :kartid and BagisTuru in (select TRIM(value) from string_split(:BagisTur,'',''))');
           ParamByName('kartid').Value := txtCardID.Text;
           ParamByName('tarih').Value := Now;

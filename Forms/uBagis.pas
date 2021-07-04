@@ -181,7 +181,7 @@ begin
       try
         Close;
         SQL.Clear;
-        SQL.Add('select * from hareket where DAY(IslemZamani) = DAY(GETDATE()) ');
+        SQL.Add('select * from hareket where Day(IslemZamani) = DAY(GETDATE()) and MONTH(IslemZamani) = MONTH(GETDATE()) and YEAR(IslemZamani) = YEAR(GETDATE()) ');
         SQL.Add('and KartId = :kartid ');
         SQL.Add('and BagisTuru = :BagisTuru');
         ParamByName('kartid').Value := txtCardID.Text;
@@ -189,7 +189,7 @@ begin
         ExecSQL;
         if (RecordCount > 0) and (txtCardID.Text <> '') then
         begin
-           Custommessage('Bugün ekmek almış.');
+           Custommessage('Bugün ekmek almış.Son ekmek alma tarihi : ' + myQuery.FieldByName('IslemZamani').AsString);
           Exit;
         end;
 

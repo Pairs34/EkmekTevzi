@@ -225,7 +225,10 @@ object frmHareket: TfrmHareket
       Navigator.Buttons.CustomButtons = <>
       DataController.DataSource = frmDb.tblAylikRapor
       DataController.Summary.DefaultGroupSummaryItems = <>
-      DataController.Summary.FooterSummaryItems = <>
+      DataController.Summary.FooterSummaryItems = <
+        item
+          Kind = skCount
+        end>
       DataController.Summary.SummaryGroups = <>
       FilterRow.InfoText = 'Filtreleme Ekran'#305
       FilterRow.Visible = True
