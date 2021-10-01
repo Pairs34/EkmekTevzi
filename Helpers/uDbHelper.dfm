@@ -7,12 +7,12 @@ object frmDb: TfrmDb
     Port = 1433
     Database = 'AskidaEkmek'
     Username = 'sa'
-    Server = 'ekmektevzi.czxit1umzlwt.us-east-2.rds.amazonaws.com'
+    Server = '.'
     LoginPrompt = False
     BeforeConnect = dbHelperBeforeConnect
     Left = 24
     Top = 16
-    EncryptedPassword = 'A6FF93FF9BFF8DFF92FFDEFFCCFFCBFF'
+    EncryptedPassword = '9EFF8CFF'
   end
   object myQuery: TUniQuery
     Connection = dbHelper
@@ -322,5 +322,51 @@ object frmDb: TfrmDb
       'where CAST(GETDATE() as DATE) = CAST(IslemZamani as DATE)')
     Left = 416
     Top = 344
+  end
+  object GetDailyBagis: TUniStoredProc
+    StoredProcName = 'bagis_listesi_daily;1'
+    SQL.Strings = (
+      
+        '{:RETURN_VALUE = CALL bagis_listesi_daily;1 (:yil, :ay, :BagisTu' +
+        'ru)}')
+    SQLRefresh.Strings = (
+      
+        '{:RETURN_VALUE = CALL other_bagis_listesi;1 (:yil, :ay, :BagisTu' +
+        'ru)}')
+    Connection = dbHelper
+    Left = 192
+    Top = 336
+    ParamData = <
+      item
+        DataType = ftInteger
+        Name = 'RETURN_VALUE'
+        ParamType = ptResult
+        Value = nil
+      end
+      item
+        DataType = ftSmallint
+        Name = 'yil'
+        ParamType = ptInput
+        Value = nil
+      end
+      item
+        DataType = ftSmallint
+        Name = 'ay'
+        ParamType = ptInput
+        Value = nil
+      end
+      item
+        DataType = ftString
+        Name = 'BagisTuru'
+        ParamType = ptInput
+        Size = 50
+        Value = nil
+      end>
+    CommandStoredProcName = 'bagis_listesi_daily;1'
+  end
+  object tblDailyBagis: TUniDataSource
+    DataSet = GetDailyBagis
+    Left = 192
+    Top = 288
   end
 end

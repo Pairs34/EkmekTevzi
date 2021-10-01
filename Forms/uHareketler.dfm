@@ -15,236 +15,425 @@ object frmHareket: TfrmHareket
   OnShow = FormShow
   PixelsPerInch = 120
   TextHeight = 16
-  object pnlHeader: TPanel
+  object PageControl: TPageControl
     Left = 0
     Top = 0
     Width = 1092
-    Height = 41
-    Align = alTop
-    Color = clGradientActiveCaption
-    ParentBackground = False
-    TabOrder = 0
-    object lblYear: TLabel
-      Left = 16
-      Top = 12
-      Width = 13
-      Height = 16
-      Caption = 'Y'#305'l'
-    end
-    object lblAy: TLabel
-      Left = 216
-      Top = 12
-      Width = 14
-      Height = 16
-      Caption = 'Ay'
-    end
-    object lblBagisTuru: TLabel
-      Left = 440
-      Top = 12
-      Width = 61
-      Height = 16
-      Caption = 'Ba'#287#305#351' T'#252'r'#252
-    end
-    object txtAy: TcxComboBox
-      Left = 248
-      Top = 9
-      Properties.DropDownListStyle = lsEditFixedList
-      Properties.Items.Strings = (
-        'Ocak'
-        #350'ubat'
-        'Mart'
-        'Nisan'
-        'May'#305's'
-        'Haziran'
-        'Temmuz'
-        'A'#287'ustos'
-        'Eyl'#252'l'
-        'Ekim'
-        'Kas'#305'm'
-        'Aral'#305'k')
-      Properties.Nullstring = 'Ay Se'#231'iniz'
-      Style.LookAndFeel.NativeStyle = False
-      StyleDisabled.LookAndFeel.NativeStyle = False
-      StyleFocused.LookAndFeel.NativeStyle = False
-      StyleHot.LookAndFeel.NativeStyle = False
-      TabOrder = 0
-      TextHint = 'Ay Se'#231'iniz'
-      Width = 185
-    end
-    object btnFilter: TcxButton
-      Left = 663
-      Top = 10
-      Width = 82
-      Height = 25
-      Caption = 'Filtrele'
-      LookAndFeel.NativeStyle = False
-      OptionsImage.Glyph.SourceDPI = 96
-      OptionsImage.Glyph.Data = {
-        89504E470D0A1A0A0000000D49484452000000100000001008060000001FF3FF
-        6100000028744558745469746C6500536F7274416E6446696C7465723B46696C
-        7465723B536F72743B536F7274696E673BF4E4F70F0000034849444154785E75
-        936D685B551C877FE7DE9B9BA436E9B2D42DD636BA98E0D6C9502A6C3A83195A
-        5C3A5D91EDCB2AED170515066E4C710E04AB6E559C2F6C58E66060272B4C749D
-        73682928BAD6B1B5D54D6A43E64257579736754DDADC34E9BDB9E7FCBD5ECC87
-        213EF070381CF8C1FFE530D880FD571BB2442C1683B4BCD92FBB02370C5DC7C2
-        CDC9BA2A4FDD2C090105807CECF907838165CE768722C540B45266AC910830B9
-        480821665736355F3BF2E36DE9D45FFA3580FC8A5AD372FEECAEE3EB37BF2794
-        332F3FBC2BB02A74605574AB5A1D0843767AC11415800078B1B1BC78B3116A7D
-        CC373E44616453C969360CB02D004E70C185E256A5CEFBDB5E53A72E9E47AABF
-        1B93DFF741920414870CC5A960F5F617B122DA8EC4A4C1766CAA0F8D7D9E38CE
-        24D71E8F2FE41C1DD86BB2AF773F74A6E9E92D4FD5AE7D1472D53D2061028C03
-        2010E930B4327E492E62F78173001154971BA661209FBBDE921C3E3C201596CA
-        FD33E363E08504001DB2D30F3DF305B2975EC2D457AF20377105831752F07964
-        74B5C99FA5C73F696060F3B252B5058022F5FD9C3E397DF57AA6309D8199BF0A
-        519E03C801617094B52240C0C5CB19AC6D70F0A1CBC9B778599B2B68733F30A6
-        3E56999672B4635DC7E0FECD941D799BF4D941CAFFFE01A5079EA0F14351CA8C
-        9CA6F46F3FD1773D073F8AC7E35E00AA65B5A5C752A9CCDCD1BDE3BEF670D077
-        24B8AE51F1870328FC790E336305D435EF1337F675E548D3FCA620488CC1E084
-        F9E2E2C4B6D4D46A9C7EA1A9B2486AE79391786F5B88B2C3AFD2C4A71BA9675B
-        90CE7677EE6C6D6D5D1689449C005C8743C14D7D91BB4B47838177003870E1E0
-        568CBEFB4825C4DBFB4C880A890FE98F13CDD4B33D48006AFE7D93DE68B82378
-        2A7C57FA5843A01F409525930CDD8030CB18D9BF81EC14C62055D743565D6012
-        4385C76B3CDE350EE5D47C492F7E335F780E80FEF1EDB52495970C9069DADA89
-        B20452568064B71D108D465500AE0E9FB7BB5032D6FC5A2AB57FA915660ED52E
-        E706E760DFEED9081B30C4DF1FAAB6EEDA42660120D8F46AA13B5B2E8D3EEB26
-        7A33595CDAD995CD9D04605872CB25865B512CDDF66903331C0EB3BD8BDA3040
-        F7722E2004810B819CC9AFBC9ECF3FC08808FF8FDD131980CB0EBDF5AB73CBE2
-        DF40C075D622B9E8A10000000049454E44AE426082}
-      TabOrder = 1
-      OnClick = btnFilterClick
-    end
-    object txtYil: TcxComboBox
-      Left = 35
-      Top = 9
-      Properties.DropDownListStyle = lsEditFixedList
-      Properties.Items.Strings = (
-        '2018'
-        '2019'
-        '2020'
-        '2021'
-        '2022'
-        '2023'
-        '2024'
-        '2025'
-        '2026'
-        '2027'
-        '2028'
-        '2029'
-        '2030')
-      Properties.Nullstring = 'Ay Se'#231'iniz'
-      Style.LookAndFeel.NativeStyle = False
-      StyleDisabled.LookAndFeel.NativeStyle = False
-      StyleFocused.LookAndFeel.NativeStyle = False
-      StyleHot.LookAndFeel.NativeStyle = False
-      TabOrder = 2
-      TextHint = 'Y'#305'l Se'#231'iniz'
-      Width = 175
-    end
-    object cbBagisTuru: TcxComboBox
-      Left = 507
-      Top = 9
-      Properties.DropDownListStyle = lsEditFixedList
-      Properties.Nullstring = 'Ay Se'#231'iniz'
-      Style.LookAndFeel.NativeStyle = False
-      StyleDisabled.LookAndFeel.NativeStyle = False
-      StyleFocused.LookAndFeel.NativeStyle = False
-      StyleHot.LookAndFeel.NativeStyle = False
-      TabOrder = 3
-      TextHint = 'Ba'#287#305#351' T'#252'r'#252' Se'#231'iniz'
-      Width = 150
-    end
-  end
-  object pnlFooter: TPanel
-    Left = 0
-    Top = 632
-    Width = 1092
-    Height = 37
-    Align = alBottom
-    Color = clGradientActiveCaption
-    ParentBackground = False
-    TabOrder = 1
-    object lblMonthlyCount: TcxLabel
-      Left = 16
-      Top = 6
-      Caption = 'Ayl'#305'k Toplam : '
-      ParentFont = False
-      Style.Font.Charset = DEFAULT_CHARSET
-      Style.Font.Color = clWindowText
-      Style.Font.Height = -13
-      Style.Font.Name = 'Tahoma'
-      Style.Font.Style = [fsBold]
-      Style.IsFontAssigned = True
-    end
-    object txtMonthlyCount: TcxLabel
-      Left = 119
-      Top = 6
-      Caption = '0'
-      ParentFont = False
-      Style.Font.Charset = DEFAULT_CHARSET
-      Style.Font.Color = clRed
-      Style.Font.Height = -13
-      Style.Font.Name = 'Tahoma'
-      Style.Font.Style = [fsBold]
-      Style.IsFontAssigned = True
-    end
-    object lblDailyCount: TcxLabel
-      Left = 216
-      Top = 6
-      Caption = 'G'#252'nl'#252'k Toplam : '
-      ParentFont = False
-      Style.Font.Charset = DEFAULT_CHARSET
-      Style.Font.Color = clWindowText
-      Style.Font.Height = -13
-      Style.Font.Name = 'Tahoma'
-      Style.Font.Style = [fsBold]
-      Style.IsFontAssigned = True
-    end
-    object txtDailyCount: TcxLabel
-      Left = 330
-      Top = 6
-      Caption = '0'
-      ParentFont = False
-      Style.Font.Charset = DEFAULT_CHARSET
-      Style.Font.Color = clRed
-      Style.Font.Height = -13
-      Style.Font.Name = 'Tahoma'
-      Style.Font.Style = [fsBold]
-      Style.IsFontAssigned = True
-    end
-  end
-  object cxGrid: TcxGrid
-    Left = 0
-    Top = 41
-    Width = 1092
-    Height = 591
+    Height = 669
+    ActivePage = tabMonthly
     Align = alClient
-    PopupMenu = popupMenu
-    TabOrder = 2
-    LookAndFeel.NativeStyle = False
-    object cxGridDBTableView: TcxGridDBTableView
-      Navigator.Buttons.CustomButtons = <>
-      DataController.DataSource = frmDb.tblAylikRapor
-      DataController.Summary.DefaultGroupSummaryItems = <>
-      DataController.Summary.FooterSummaryItems = <
-        item
-          Kind = skCount
-        end>
-      DataController.Summary.SummaryGroups = <>
-      FilterRow.InfoText = 'Filtreleme Ekran'#305
-      FilterRow.Visible = True
-      FilterRow.ApplyChanges = fracImmediately
-      OptionsData.Deleting = False
-      OptionsData.DeletingConfirmation = False
-      OptionsData.Editing = False
-      OptionsData.Inserting = False
-      OptionsSelection.HideSelection = True
-      OptionsSelection.InvertSelect = False
-      OptionsSelection.UnselectFocusedRecordOnExit = False
-      OptionsView.ColumnAutoWidth = True
-      Styles.OnGetContentStyle = cxGridDBTableViewStylesGetContentStyle
+    TabOrder = 0
+    object tabMonthly: TTabSheet
+      Caption = 'Ayl'#305'k'
+      object cxGridMonthly: TcxGrid
+        Left = 0
+        Top = 41
+        Width = 1084
+        Height = 560
+        Align = alClient
+        PopupMenu = popupMenu
+        TabOrder = 0
+        LookAndFeel.NativeStyle = False
+        object cxGridMonthlyDBTableView: TcxGridDBTableView
+          Navigator.Buttons.CustomButtons = <>
+          DataController.DataSource = frmDb.tblAylikRapor
+          DataController.Summary.DefaultGroupSummaryItems = <>
+          DataController.Summary.FooterSummaryItems = <
+            item
+              Kind = skCount
+            end>
+          DataController.Summary.SummaryGroups = <>
+          FilterRow.InfoText = 'Filtreleme Ekran'#305
+          FilterRow.Visible = True
+          FilterRow.ApplyChanges = fracImmediately
+          OptionsData.Deleting = False
+          OptionsData.DeletingConfirmation = False
+          OptionsData.Editing = False
+          OptionsData.Inserting = False
+          OptionsSelection.HideSelection = True
+          OptionsSelection.InvertSelect = False
+          OptionsSelection.UnselectFocusedRecordOnExit = False
+          OptionsView.ColumnAutoWidth = True
+          Styles.OnGetContentStyle = cxGridDBTableViewStylesGetContentStyle
+        end
+        object cxGridMonthlyLevel: TcxGridLevel
+          GridView = cxGridMonthlyDBTableView
+        end
+      end
+      object pnlFooterMonthly: TPanel
+        Left = 0
+        Top = 601
+        Width = 1084
+        Height = 37
+        Align = alBottom
+        Color = clGradientActiveCaption
+        ParentBackground = False
+        TabOrder = 1
+        object lblMonthlyCount: TcxLabel
+          Left = 16
+          Top = 6
+          Caption = 'Ayl'#305'k Toplam : '
+          ParentFont = False
+          Style.Font.Charset = DEFAULT_CHARSET
+          Style.Font.Color = clWindowText
+          Style.Font.Height = -13
+          Style.Font.Name = 'Tahoma'
+          Style.Font.Style = [fsBold]
+          Style.IsFontAssigned = True
+        end
+        object txtMonthlyCount: TcxLabel
+          Left = 119
+          Top = 6
+          Caption = '0'
+          ParentFont = False
+          Style.Font.Charset = DEFAULT_CHARSET
+          Style.Font.Color = clRed
+          Style.Font.Height = -13
+          Style.Font.Name = 'Tahoma'
+          Style.Font.Style = [fsBold]
+          Style.IsFontAssigned = True
+        end
+        object lblDailyCount: TcxLabel
+          Left = 216
+          Top = 6
+          Caption = 'G'#252'nl'#252'k Toplam : '
+          ParentFont = False
+          Style.Font.Charset = DEFAULT_CHARSET
+          Style.Font.Color = clWindowText
+          Style.Font.Height = -13
+          Style.Font.Name = 'Tahoma'
+          Style.Font.Style = [fsBold]
+          Style.IsFontAssigned = True
+        end
+        object txtDailyCount: TcxLabel
+          Left = 330
+          Top = 6
+          Caption = '0'
+          ParentFont = False
+          Style.Font.Charset = DEFAULT_CHARSET
+          Style.Font.Color = clRed
+          Style.Font.Height = -13
+          Style.Font.Name = 'Tahoma'
+          Style.Font.Style = [fsBold]
+          Style.IsFontAssigned = True
+        end
+      end
+      object pnlHeaderMonthly: TPanel
+        Left = 0
+        Top = 0
+        Width = 1084
+        Height = 41
+        Align = alTop
+        Color = clGradientActiveCaption
+        ParentBackground = False
+        TabOrder = 2
+        object lblYear: TLabel
+          Left = 16
+          Top = 12
+          Width = 13
+          Height = 16
+          Caption = 'Y'#305'l'
+        end
+        object lblAy: TLabel
+          Left = 216
+          Top = 12
+          Width = 14
+          Height = 16
+          Caption = 'Ay'
+        end
+        object lblBagisTuru: TLabel
+          Left = 440
+          Top = 12
+          Width = 61
+          Height = 16
+          Caption = 'Ba'#287#305#351' T'#252'r'#252
+        end
+        object txtAy: TcxComboBox
+          Left = 248
+          Top = 9
+          Properties.DropDownListStyle = lsEditFixedList
+          Properties.Items.Strings = (
+            'Ocak'
+            #350'ubat'
+            'Mart'
+            'Nisan'
+            'May'#305's'
+            'Haziran'
+            'Temmuz'
+            'A'#287'ustos'
+            'Eyl'#252'l'
+            'Ekim'
+            'Kas'#305'm'
+            'Aral'#305'k')
+          Properties.Nullstring = 'Ay Se'#231'iniz'
+          Style.LookAndFeel.NativeStyle = False
+          StyleDisabled.LookAndFeel.NativeStyle = False
+          StyleFocused.LookAndFeel.NativeStyle = False
+          StyleHot.LookAndFeel.NativeStyle = False
+          TabOrder = 0
+          TextHint = 'Ay Se'#231'iniz'
+          Width = 185
+        end
+        object btnFilter: TcxButton
+          Left = 663
+          Top = 10
+          Width = 82
+          Height = 25
+          Caption = 'Filtrele'
+          LookAndFeel.NativeStyle = False
+          OptionsImage.Glyph.SourceDPI = 96
+          OptionsImage.Glyph.Data = {
+            89504E470D0A1A0A0000000D49484452000000100000001008060000001FF3FF
+            6100000028744558745469746C6500536F7274416E6446696C7465723B46696C
+            7465723B536F72743B536F7274696E673BF4E4F70F0000034849444154785E75
+            936D685B551C877FE7DE9B9BA436E9B2D42DD636BA98E0D6C9502A6C3A83195A
+            5C3A5D91EDCB2AED170515066E4C710E04AB6E559C2F6C58E66060272B4C749D
+            73682928BAD6B1B5D54D6A43E64257579736754DDADC34E9BDB9E7FCBD5ECC87
+            213EF070381CF8C1FFE530D880FD571BB2442C1683B4BCD92FBB02370C5DC7C2
+            CDC9BA2A4FDD2C090105807CECF907838165CE768722C540B45266AC910830B9
+            480821665736355F3BF2E36DE9D45FFA3580FC8A5AD372FEECAEE3EB37BF2794
+            332F3FBC2BB02A74605574AB5A1D0843767AC11415800078B1B1BC78B3116A7D
+            CC373E44616453C969360CB02D004E70C185E256A5CEFBDB5E53A72E9E47AABF
+            1B93DFF741920414870CC5A960F5F617B122DA8EC4A4C1766CAA0F8D7D9E38CE
+            24D71E8F2FE41C1DD86BB2AF773F74A6E9E92D4FD5AE7D1472D53D2061028C03
+            2010E930B4327E492E62F78173001154971BA661209FBBDE921C3E3C201596CA
+            FD33E363E08504001DB2D30F3DF305B2975EC2D457AF20377105831752F07964
+            74B5C99FA5C73F696060F3B252B5058022F5FD9C3E397DF57AA6309D8199BF0A
+            519E03C801617094B52240C0C5CB19AC6D70F0A1CBC9B778599B2B68733F30A6
+            3E56999672B4635DC7E0FECD941D799BF4D941CAFFFE01A5079EA0F14351CA8C
+            9CA6F46F3FD1773D073F8AC7E35E00AA65B5A5C752A9CCDCD1BDE3BEF670D077
+            24B8AE51F1870328FC790E336305D435EF1337F675E548D3FCA620488CC1E084
+            F9E2E2C4B6D4D46A9C7EA1A9B2486AE79391786F5B88B2C3AFD2C4A71BA9675B
+            90CE7677EE6C6D6D5D1689449C005C8743C14D7D91BB4B47838177003870E1E0
+            568CBEFB4825C4DBFB4C880A890FE98F13CDD4B33D48006AFE7D93DE68B82378
+            2A7C57FA5843A01F409525930CDD8030CB18D9BF81EC14C62055D743565D6012
+            4385C76B3CDE350EE5D47C492F7E335F780E80FEF1EDB52495970C9069DADA89
+            B20452568064B71D108D465500AE0E9FB7BB5032D6FC5A2AB57FA915660ED52E
+            E706E760DFEED9081B30C4DF1FAAB6EEDA42660120D8F46AA13B5B2E8D3EEB26
+            7A33595CDAD995CD9D04605872CB25865B512CDDF66903331C0EB3BD8BDA3040
+            F7722E2004810B819CC9AFBC9ECF3FC08808FF8FDD131980CB0EBDF5AB73CBE2
+            DF40C075D622B9E8A10000000049454E44AE426082}
+          TabOrder = 1
+          OnClick = btnFilterClick
+        end
+        object txtYil: TcxComboBox
+          Left = 35
+          Top = 9
+          Properties.DropDownListStyle = lsEditFixedList
+          Properties.Items.Strings = (
+            '2018'
+            '2019'
+            '2020'
+            '2021'
+            '2022'
+            '2023'
+            '2024'
+            '2025'
+            '2026'
+            '2027'
+            '2028'
+            '2029'
+            '2030')
+          Properties.Nullstring = 'Ay Se'#231'iniz'
+          Style.LookAndFeel.NativeStyle = False
+          StyleDisabled.LookAndFeel.NativeStyle = False
+          StyleFocused.LookAndFeel.NativeStyle = False
+          StyleHot.LookAndFeel.NativeStyle = False
+          TabOrder = 2
+          TextHint = 'Y'#305'l Se'#231'iniz'
+          Width = 175
+        end
+        object cbBagisTuru: TcxComboBox
+          Left = 507
+          Top = 9
+          Properties.DropDownListStyle = lsEditFixedList
+          Properties.Nullstring = 'Ay Se'#231'iniz'
+          Style.LookAndFeel.NativeStyle = False
+          StyleDisabled.LookAndFeel.NativeStyle = False
+          StyleFocused.LookAndFeel.NativeStyle = False
+          StyleHot.LookAndFeel.NativeStyle = False
+          TabOrder = 3
+          TextHint = 'Ba'#287#305#351' T'#252'r'#252' Se'#231'iniz'
+          Width = 150
+        end
+      end
     end
-    object cxGridLevel: TcxGridLevel
-      GridView = cxGridDBTableView
+    object tabDaily: TTabSheet
+      Caption = 'G'#252'nl'#252'k'
+      ImageIndex = 1
+      object pnlHeaderDaily: TPanel
+        Left = 0
+        Top = 0
+        Width = 1084
+        Height = 41
+        Align = alTop
+        Color = clGradientActiveCaption
+        ParentBackground = False
+        TabOrder = 0
+        object lblDailyYear: TLabel
+          Left = 16
+          Top = 12
+          Width = 13
+          Height = 16
+          Caption = 'Y'#305'l'
+        end
+        object lblDailyMonth: TLabel
+          Left = 216
+          Top = 12
+          Width = 14
+          Height = 16
+          Caption = 'Ay'
+        end
+        object lblDailyBagisTur: TLabel
+          Left = 440
+          Top = 12
+          Width = 61
+          Height = 16
+          Caption = 'Ba'#287#305#351' T'#252'r'#252
+        end
+        object txtDailyMonth: TcxComboBox
+          Left = 248
+          Top = 9
+          Properties.DropDownListStyle = lsEditFixedList
+          Properties.Items.Strings = (
+            'Ocak'
+            #350'ubat'
+            'Mart'
+            'Nisan'
+            'May'#305's'
+            'Haziran'
+            'Temmuz'
+            'A'#287'ustos'
+            'Eyl'#252'l'
+            'Ekim'
+            'Kas'#305'm'
+            'Aral'#305'k')
+          Properties.Nullstring = 'Ay Se'#231'iniz'
+          Style.LookAndFeel.NativeStyle = False
+          StyleDisabled.LookAndFeel.NativeStyle = False
+          StyleFocused.LookAndFeel.NativeStyle = False
+          StyleHot.LookAndFeel.NativeStyle = False
+          TabOrder = 0
+          TextHint = 'Ay Se'#231'iniz'
+          Width = 185
+        end
+        object btnLoadDailyData: TcxButton
+          Left = 663
+          Top = 10
+          Width = 82
+          Height = 25
+          Caption = 'Filtrele'
+          LookAndFeel.NativeStyle = False
+          OptionsImage.Glyph.SourceDPI = 96
+          OptionsImage.Glyph.Data = {
+            89504E470D0A1A0A0000000D49484452000000100000001008060000001FF3FF
+            6100000028744558745469746C6500536F7274416E6446696C7465723B46696C
+            7465723B536F72743B536F7274696E673BF4E4F70F0000034849444154785E75
+            936D685B551C877FE7DE9B9BA436E9B2D42DD636BA98E0D6C9502A6C3A83195A
+            5C3A5D91EDCB2AED170515066E4C710E04AB6E559C2F6C58E66060272B4C749D
+            73682928BAD6B1B5D54D6A43E64257579736754DDADC34E9BDB9E7FCBD5ECC87
+            213EF070381CF8C1FFE530D880FD571BB2442C1683B4BCD92FBB02370C5DC7C2
+            CDC9BA2A4FDD2C090105807CECF907838165CE768722C540B45266AC910830B9
+            480821665736355F3BF2E36DE9D45FFA3580FC8A5AD372FEECAEE3EB37BF2794
+            332F3FBC2BB02A74605574AB5A1D0843767AC11415800078B1B1BC78B3116A7D
+            CC373E44616453C969360CB02D004E70C185E256A5CEFBDB5E53A72E9E47AABF
+            1B93DFF741920414870CC5A960F5F617B122DA8EC4A4C1766CAA0F8D7D9E38CE
+            24D71E8F2FE41C1DD86BB2AF773F74A6E9E92D4FD5AE7D1472D53D2061028C03
+            2010E930B4327E492E62F78173001154971BA661209FBBDE921C3E3C201596CA
+            FD33E363E08504001DB2D30F3DF305B2975EC2D457AF20377105831752F07964
+            74B5C99FA5C73F696060F3B252B5058022F5FD9C3E397DF57AA6309D8199BF0A
+            519E03C801617094B52240C0C5CB19AC6D70F0A1CBC9B778599B2B68733F30A6
+            3E56999672B4635DC7E0FECD941D799BF4D941CAFFFE01A5079EA0F14351CA8C
+            9CA6F46F3FD1773D073F8AC7E35E00AA65B5A5C752A9CCDCD1BDE3BEF670D077
+            24B8AE51F1870328FC790E336305D435EF1337F675E548D3FCA620488CC1E084
+            F9E2E2C4B6D4D46A9C7EA1A9B2486AE79391786F5B88B2C3AFD2C4A71BA9675B
+            90CE7677EE6C6D6D5D1689449C005C8743C14D7D91BB4B47838177003870E1E0
+            568CBEFB4825C4DBFB4C880A890FE98F13CDD4B33D48006AFE7D93DE68B82378
+            2A7C57FA5843A01F409525930CDD8030CB18D9BF81EC14C62055D743565D6012
+            4385C76B3CDE350EE5D47C492F7E335F780E80FEF1EDB52495970C9069DADA89
+            B20452568064B71D108D465500AE0E9FB7BB5032D6FC5A2AB57FA915660ED52E
+            E706E760DFEED9081B30C4DF1FAAB6EEDA42660120D8F46AA13B5B2E8D3EEB26
+            7A33595CDAD995CD9D04605872CB25865B512CDDF66903331C0EB3BD8BDA3040
+            F7722E2004810B819CC9AFBC9ECF3FC08808FF8FDD131980CB0EBDF5AB73CBE2
+            DF40C075D622B9E8A10000000049454E44AE426082}
+          TabOrder = 1
+          OnClick = btnFilterClick
+        end
+        object txtDailyYear: TcxComboBox
+          Left = 35
+          Top = 9
+          Properties.DropDownListStyle = lsEditFixedList
+          Properties.Items.Strings = (
+            '2018'
+            '2019'
+            '2020'
+            '2021'
+            '2022'
+            '2023'
+            '2024'
+            '2025'
+            '2026'
+            '2027'
+            '2028'
+            '2029'
+            '2030')
+          Properties.Nullstring = 'Ay Se'#231'iniz'
+          Style.LookAndFeel.NativeStyle = False
+          StyleDisabled.LookAndFeel.NativeStyle = False
+          StyleFocused.LookAndFeel.NativeStyle = False
+          StyleHot.LookAndFeel.NativeStyle = False
+          TabOrder = 2
+          TextHint = 'Y'#305'l Se'#231'iniz'
+          Width = 175
+        end
+        object txtDailyBagisTur: TcxComboBox
+          Left = 507
+          Top = 9
+          Properties.DropDownListStyle = lsEditFixedList
+          Properties.Nullstring = 'Ay Se'#231'iniz'
+          Style.LookAndFeel.NativeStyle = False
+          StyleDisabled.LookAndFeel.NativeStyle = False
+          StyleFocused.LookAndFeel.NativeStyle = False
+          StyleHot.LookAndFeel.NativeStyle = False
+          TabOrder = 3
+          TextHint = 'Ba'#287#305#351' T'#252'r'#252' Se'#231'iniz'
+          Width = 150
+        end
+      end
+      object cxGridDaily: TcxGrid
+        Left = 0
+        Top = 41
+        Width = 1084
+        Height = 597
+        Align = alClient
+        PopupMenu = popupMenu
+        TabOrder = 1
+        LookAndFeel.NativeStyle = False
+        object cxGridDBTableViewDaily: TcxGridDBTableView
+          Navigator.Buttons.CustomButtons = <>
+          DataController.DataSource = frmDb.tblAylikRapor
+          DataController.Summary.DefaultGroupSummaryItems = <>
+          DataController.Summary.FooterSummaryItems = <
+            item
+              Kind = skCount
+            end>
+          DataController.Summary.SummaryGroups = <>
+          FilterRow.InfoText = 'Filtreleme Ekran'#305
+          FilterRow.Visible = True
+          FilterRow.ApplyChanges = fracImmediately
+          OptionsData.Deleting = False
+          OptionsData.DeletingConfirmation = False
+          OptionsData.Editing = False
+          OptionsData.Inserting = False
+          OptionsSelection.HideSelection = True
+          OptionsSelection.InvertSelect = False
+          OptionsSelection.UnselectFocusedRecordOnExit = False
+          OptionsView.ColumnAutoWidth = True
+        end
+        object cxGridLevelDaily: TcxGridLevel
+          GridView = cxGridDBTableViewDaily
+        end
+      end
     end
   end
   object hareketlerLocalizer: TcxLocalizer
@@ -425,9 +614,5 @@ object frmHareket: TfrmHareket
           F5EBCD874162808AFCC5A97CA5C289081722C9679723B879F3538DB0EF612FFC
           C7276DFD47748D263CBA5B445552645BC908B30000000049454E44AE426082}
       end>
-  end
-  object MyDataSource: TDataSource
-    Left = 432
-    Top = 152
   end
 end

@@ -28,6 +28,8 @@ type
     GetBagisList: TUniStoredProc;
     tblBagisList: TUniDataSource;
     dailyCount: TUniQuery;
+    GetDailyBagis: TUniStoredProc;
+    tblDailyBagis: TUniDataSource;
     procedure dbHelperBeforeConnect(Sender: TObject);
   private
     { Private declarations }
