@@ -20,7 +20,7 @@ object frmHareket: TfrmHareket
     Top = 0
     Width = 1092
     Height = 669
-    ActivePage = tabMonthly
+    ActivePage = tabDaily
     Align = alClient
     TabOrder = 0
     object tabMonthly: TTabSheet
@@ -357,7 +357,7 @@ object frmHareket: TfrmHareket
             F7722E2004810B819CC9AFBC9ECF3FC08808FF8FDD131980CB0EBDF5AB73CBE2
             DF40C075D622B9E8A10000000049454E44AE426082}
           TabOrder = 1
-          OnClick = btnFilterClick
+          OnClick = btnLoadDailyDataClick
         end
         object txtDailyYear: TcxComboBox
           Left = 35

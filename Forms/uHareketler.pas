@@ -88,6 +88,7 @@ type
     procedure btnAddEkmekClick(Sender: TObject);
     procedure popupMenuPopup(Sender: TObject);
     procedure btnExportXlsClick(Sender: TObject);
+    procedure btnLoadDailyDataClick(Sender: TObject);
   private
     procedure LoadHareketlerYeni;
     procedure LoadHareketlerGunluk;
@@ -197,7 +198,12 @@ end;
 
 procedure TfrmHareket.btnFilterClick(Sender: TObject);
 begin
-  LoadHareketlerGunluk;
+  LoadHareketlerYeni;
+end;
+
+procedure TfrmHareket.btnLoadDailyDataClick(Sender: TObject);
+begin
+ LoadHareketlerGunluk;
 end;
 
 procedure TfrmHareket.btnReportClick(Sender: TObject);
