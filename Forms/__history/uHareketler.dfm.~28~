@@ -357,7 +357,7 @@ object frmHareket: TfrmHareket
             F7722E2004810B819CC9AFBC9ECF3FC08808FF8FDD131980CB0EBDF5AB73CBE2
             DF40C075D622B9E8A10000000049454E44AE426082}
           TabOrder = 1
-          OnClick = btnFilterClick
+          OnClick = btnLoadDailyDataClick
         end
         object txtDailyYear: TcxComboBox
           Left = 35
@@ -429,7 +429,7 @@ object frmHareket: TfrmHareket
           OptionsSelection.InvertSelect = False
           OptionsSelection.UnselectFocusedRecordOnExit = False
           OptionsView.ColumnAutoWidth = True
-          Styles.OnGetContentStyle = cxGridDBTableViewStylesGetContentStyle
+          Styles.OnGetContentStyle = cxGridDBTableViewDailyStylesGetContentStyle
         end
         object cxGridLevelDaily: TcxGridLevel
           GridView = cxGridDBTableViewDaily
@@ -615,14 +615,5 @@ object frmHareket: TfrmHareket
           F5EBCD874162808AFCC5A97CA5C289081722C9679723B879F3538DB0EF612FFC
           C7276DFD47748D263CBA5B445552645BC908B30000000049454E44AE426082}
       end>
-  end
-  object monthlyDatasource: TDataSource
-    Left = 112
-    Top = 192
-  end
-  object dailyDatasource: TDataSource
-    DataSet = frmDb.GetDailyBagis
-    Left = 224
-    Top = 192
   end
 end

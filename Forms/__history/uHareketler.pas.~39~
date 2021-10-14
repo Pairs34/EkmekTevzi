@@ -45,9 +45,10 @@ type
     KartIdKopyala1: TMenuItem;
     ImgList: TcxImageList;
     cxBlueStyle: TcxStyle;
-    monthlyDatasource: TDataSource;
     btnAddEkmek: TMenuItem;
     btnExportXls: TMenuItem;
+    PageControl: TPageControl;
+    tabMonthly: TTabSheet;
     cxGridMonthly: TcxGrid;
     cxGridMonthlyDBTableView: TcxGridDBTableView;
     cxGridMonthlyLevel: TcxGridLevel;
@@ -64,21 +65,18 @@ type
     btnFilter: TcxButton;
     txtYil: TcxComboBox;
     cbBagisTuru: TcxComboBox;
-    PageControl: TPageControl;
-    tabMonthly: TTabSheet;
     tabDaily: TTabSheet;
     pnlHeaderDaily: TPanel;
     lblDailyYear: TLabel;
     lblDailyMonth: TLabel;
     lblDailyBagisTur: TLabel;
-    cbcbDailyMonth: TcxComboBox;
+    txtDailyMonth: TcxComboBox;
     btnLoadDailyData: TcxButton;
-    cbDailyYear: TcxComboBox;
-    cbDailyBagisTur: TcxComboBox;
+    txtDailyYear: TcxComboBox;
+    txtDailyBagisTur: TcxComboBox;
     cxGridDaily: TcxGrid;
     cxGridDBTableViewDaily: TcxGridDBTableView;
     cxGridLevelDaily: TcxGridLevel;
-    dailyDatasource: TDataSource;
     procedure FormShow(Sender: TObject);
     procedure btnReportClick(Sender: TObject);
     procedure CloseUniq(Sender: TObject; var Action: TCloseAction);
@@ -90,6 +88,10 @@ type
     procedure btnAddEkmekClick(Sender: TObject);
     procedure popupMenuPopup(Sender: TObject);
     procedure btnExportXlsClick(Sender: TObject);
+    procedure btnLoadDailyDataClick(Sender: TObject);
+    procedure cxGridDBTableViewDailyStylesGetContentStyle(
+      Sender: TcxCustomGridTableView; ARecord: TcxCustomGridRecord;
+      AItem: TcxCustomGridTableItem; var AStyle: TcxStyle);
   private
     procedure LoadHareketlerYeni;
     procedure LoadHareketlerGunluk;
@@ -202,6 +204,11 @@ begin
   LoadHareketlerYeni;
 end;
 
+procedure TfrmHareket.btnLoadDailyDataClick(Sender: TObject);
+begin
+ LoadHareketlerGunluk;
+end;
+
 procedure TfrmHareket.btnReportClick(Sender: TObject);
 var
   bReports: TfrmReports;
@@ -214,6 +221,30 @@ end;
 procedure TfrmHareket.CloseUniq(Sender: TObject; var Action: TCloseAction);
 begin
   Action := caFree;
+end;
+
+procedure TfrmHareket.cxGridDBTableViewDailyStylesGetContentStyle(
+  Sender: TcxCustomGridTableView; ARecord: TcxCustomGridRecord;
+  AItem: TcxCustomGridTableItem; var AStyle: TcxStyle);
+begin
+  if not Assigned(AItem) then
+      Exit;
+
+    if AItem.Index > 4 then
+    begin
+      if ARecord.Values[AItem.Index] = 'X' then
+      begin
+        AStyle := cxGreenStyle;
+      end
+      else if ARecord.Values[AItem.Index] = 'M' then
+      begin
+        AStyle := cxBlueStyle;
+      end
+      else if ARecord.Values[AItem.Index] = '' then
+      begin
+        AStyle := cxRedStyle;
+      end;
+    end;
 end;
 
 procedure TfrmHareket.cxGridDBTableViewStylesGetContentStyle
@@ -247,6 +278,7 @@ var
 begin
   ToTranslate(hareketlerLocalizer);
   txtYil.EditValue := FormatDateTime('yyyy', Now);
+  txtDailyYear.EditValue := FormatDateTime('yyyy', Now);
 
   bSqlCode := 'select * from bagisturu';
   bQuery := FromDatabase(bSqlCode);
@@ -257,6 +289,7 @@ begin
       while not EOF do
       begin
         cbBagisTuru.Properties.Items.Add(FieldByName('BagisAdi').AsString);
+        txtDailyBagisTur.Properties.Items.Add(FieldByName('BagisAdi').AsString);
         Next;
       end;
     except
@@ -311,18 +344,20 @@ begin
 
   with frmDb do
   begin
-    with GetBagisList do
+    with GetDailyBagis do
     begin
-      ParamByName('Yil').AsInteger := StrToInt(txtYil.Text);
-      ParamByName('Ay').AsInteger := txtAy.SelectedItem + 1;
-      ParamByName('BagisTuru').AsString := cbBagisTuru.Text;
+      ParamByName('Yil').AsInteger := StrToInt(txtDailyYear.Text);
+      ParamByName('Ay').AsInteger := txtDailyMonth.SelectedItem + 1;
+      ParamByName('BagisTuru').AsString := txtDailyBagisTur.Text;
       Prepare;
       ExecProc;
     end;
   end;
 
-  cxGridDBTableViewDaily.DataController.DataSource := frmDb.tblBagisList;
+  frmDb.tblDailyBagis.DataSet.FindField('siralama').Visible := false;
+  cxGridDBTableViewDaily.DataController.DataSource := frmDb.tblDailyBagis;
   cxGridDBTableViewDaily.DataController.CreateAllItems;
+  cxGridDBTableViewDaily.ApplyBestFit();
 end;
 
 procedure TfrmHareket.LoadHareketlerYeni;

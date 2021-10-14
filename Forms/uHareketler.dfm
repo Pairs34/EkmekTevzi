@@ -20,7 +20,7 @@ object frmHareket: TfrmHareket
     Top = 0
     Width = 1092
     Height = 669
-    ActivePage = tabDaily
+    ActivePage = tabMonthly
     Align = alClient
     TabOrder = 0
     object tabMonthly: TTabSheet
@@ -429,6 +429,7 @@ object frmHareket: TfrmHareket
           OptionsSelection.InvertSelect = False
           OptionsSelection.UnselectFocusedRecordOnExit = False
           OptionsView.ColumnAutoWidth = True
+          Styles.OnGetContentStyle = cxGridDBTableViewDailyStylesGetContentStyle
         end
         object cxGridLevelDaily: TcxGridLevel
           GridView = cxGridDBTableViewDaily

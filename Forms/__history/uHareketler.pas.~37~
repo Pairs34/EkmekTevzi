@@ -45,9 +45,10 @@ type
     KartIdKopyala1: TMenuItem;
     ImgList: TcxImageList;
     cxBlueStyle: TcxStyle;
-    monthlyDatasource: TDataSource;
     btnAddEkmek: TMenuItem;
     btnExportXls: TMenuItem;
+    PageControl: TPageControl;
+    tabMonthly: TTabSheet;
     cxGridMonthly: TcxGrid;
     cxGridMonthlyDBTableView: TcxGridDBTableView;
     cxGridMonthlyLevel: TcxGridLevel;
@@ -64,8 +65,6 @@ type
     btnFilter: TcxButton;
     txtYil: TcxComboBox;
     cbBagisTuru: TcxComboBox;
-    PageControl: TPageControl;
-    tabMonthly: TTabSheet;
     tabDaily: TTabSheet;
     pnlHeaderDaily: TPanel;
     lblDailyYear: TLabel;
@@ -78,7 +77,6 @@ type
     cxGridDaily: TcxGrid;
     cxGridDBTableViewDaily: TcxGridDBTableView;
     cxGridLevelDaily: TcxGridLevel;
-    dailyDatasource: TDataSource;
     procedure FormShow(Sender: TObject);
     procedure btnReportClick(Sender: TObject);
     procedure CloseUniq(Sender: TObject; var Action: TCloseAction);
@@ -90,6 +88,7 @@ type
     procedure btnAddEkmekClick(Sender: TObject);
     procedure popupMenuPopup(Sender: TObject);
     procedure btnExportXlsClick(Sender: TObject);
+    procedure btnLoadDailyDataClick(Sender: TObject);
   private
     procedure LoadHareketlerYeni;
     procedure LoadHareketlerGunluk;
@@ -199,7 +198,12 @@ end;
 
 procedure TfrmHareket.btnFilterClick(Sender: TObject);
 begin
-  LoadHareketlerGunluk;
+  LoadHareketlerYeni;
+end;
+
+procedure TfrmHareket.btnLoadDailyDataClick(Sender: TObject);
+begin
+ LoadHareketlerGunluk;
 end;
 
 procedure TfrmHareket.btnReportClick(Sender: TObject);
@@ -313,7 +317,7 @@ begin
 
   with frmDb do
   begin
-    with GetBagisList do
+    with GetDailyBagis do
     begin
       ParamByName('Yil').AsInteger := StrToInt(txtDailyYear.Text);
       ParamByName('Ay').AsInteger := txtDailyMonth.SelectedItem + 1;
@@ -323,8 +327,10 @@ begin
     end;
   end;
 
+  frmDb.tblDailyBagis.DataSet.FindField('siralama').Visible := false;
   cxGridDBTableViewDaily.DataController.DataSource := frmDb.tblDailyBagis;
   cxGridDBTableViewDaily.DataController.CreateAllItems;
+  cxGridDBTableViewDaily.ApplyBestFit();
 end;
 
 procedure TfrmHareket.LoadHareketlerYeni;

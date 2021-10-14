@@ -89,6 +89,9 @@ type
     procedure popupMenuPopup(Sender: TObject);
     procedure btnExportXlsClick(Sender: TObject);
     procedure btnLoadDailyDataClick(Sender: TObject);
+    procedure cxGridDBTableViewDailyStylesGetContentStyle(
+      Sender: TcxCustomGridTableView; ARecord: TcxCustomGridRecord;
+      AItem: TcxCustomGridTableItem; var AStyle: TcxStyle);
   private
     procedure LoadHareketlerYeni;
     procedure LoadHareketlerGunluk;
@@ -218,6 +221,30 @@ end;
 procedure TfrmHareket.CloseUniq(Sender: TObject; var Action: TCloseAction);
 begin
   Action := caFree;
+end;
+
+procedure TfrmHareket.cxGridDBTableViewDailyStylesGetContentStyle(
+  Sender: TcxCustomGridTableView; ARecord: TcxCustomGridRecord;
+  AItem: TcxCustomGridTableItem; var AStyle: TcxStyle);
+begin
+  if not Assigned(AItem) then
+      Exit;
+
+    if AItem.Index > 4 then
+    begin
+      if ARecord.Values[AItem.Index] = 'X' then
+      begin
+        AStyle := cxGreenStyle;
+      end
+      else if ARecord.Values[AItem.Index] = 'M' then
+      begin
+        AStyle := cxBlueStyle;
+      end
+      else if VarToStr(ARecord.Values[AItem.Index]) = '' then
+      begin
+        AStyle := cxRedStyle;
+      end;
+    end;
 end;
 
 procedure TfrmHareket.cxGridDBTableViewStylesGetContentStyle
