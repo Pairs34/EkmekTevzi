@@ -1,4 +1,4 @@
-unit uMain;
+ï»¿unit uMain;
 
 interface
 
@@ -25,7 +25,7 @@ uses
   dxNavBarGroupItems, dxBarBuiltInMenu, cxPC, dxStatusBar,
    cxStyles, dxSkinOffice2019Colorful, cxImageList, System.ImageList,
   Vcl.ImgList, dxNavBarBase, cxSplitter, dxGDIPlusClasses,FileCtrl,Uni,
-  cxContainer, cxEdit, cxTextEdit, cxMaskEdit, cxDropDownEdit;
+  cxContainer, cxEdit, cxTextEdit, cxMaskEdit, cxDropDownEdit, dxCore;
 
 type
   TfrmMain = class(TForm)
@@ -149,7 +149,7 @@ begin
        ShowFormInTab(TfrmMazeretList,frmMazeretList,ALink);
     end else if ALink.Item.Name = 'itmBackupAndRestore' then
     begin
-       SelectDirectory('Veritabaný Yedeði Alýnacak Dizini Seçiniz','',sDir);
+       SelectDirectory('VeritabanÄ± YedeÄŸi AlÄ±nacak Dizini SeÃ§iniz','',sDir);
 
        if sDir <> '' then
        begin
@@ -164,7 +164,7 @@ begin
                Execute;
              end;
              bQuery.FreeOnRelease;
-             ShowMessage('Yedek alýndý');
+             ShowMessage('Yedek alÄ±ndÄ±');
          end;
            except on E: Exception do begin
               ShowMessage(E.Message);
@@ -221,13 +221,13 @@ end;
 procedure TfrmMain.OnConnected(ASender: TObject; const Reader: IReader);
 begin
     txtBaud.Color := RGB(164,214,58);
-    statusBar.Panels[0].Text := 'Baðlý';
+    statusBar.Panels[0].Text := 'BaÃ°lÃ½';
 end;
 
 procedure TfrmMain.OnDisconnected(ASender: TObject; const Reader: IReader);
 begin
     txtBaud.Color := clWindow;
-    statusBar.Panels[0].Text := 'Baðlý Deðil';
+    statusBar.Panels[0].Text := 'BaÃ°lÃ½ DeÃ°il';
 end;
 
 procedure TfrmMain.OnReceiveText(ASender: TObject; const Reader: IReader;
@@ -308,34 +308,40 @@ var
   nTab : TcxTabSheet;
   nForm : TForm;
 begin
-      nTab := TcxTabSheet.Create(pageContainer);
-      with nTab do begin
-        if HiddenForm = true then
-        begin
-          Caption := HiddenCaption;
-        end else begin
-          Caption := L.Item.Caption;
-          Name := L.Item.Name;
+      try
+        nTab := TcxTabSheet.Create(pageContainer);
+        with nTab do begin
+          if HiddenForm = true then
+          begin
+            Caption := HiddenCaption;
+          end else begin
+            Caption := L.Item.Caption;
+            Name := L.Item.Name;
+          end;
+
         end;
 
+        nTab.Parent := pageContainer;
+
+        nPanel := TPanel.Create(nTab);
+
+        with nPanel do begin
+           Align := TAlign.alClient;
+           Parent := nTab;
+        end;
+
+
+          Application.CreateForm(I,Referance);
+          nForm := TForm(Referance);
+          nForm.Parent := nPanel;
+          nForm.Align := TAlign.alClient;
+          nForm.Show;
+      except
+      on E : EComponentError do begin
+        nTab.Free;
+        ShowMessage('Sayfa zaten aÃ§Ä±k');
       end;
-
-      nTab.Parent := pageContainer;
-
-      nPanel := TPanel.Create(nTab);
-
-      with nPanel do begin
-         Align := TAlign.alClient;
-         Parent := nTab;
-      end;
-
-      try
-        Application.CreateForm(I,Referance);
-        nForm := TForm(Referance);
-        nForm.Parent := nPanel;
-        nForm.Align := TAlign.alClient;
-        nForm.Show;
-      except on E : Exception do
+      on E : Exception do
         ShowMessage(E.Message);
       end;
 end;

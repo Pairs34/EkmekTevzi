@@ -51,6 +51,8 @@ function StopNTService(const ServiceName: string): Boolean;
 
 function IsStrANumber(const S: string): Boolean;
 
+procedure UpdateMazeret(bKartId: string; Zaman: TDateTime);
+
 type
   THareket = record
     KartId: string;
@@ -249,6 +251,12 @@ procedure EkmekVer(KartId, Tip, AdSoyad: string; Zaman: TDateTime);
 var
   bQuery: TUniQuery;
 begin
+  var mazeretDurum := CheckMazeret(KartId,Zaman.Year,Zaman.Month,Zaman.Day);
+  if mazeretDurum = 'M' then begin
+    //Update Mazeret Son gün
+     UpdateMazeret(KartId,Zaman);
+  end;
+
   bQuery := TUniQuery.Create(nil);
   with bQuery do
   begin
@@ -279,6 +287,25 @@ begin
     SQL.Add('where KartId = :KartId');
     ParamByName('SIslemTarih').AsDateTime := now;
     ParamByName('SIslemTip').AsString := bIslemTip;
+    ParamByName('KartId').AsString := bKartId;
+    ExecSQL;
+  end;
+end;
+
+procedure UpdateMazeret(bKartId: string; Zaman: TDateTime);
+var
+  bQuery: TUniQuery;
+begin
+  bQuery := TUniQuery.Create(nil);
+  with bQuery do
+  begin
+    Connection := frmDb.dbHelper;
+    Close;
+    SQL.Clear;
+    SQL.Add('update mazeretler set GelecegiTarih = :SGelecegiTarih,EkmekAlacagiTarih = :SEkmekAlacagiTarih ');
+    SQL.Add('where KartId = :KartId');
+    ParamByName('SGelecegiTarih').AsDateTime := IncDay(Zaman, -1);
+    ParamByName('SEkmekAlacagiTarih').AsDateTime := IncDay(Zaman, -1);
     ParamByName('KartId').AsString := bKartId;
     ExecSQL;
   end;

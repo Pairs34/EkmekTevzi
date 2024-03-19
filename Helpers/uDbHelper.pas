@@ -30,6 +30,7 @@ type
     dailyCount: TUniQuery;
     GetDailyBagis: TUniStoredProc;
     tblDailyBagis: TUniDataSource;
+    qHareketList: TUniQuery;
     procedure dbHelperBeforeConnect(Sender: TObject);
   private
     { Private declarations }

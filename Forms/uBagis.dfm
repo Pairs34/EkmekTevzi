@@ -1,75 +1,93 @@
 object frmBagis: TfrmBagis
   Left = 0
   Top = 0
+  Margins.Left = 2
+  Margins.Top = 2
+  Margins.Right = 2
+  Margins.Bottom = 2
   BorderStyle = bsNone
-  ClientHeight = 596
-  ClientWidth = 1068
+  ClientHeight = 477
+  ClientWidth = 854
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -13
+  Font.Height = -10
   Font.Name = 'Tahoma'
   Font.Style = []
-  OldCreateOrder = False
   OnClose = FormClose
   OnShow = FormShow
   DesignSize = (
-    1068
-    596)
-  PixelsPerInch = 120
-  TextHeight = 16
+    854
+    477)
+  TextHeight = 12
   object lblBuyukAdSoyad: TLabel
-    Left = 8
-    Top = 77
-    Width = 15
-    Height = 57
+    Left = 6
+    Top = 62
+    Width = 12
+    Height = 46
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
     Alignment = taCenter
     Anchors = [akLeft, akTop, akRight]
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -47
+    Font.Height = -38
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
   end
   object lblBuyukHak: TLabel
-    Left = 8
-    Top = 145
-    Width = 15
-    Height = 57
+    Left = 6
+    Top = 116
+    Width = 12
+    Height = 46
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
     Alignment = taCenter
     Anchors = [akLeft, akTop, akRight]
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -47
+    Font.Height = -38
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
   end
   object lblSonHareket: TLabel
-    Left = 8
-    Top = 208
-    Width = 15
-    Height = 57
+    Left = 6
+    Top = 166
+    Width = 12
+    Height = 46
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
     Alignment = taCenter
     Anchors = [akLeft, akTop, akRight]
     Color = clBtnFace
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -47
+    Font.Height = -38
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentColor = False
     ParentFont = False
   end
   object txtCardID: TEdit
-    Left = 8
-    Top = 8
-    Width = 593
-    Height = 68
+    Left = 6
+    Top = 6
+    Width = 475
+    Height = 56
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -50
+    Font.Height = -40
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
@@ -79,92 +97,120 @@ object frmBagis: TfrmBagis
   end
   object cxGroupBox: TcxGroupBox
     Left = 0
-    Top = 271
+    Top = 217
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
     Caption = 'Ki'#351'i Bilgileri'
     ParentFont = False
     Style.Font.Charset = DEFAULT_CHARSET
     Style.Font.Color = clWindowText
-    Style.Font.Height = -20
+    Style.Font.Height = -16
     Style.Font.Name = 'Tahoma'
     Style.Font.Style = []
     Style.LookAndFeel.NativeStyle = False
     Style.IsFontAssigned = True
     StyleDisabled.LookAndFeel.NativeStyle = False
     TabOrder = 1
-    Height = 187
-    Width = 737
+    Height = 149
+    Width = 590
     object lblAdSoyad: TLabel
-      Left = 22
-      Top = 24
-      Width = 83
-      Height = 24
+      Left = 18
+      Top = 19
+      Width = 68
+      Height = 19
+      Margins.Left = 2
+      Margins.Top = 2
+      Margins.Right = 2
+      Margins.Bottom = 2
       Caption = 'Ad Soyad'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -20
+      Font.Height = -16
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
     end
     object lblHak: TLabel
-      Left = 22
-      Top = 51
-      Width = 97
-      Height = 24
+      Left = 18
+      Top = 41
+      Width = 77
+      Height = 19
+      Margins.Left = 2
+      Margins.Top = 2
+      Margins.Right = 2
+      Margins.Bottom = 2
       Caption = 'Adet Hakk'#305
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -20
+      Font.Height = -16
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
     end
     object lblTel: TLabel
-      Left = 22
-      Top = 78
-      Width = 97
-      Height = 24
+      Left = 18
+      Top = 62
+      Width = 78
+      Height = 19
+      Margins.Left = 2
+      Margins.Top = 2
+      Margins.Right = 2
+      Margins.Bottom = 2
       Caption = 'Telefon No'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -20
+      Font.Height = -16
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
     end
     object lblAdres: TLabel
-      Left = 22
-      Top = 135
-      Width = 50
-      Height = 24
+      Left = 18
+      Top = 108
+      Width = 41
+      Height = 19
+      Margins.Left = 2
+      Margins.Top = 2
+      Margins.Right = 2
+      Margins.Bottom = 2
       Caption = 'Adres'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -20
+      Font.Height = -16
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
     end
     object lblNufus: TLabel
-      Left = 22
-      Top = 105
-      Width = 50
-      Height = 24
+      Left = 18
+      Top = 84
+      Width = 41
+      Height = 19
+      Margins.Left = 2
+      Margins.Top = 2
+      Margins.Right = 2
+      Margins.Bottom = 2
       Caption = 'N'#252'fus'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -20
+      Font.Height = -16
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
     end
     object txtAdsoyad: TcxTextEdit
-      Left = 147
-      Top = 24
+      Left = 118
+      Top = 19
+      Margins.Left = 2
+      Margins.Top = 2
+      Margins.Right = 2
+      Margins.Bottom = 2
       ParentFont = False
       Style.Font.Charset = DEFAULT_CHARSET
       Style.Font.Color = clWindowText
-      Style.Font.Height = -16
+      Style.Font.Height = -13
       Style.Font.Name = 'Tahoma'
       Style.Font.Style = []
       Style.LookAndFeel.NativeStyle = False
@@ -173,16 +219,21 @@ object frmBagis: TfrmBagis
       StyleDisabled.LookAndFeel.NativeStyle = False
       StyleFocused.LookAndFeel.NativeStyle = False
       StyleHot.LookAndFeel.NativeStyle = False
+      StyleReadOnly.LookAndFeel.NativeStyle = False
       TabOrder = 0
-      Width = 587
+      Width = 469
     end
     object txtNufus: TcxTextEdit
-      Left = 147
-      Top = 105
+      Left = 118
+      Top = 84
+      Margins.Left = 2
+      Margins.Top = 2
+      Margins.Right = 2
+      Margins.Bottom = 2
       ParentFont = False
       Style.Font.Charset = DEFAULT_CHARSET
       Style.Font.Color = clWindowText
-      Style.Font.Height = -16
+      Style.Font.Height = -13
       Style.Font.Name = 'Tahoma'
       Style.Font.Style = []
       Style.LookAndFeel.NativeStyle = False
@@ -191,16 +242,21 @@ object frmBagis: TfrmBagis
       StyleDisabled.LookAndFeel.NativeStyle = False
       StyleFocused.LookAndFeel.NativeStyle = False
       StyleHot.LookAndFeel.NativeStyle = False
+      StyleReadOnly.LookAndFeel.NativeStyle = False
       TabOrder = 1
-      Width = 210
+      Width = 168
     end
     object txtTel: TcxTextEdit
-      Left = 147
-      Top = 78
+      Left = 118
+      Top = 62
+      Margins.Left = 2
+      Margins.Top = 2
+      Margins.Right = 2
+      Margins.Bottom = 2
       ParentFont = False
       Style.Font.Charset = DEFAULT_CHARSET
       Style.Font.Color = clWindowText
-      Style.Font.Height = -16
+      Style.Font.Height = -13
       Style.Font.Name = 'Tahoma'
       Style.Font.Style = []
       Style.LookAndFeel.NativeStyle = False
@@ -209,16 +265,21 @@ object frmBagis: TfrmBagis
       StyleDisabled.LookAndFeel.NativeStyle = False
       StyleFocused.LookAndFeel.NativeStyle = False
       StyleHot.LookAndFeel.NativeStyle = False
+      StyleReadOnly.LookAndFeel.NativeStyle = False
       TabOrder = 2
-      Width = 403
+      Width = 322
     end
     object txtAdres: TcxMemo
-      Left = 147
-      Top = 132
+      Left = 118
+      Top = 106
+      Margins.Left = 2
+      Margins.Top = 2
+      Margins.Right = 2
+      Margins.Bottom = 2
       ParentFont = False
       Style.Font.Charset = DEFAULT_CHARSET
       Style.Font.Color = clWindowText
-      Style.Font.Height = -16
+      Style.Font.Height = -13
       Style.Font.Name = 'Tahoma'
       Style.Font.Style = []
       Style.LookAndFeel.NativeStyle = False
@@ -227,17 +288,22 @@ object frmBagis: TfrmBagis
       StyleDisabled.LookAndFeel.NativeStyle = False
       StyleFocused.LookAndFeel.NativeStyle = False
       StyleHot.LookAndFeel.NativeStyle = False
+      StyleReadOnly.LookAndFeel.NativeStyle = False
       TabOrder = 3
-      Height = 44
-      Width = 587
+      Height = 35
+      Width = 469
     end
     object txtAdet: TcxTextEdit
-      Left = 147
-      Top = 51
+      Left = 118
+      Top = 41
+      Margins.Left = 2
+      Margins.Top = 2
+      Margins.Right = 2
+      Margins.Bottom = 2
       ParentFont = False
       Style.Font.Charset = DEFAULT_CHARSET
       Style.Font.Color = clWindowText
-      Style.Font.Height = -16
+      Style.Font.Height = -13
       Style.Font.Name = 'Tahoma'
       Style.Font.Style = []
       Style.LookAndFeel.NativeStyle = False
@@ -246,15 +312,20 @@ object frmBagis: TfrmBagis
       StyleDisabled.LookAndFeel.NativeStyle = False
       StyleFocused.LookAndFeel.NativeStyle = False
       StyleHot.LookAndFeel.NativeStyle = False
+      StyleReadOnly.LookAndFeel.NativeStyle = False
       TabOrder = 4
-      Width = 210
+      Width = 168
     end
   end
   object btnBagis: TcxButton
-    Left = 799
-    Top = 438
-    Width = 154
-    Height = 50
+    Left = 639
+    Top = 350
+    Width = 123
+    Height = 40
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
     Caption = 'Ekmek Ver'
     LookAndFeel.NativeStyle = False
     OptionsImage.Glyph.SourceDPI = 96
@@ -311,20 +382,25 @@ object frmBagis: TfrmBagis
       C1CCBCCE005687870BC1434000D8FA8E94043240D6ED1357702F68AEE0DE3004
       024F008D2C70C1AA277555963AC525C6B031E8D5BF45FF2F78E87AD17B7EBBE5
       0000000049454E44AE426082}
+    OptionsImage.Spacing = 3
     TabOrder = 2
     Visible = False
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -23
+    Font.Height = -18
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
   end
   object btnMazeretEkle: TcxButton
-    Left = 607
-    Top = 8
-    Width = 130
-    Height = 68
+    Left = 486
+    Top = 6
+    Width = 104
+    Height = 55
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
     Caption = 'Mazeret Ekle'
     OptionsImage.Glyph.SourceDPI = 96
     OptionsImage.Glyph.Data = {
@@ -403,18 +479,23 @@ object frmBagis: TfrmBagis
       CD6DE07F26B0615D0B60633EF7D473DAA41AF23A6391434E0206907234EDACE5
       A737ACC93BFD6F099CEE48B4492A1C0590531580290EFF0D7D02CF2341DA9852
       0000000049454E44AE426082}
+    OptionsImage.Spacing = 3
     TabOrder = 3
     OnClick = btnMazeretEkleClick
   end
   object btnSadeceSorgu: TdxToggleSwitch
-    Left = 510
-    Top = 228
+    Left = 408
+    Top = 182
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
     Caption = 'Sadece Sorgu'
     Checked = False
     ParentFont = False
     Style.Font.Charset = DEFAULT_CHARSET
     Style.Font.Color = clWindowText
-    Style.Font.Height = 24
+    Style.Font.Height = 19
     Style.Font.Name = 'Tahoma'
     Style.Font.Style = []
     Style.LookAndFeel.NativeStyle = False
@@ -422,18 +503,23 @@ object frmBagis: TfrmBagis
     StyleDisabled.LookAndFeel.NativeStyle = False
     StyleFocused.LookAndFeel.NativeStyle = False
     StyleHot.LookAndFeel.NativeStyle = False
+    StyleReadOnly.LookAndFeel.NativeStyle = False
     TabOrder = 4
   end
   object cxGrid: TcxGrid
     Left = 0
-    Top = 472
-    Width = 1068
-    Height = 124
+    Top = 378
+    Width = 854
+    Height = 99
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
     Align = alBottom
     Enabled = False
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -16
+    Font.Height = -13
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
@@ -441,6 +527,7 @@ object frmBagis: TfrmBagis
     LookAndFeel.NativeStyle = False
     object cxGridDBTableView: TcxGridDBTableView
       Navigator.Buttons.CustomButtons = <>
+      ScrollbarAnnotations.CustomAnnotations = <>
       DataController.DataSource = tblVAylikHareket
       DataController.Summary.DefaultGroupSummaryItems = <>
       DataController.Summary.FooterSummaryItems = <>

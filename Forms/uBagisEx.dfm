@@ -1,88 +1,110 @@
 object frmBagisEx: TfrmBagisEx
   Left = 0
   Top = 0
+  Margins.Left = 2
+  Margins.Top = 2
+  Margins.Right = 2
+  Margins.Bottom = 2
   BorderStyle = bsNone
   Caption = 'frmBagisEx'
-  ClientHeight = 694
-  ClientWidth = 1004
+  ClientHeight = 555
+  ClientWidth = 803
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -13
+  Font.Height = -10
   Font.Name = 'Tahoma'
   Font.Style = []
-  OldCreateOrder = False
   OnShow = FormShow
   DesignSize = (
-    1004
-    694)
-  PixelsPerInch = 120
-  TextHeight = 16
+    803
+    555)
+  TextHeight = 12
   object lblBuyukAdSoyad: TLabel
-    Left = 8
-    Top = 82
-    Width = 15
-    Height = 57
+    Left = 6
+    Top = 66
+    Width = 12
+    Height = 46
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
     Alignment = taCenter
     Anchors = [akLeft, akTop, akRight]
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -47
+    Font.Height = -38
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
   end
   object lblBuyukHak: TLabel
-    Left = 8
-    Top = 144
-    Width = 15
-    Height = 57
+    Left = 6
+    Top = 115
+    Width = 12
+    Height = 46
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
     Alignment = taCenter
     Anchors = [akLeft, akTop, akRight]
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -47
+    Font.Height = -38
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
   end
   object lblBagisTuru: TLabel
-    Left = 8
-    Top = 284
-    Width = 95
-    Height = 24
+    Left = 6
+    Top = 227
+    Width = 76
+    Height = 19
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
     Caption = 'Ba'#287#305#351' T'#252'r'#252
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -20
+    Font.Height = -16
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
   end
   object lblSonHareket: TLabel
-    Left = 8
-    Top = 207
-    Width = 15
-    Height = 57
+    Left = 6
+    Top = 166
+    Width = 12
+    Height = 46
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
     Alignment = taCenter
     Anchors = [akLeft, akTop, akRight]
     Color = clBtnFace
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -47
+    Font.Height = -38
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentColor = False
     ParentFont = False
   end
   object txtCardID: TEdit
-    Left = 8
-    Top = 8
-    Width = 705
-    Height = 68
+    Left = 6
+    Top = 6
+    Width = 564
+    Height = 56
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -50
+    Font.Height = -40
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
@@ -91,93 +113,121 @@ object frmBagisEx: TfrmBagisEx
     OnChange = txtCardIDChange
   end
   object cxGroupBox: TcxGroupBox
-    Left = 8
-    Top = 320
+    Left = 6
+    Top = 256
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
     Caption = 'Ki'#351'i Bilgileri'
     ParentFont = False
     Style.Font.Charset = DEFAULT_CHARSET
     Style.Font.Color = clWindowText
-    Style.Font.Height = -20
+    Style.Font.Height = -16
     Style.Font.Name = 'Tahoma'
     Style.Font.Style = []
     Style.LookAndFeel.NativeStyle = False
     Style.IsFontAssigned = True
     StyleDisabled.LookAndFeel.NativeStyle = False
     TabOrder = 1
-    Height = 225
-    Width = 737
+    Height = 180
+    Width = 590
     object lblAdSoyad: TLabel
-      Left = 17
-      Top = 28
-      Width = 83
-      Height = 24
+      Left = 14
+      Top = 22
+      Width = 68
+      Height = 19
+      Margins.Left = 2
+      Margins.Top = 2
+      Margins.Right = 2
+      Margins.Bottom = 2
       Caption = 'Ad Soyad'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -20
+      Font.Height = -16
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
     end
     object lblHak: TLabel
-      Left = 17
-      Top = 58
-      Width = 97
-      Height = 24
+      Left = 14
+      Top = 46
+      Width = 77
+      Height = 19
+      Margins.Left = 2
+      Margins.Top = 2
+      Margins.Right = 2
+      Margins.Bottom = 2
       Caption = 'Adet Hakk'#305
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -20
+      Font.Height = -16
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
     end
     object lblTel: TLabel
-      Left = 17
-      Top = 88
-      Width = 97
-      Height = 24
+      Left = 14
+      Top = 70
+      Width = 78
+      Height = 19
+      Margins.Left = 2
+      Margins.Top = 2
+      Margins.Right = 2
+      Margins.Bottom = 2
       Caption = 'Telefon No'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -20
+      Font.Height = -16
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
     end
     object lblAdres: TLabel
-      Left = 17
-      Top = 148
-      Width = 50
-      Height = 24
+      Left = 14
+      Top = 118
+      Width = 41
+      Height = 19
+      Margins.Left = 2
+      Margins.Top = 2
+      Margins.Right = 2
+      Margins.Bottom = 2
       Caption = 'Adres'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -20
+      Font.Height = -16
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
     end
     object lblNufus: TLabel
-      Left = 17
-      Top = 118
-      Width = 50
-      Height = 24
+      Left = 14
+      Top = 94
+      Width = 41
+      Height = 19
+      Margins.Left = 2
+      Margins.Top = 2
+      Margins.Right = 2
+      Margins.Bottom = 2
       Caption = 'N'#252'fus'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -20
+      Font.Height = -16
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
     end
     object txtAdsoyad: TcxTextEdit
-      Left = 147
-      Top = 25
+      Left = 118
+      Top = 20
+      Margins.Left = 2
+      Margins.Top = 2
+      Margins.Right = 2
+      Margins.Bottom = 2
       ParentFont = False
       Style.Font.Charset = DEFAULT_CHARSET
       Style.Font.Color = clWindowText
-      Style.Font.Height = -20
+      Style.Font.Height = -16
       Style.Font.Name = 'Tahoma'
       Style.Font.Style = []
       Style.LookAndFeel.NativeStyle = False
@@ -186,16 +236,21 @@ object frmBagisEx: TfrmBagisEx
       StyleDisabled.LookAndFeel.NativeStyle = False
       StyleFocused.LookAndFeel.NativeStyle = False
       StyleHot.LookAndFeel.NativeStyle = False
+      StyleReadOnly.LookAndFeel.NativeStyle = False
       TabOrder = 0
-      Width = 587
+      Width = 469
     end
     object txtNufus: TcxTextEdit
-      Left = 147
-      Top = 121
+      Left = 118
+      Top = 97
+      Margins.Left = 2
+      Margins.Top = 2
+      Margins.Right = 2
+      Margins.Bottom = 2
       ParentFont = False
       Style.Font.Charset = DEFAULT_CHARSET
       Style.Font.Color = clWindowText
-      Style.Font.Height = -20
+      Style.Font.Height = -16
       Style.Font.Name = 'Tahoma'
       Style.Font.Style = []
       Style.LookAndFeel.NativeStyle = False
@@ -204,16 +259,21 @@ object frmBagisEx: TfrmBagisEx
       StyleDisabled.LookAndFeel.NativeStyle = False
       StyleFocused.LookAndFeel.NativeStyle = False
       StyleHot.LookAndFeel.NativeStyle = False
+      StyleReadOnly.LookAndFeel.NativeStyle = False
       TabOrder = 1
-      Width = 210
+      Width = 168
     end
     object txtTel: TcxTextEdit
-      Left = 147
-      Top = 89
+      Left = 118
+      Top = 71
+      Margins.Left = 2
+      Margins.Top = 2
+      Margins.Right = 2
+      Margins.Bottom = 2
       ParentFont = False
       Style.Font.Charset = DEFAULT_CHARSET
       Style.Font.Color = clWindowText
-      Style.Font.Height = -20
+      Style.Font.Height = -16
       Style.Font.Name = 'Tahoma'
       Style.Font.Style = []
       Style.LookAndFeel.NativeStyle = False
@@ -222,16 +282,21 @@ object frmBagisEx: TfrmBagisEx
       StyleDisabled.LookAndFeel.NativeStyle = False
       StyleFocused.LookAndFeel.NativeStyle = False
       StyleHot.LookAndFeel.NativeStyle = False
+      StyleReadOnly.LookAndFeel.NativeStyle = False
       TabOrder = 2
-      Width = 403
+      Width = 322
     end
     object txtAdres: TcxMemo
-      Left = 147
-      Top = 159
+      Left = 118
+      Top = 127
+      Margins.Left = 2
+      Margins.Top = 2
+      Margins.Right = 2
+      Margins.Bottom = 2
       ParentFont = False
       Style.Font.Charset = DEFAULT_CHARSET
       Style.Font.Color = clWindowText
-      Style.Font.Height = -20
+      Style.Font.Height = -16
       Style.Font.Name = 'Tahoma'
       Style.Font.Style = []
       Style.LookAndFeel.NativeStyle = False
@@ -240,17 +305,22 @@ object frmBagisEx: TfrmBagisEx
       StyleDisabled.LookAndFeel.NativeStyle = False
       StyleFocused.LookAndFeel.NativeStyle = False
       StyleHot.LookAndFeel.NativeStyle = False
+      StyleReadOnly.LookAndFeel.NativeStyle = False
       TabOrder = 3
-      Height = 47
-      Width = 587
+      Height = 38
+      Width = 469
     end
     object txtAdet: TcxTextEdit
-      Left = 147
-      Top = 57
+      Left = 118
+      Top = 46
+      Margins.Left = 2
+      Margins.Top = 2
+      Margins.Right = 2
+      Margins.Bottom = 2
       ParentFont = False
       Style.Font.Charset = DEFAULT_CHARSET
       Style.Font.Color = clWindowText
-      Style.Font.Height = -20
+      Style.Font.Height = -16
       Style.Font.Name = 'Tahoma'
       Style.Font.Style = []
       Style.LookAndFeel.NativeStyle = False
@@ -259,15 +329,20 @@ object frmBagisEx: TfrmBagisEx
       StyleDisabled.LookAndFeel.NativeStyle = False
       StyleFocused.LookAndFeel.NativeStyle = False
       StyleHot.LookAndFeel.NativeStyle = False
+      StyleReadOnly.LookAndFeel.NativeStyle = False
       TabOrder = 4
-      Width = 210
+      Width = 168
     end
   end
   object btnRefreshBagisTurleri: TcxButton
-    Left = 759
-    Top = 284
-    Width = 42
-    Height = 33
+    Left = 607
+    Top = 227
+    Width = 34
+    Height = 27
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
     OptionsImage.Glyph.SourceDPI = 96
     OptionsImage.Glyph.Data = {
       3C3F786D6C2076657273696F6E3D22312E302220656E636F64696E673D225554
@@ -290,20 +365,25 @@ object frmBagisEx: TfrmBagisEx
       392D342E362C352D382C392E382D3863332E332C302C362E322C312E362C382C
       346C2D342C3468352E386834483330563420202623393B4C32362E382C372E32
       7A222F3E0D0A3C2F7376673E0D0A}
+    OptionsImage.Spacing = 3
     TabOrder = 2
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -20
+    Font.Height = -16
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
     OnClick = btnRefreshBagisTurleriClick
   end
   object btnMazeretEkle: TcxButton
-    Left = 719
-    Top = 8
-    Width = 130
-    Height = 68
+    Left = 575
+    Top = 6
+    Width = 104
+    Height = 55
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
     Caption = 'Mazeret Ekle'
     OptionsImage.Glyph.SourceDPI = 96
     OptionsImage.Glyph.Data = {
@@ -382,18 +462,23 @@ object frmBagisEx: TfrmBagisEx
       CD6DE07F26B0615D0B60633EF7D473DAA41AF23A6391434E0206907234EDACE5
       A737ACC93BFD6F099CEE48B4492A1C0590531580290EFF0D7D02CF2341DA9852
       0000000049454E44AE426082}
+    OptionsImage.Spacing = 3
     TabOrder = 3
     OnClick = btnMazeretEkleClick
   end
   object btnSadeceSorgu: TdxToggleSwitch
-    Left = 551
-    Top = 250
+    Left = 441
+    Top = 200
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
     Caption = 'Sadece Sorgu'
     Checked = False
     ParentFont = False
     Style.Font.Charset = DEFAULT_CHARSET
     Style.Font.Color = clWindowText
-    Style.Font.Height = -20
+    Style.Font.Height = -16
     Style.Font.Name = 'Tahoma'
     Style.Font.Style = []
     Style.LookAndFeel.NativeStyle = False
@@ -401,18 +486,23 @@ object frmBagisEx: TfrmBagisEx
     StyleDisabled.LookAndFeel.NativeStyle = False
     StyleFocused.LookAndFeel.NativeStyle = False
     StyleHot.LookAndFeel.NativeStyle = False
+    StyleReadOnly.LookAndFeel.NativeStyle = False
     TabOrder = 4
   end
   object cxGrid: TcxGrid
     Left = 0
-    Top = 568
-    Width = 1004
-    Height = 126
+    Top = 454
+    Width = 803
+    Height = 101
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
     Align = alBottom
     Enabled = False
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -16
+    Font.Height = -13
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
@@ -420,6 +510,7 @@ object frmBagisEx: TfrmBagisEx
     LookAndFeel.NativeStyle = False
     object cxGridDBTableView: TcxGridDBTableView
       Navigator.Buttons.CustomButtons = <>
+      ScrollbarAnnotations.CustomAnnotations = <>
       DataController.DataSource = tblVAylikHareket
       DataController.Summary.DefaultGroupSummaryItems = <>
       DataController.Summary.FooterSummaryItems = <>
@@ -436,131 +527,197 @@ object frmBagisEx: TfrmBagisEx
       Styles.OnGetContentStyle = cxGridDBTableViewStylesGetContentStyle
       object cxGridDBTableViewKartId: TcxGridDBColumn
         DataBinding.FieldName = 'KartId'
+        DataBinding.IsNullValueType = True
+        MinWidth = 16
       end
       object cxGridDBTableViewAdSoyad: TcxGridDBColumn
         DataBinding.FieldName = 'Ad Soyad'
+        DataBinding.IsNullValueType = True
+        MinWidth = 16
       end
       object cxGridDBTableViewBaTr: TcxGridDBColumn
         DataBinding.FieldName = 'Ba'#287#305#351' T'#252'r'#252
+        DataBinding.IsNullValueType = True
+        MinWidth = 16
       end
       object cxGridDBTableViewDBColumn01: TcxGridDBColumn
         DataBinding.FieldName = '01'
-        Width = 32
+        DataBinding.IsNullValueType = True
+        MinWidth = 16
+        Width = 26
       end
       object cxGridDBTableViewDBColumn02: TcxGridDBColumn
         DataBinding.FieldName = '02'
-        Width = 20
+        DataBinding.IsNullValueType = True
+        MinWidth = 16
+        Width = 16
       end
       object cxGridDBTableViewDBColumn03: TcxGridDBColumn
         DataBinding.FieldName = '03'
-        Width = 20
+        DataBinding.IsNullValueType = True
+        MinWidth = 16
+        Width = 16
       end
       object cxGridDBTableViewDBColumn04: TcxGridDBColumn
         DataBinding.FieldName = '04'
-        Width = 20
+        DataBinding.IsNullValueType = True
+        MinWidth = 16
+        Width = 16
       end
       object cxGridDBTableViewDBColumn05: TcxGridDBColumn
         DataBinding.FieldName = '05'
-        Width = 32
+        DataBinding.IsNullValueType = True
+        MinWidth = 16
+        Width = 26
       end
       object cxGridDBTableViewDBColumn06: TcxGridDBColumn
         DataBinding.FieldName = '06'
-        Width = 32
+        DataBinding.IsNullValueType = True
+        MinWidth = 16
+        Width = 26
       end
       object cxGridDBTableViewDBColumn07: TcxGridDBColumn
         DataBinding.FieldName = '07'
-        Width = 32
+        DataBinding.IsNullValueType = True
+        MinWidth = 16
+        Width = 26
       end
       object cxGridDBTableViewDBColumn08: TcxGridDBColumn
         DataBinding.FieldName = '08'
-        Width = 20
+        DataBinding.IsNullValueType = True
+        MinWidth = 16
+        Width = 16
       end
       object cxGridDBTableViewDBColumn09: TcxGridDBColumn
         DataBinding.FieldName = '09'
-        Width = 20
+        DataBinding.IsNullValueType = True
+        MinWidth = 16
+        Width = 16
       end
       object cxGridDBTableViewDBColumn10: TcxGridDBColumn
         DataBinding.FieldName = '10'
-        Width = 32
+        DataBinding.IsNullValueType = True
+        MinWidth = 16
+        Width = 26
       end
       object cxGridDBTableViewDBColumn11: TcxGridDBColumn
         DataBinding.FieldName = '11'
-        Width = 32
+        DataBinding.IsNullValueType = True
+        MinWidth = 16
+        Width = 26
       end
       object cxGridDBTableViewDBColumn12: TcxGridDBColumn
         DataBinding.FieldName = '12'
-        Width = 20
+        DataBinding.IsNullValueType = True
+        MinWidth = 16
+        Width = 16
       end
       object cxGridDBTableViewDBColumn13: TcxGridDBColumn
         DataBinding.FieldName = '13'
-        Width = 20
+        DataBinding.IsNullValueType = True
+        MinWidth = 16
+        Width = 16
       end
       object cxGridDBTableViewDBColumn14: TcxGridDBColumn
         DataBinding.FieldName = '14'
-        Width = 20
+        DataBinding.IsNullValueType = True
+        MinWidth = 16
+        Width = 16
       end
       object cxGridDBTableViewDBColumn15: TcxGridDBColumn
         DataBinding.FieldName = '15'
-        Width = 20
+        DataBinding.IsNullValueType = True
+        MinWidth = 16
+        Width = 16
       end
       object cxGridDBTableViewDBColumn16: TcxGridDBColumn
         DataBinding.FieldName = '16'
-        Width = 20
+        DataBinding.IsNullValueType = True
+        MinWidth = 16
+        Width = 16
       end
       object cxGridDBTableViewDBColumn17: TcxGridDBColumn
         DataBinding.FieldName = '17'
-        Width = 32
+        DataBinding.IsNullValueType = True
+        MinWidth = 16
+        Width = 26
       end
       object cxGridDBTableViewDBColumn18: TcxGridDBColumn
         DataBinding.FieldName = '18'
-        Width = 32
+        DataBinding.IsNullValueType = True
+        MinWidth = 16
+        Width = 26
       end
       object cxGridDBTableViewDBColumn19: TcxGridDBColumn
         DataBinding.FieldName = '19'
-        Width = 32
+        DataBinding.IsNullValueType = True
+        MinWidth = 16
+        Width = 26
       end
       object cxGridDBTableViewDBColumn20: TcxGridDBColumn
         DataBinding.FieldName = '20'
-        Width = 20
+        DataBinding.IsNullValueType = True
+        MinWidth = 16
+        Width = 16
       end
       object cxGridDBTableViewDBColumn22: TcxGridDBColumn
         DataBinding.FieldName = '22'
-        Width = 20
+        DataBinding.IsNullValueType = True
+        MinWidth = 16
+        Width = 16
       end
       object cxGridDBTableViewDBColumn23: TcxGridDBColumn
         DataBinding.FieldName = '23'
-        Width = 20
+        DataBinding.IsNullValueType = True
+        MinWidth = 16
+        Width = 16
       end
       object cxGridDBTableViewDBColumn24: TcxGridDBColumn
         DataBinding.FieldName = '24'
-        Width = 20
+        DataBinding.IsNullValueType = True
+        MinWidth = 16
+        Width = 16
       end
       object cxGridDBTableViewDBColumn25: TcxGridDBColumn
         DataBinding.FieldName = '25'
-        Width = 20
+        DataBinding.IsNullValueType = True
+        MinWidth = 16
+        Width = 16
       end
       object cxGridDBTableViewDBColumn26: TcxGridDBColumn
         DataBinding.FieldName = '26'
-        Width = 32
+        DataBinding.IsNullValueType = True
+        MinWidth = 16
+        Width = 26
       end
       object cxGridDBTableViewDBColumn27: TcxGridDBColumn
         DataBinding.FieldName = '27'
-        Width = 20
+        DataBinding.IsNullValueType = True
+        MinWidth = 16
+        Width = 16
       end
       object cxGridDBTableViewDBColumn28: TcxGridDBColumn
         DataBinding.FieldName = '28'
-        Width = 20
+        DataBinding.IsNullValueType = True
+        MinWidth = 16
+        Width = 16
       end
       object cxGridDBTableViewDBColumn29: TcxGridDBColumn
         DataBinding.FieldName = '29'
-        Width = 20
+        DataBinding.IsNullValueType = True
+        MinWidth = 16
+        Width = 16
       end
       object cxGridDBTableViewDBColumn30: TcxGridDBColumn
         DataBinding.FieldName = '30'
-        Width = 32
+        DataBinding.IsNullValueType = True
+        MinWidth = 16
+        Width = 26
       end
       object cxGridDBTableViewDBColumn31: TcxGridDBColumn
         DataBinding.FieldName = '31'
+        DataBinding.IsNullValueType = True
+        MinWidth = 16
       end
     end
     object cxGridLevel: TcxGridLevel
@@ -568,19 +725,23 @@ object frmBagisEx: TfrmBagisEx
     end
   end
   object cbMultiBagis: TcxCheckComboBox
-    Left = 155
-    Top = 282
+    Left = 124
+    Top = 226
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
     ParentFont = False
     Properties.EmptySelectionText = 'Ba'#287#305#351' Se'#231'iniz'
     Properties.Items = <>
     Style.Font.Charset = DEFAULT_CHARSET
     Style.Font.Color = clWindowText
-    Style.Font.Height = -20
+    Style.Font.Height = -16
     Style.Font.Name = 'Tahoma'
     Style.Font.Style = []
     Style.IsFontAssigned = True
     TabOrder = 6
-    Width = 446
+    Width = 357
   end
   object bagisLocalizer: TcxLocalizer
     Left = 776

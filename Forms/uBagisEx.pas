@@ -28,7 +28,7 @@ uses
   dxSkinVisualStudio2013Blue, dxSkinVisualStudio2013Dark,
   dxSkinVisualStudio2013Light, dxSkinVS2010, dxSkinWhiteprint,
   dxSkinXmas2008Blue, cxCustomData, cxFilter, cxData, dxDateRanges, MemDS,
-  cxMaskEdit, cxDropDownEdit, cxCheckComboBox;
+  cxMaskEdit, cxDropDownEdit, cxCheckComboBox, dxScrollbarAnnotations;
 
 type
   TfrmBagisEx = class(TForm)
@@ -270,7 +270,7 @@ begin
           SQL.Add('select * from hareket where Day(IslemZamani) = DAY(GETDATE()) and MONTH(IslemZamani) = MONTH(GETDATE()) and YEAR(IslemZamani) = YEAR(GETDATE()) ');
           SQL.Add('and KartId = :kartid and BagisTuru in (select TRIM(value) from string_split(:BagisTur,'',''))');
           ParamByName('kartid').Value := txtCardID.Text;
-          ParamByName('tarih').Value := Now;
+//          ParamByName('tarih').Value := Now;
           ParamByName('BagisTur').Value := CheckedItems.CommaText;
           ExecSQL;
 

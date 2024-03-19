@@ -1,4 +1,4 @@
-unit uReports;
+ï»¿unit uReports;
 
 interface
 
@@ -24,7 +24,7 @@ uses
   dxSkinXmas2008Blue,
   cxContainer, cxEdit, cxListView, Uni, frxClass,
   Vcl.Menus, cxButtons, cxGroupBox, frxDesgn, dxSkinOffice2019Colorful,
-  System.ImageList, Vcl.ImgList, cxImageList, Vcl.StdCtrls;
+  System.ImageList, Vcl.ImgList, cxImageList, Vcl.StdCtrls,System.IOUtils;
 
 type
   TfrmReports = class(TForm)
@@ -112,6 +112,9 @@ procedure TfrmReports.btnSilClick(Sender: TObject);
 var
   selectedItem: TListItem;
 begin
+  if lstReports.Items.Count = 0 then
+    Exit;
+
   selectedItem := lstReports.Selected;
 
   if MessageDlg('Raporu silmek istiyormusunuz.', TMsgDlgType.mtConfirmation,
@@ -139,6 +142,14 @@ procedure TfrmReports.btnYazdirClick(Sender: TObject);
 var
   bQuery: TUniQuery;
 begin
+  if lstReports.Items.Count = 0 then
+    Exit;
+
+  var selectedItem := lstReports.Selected;
+
+  if selectedItem = nil then
+    Exit;
+
   with frmDb do
   begin
     if not dbHelper.Connected then
@@ -222,7 +233,7 @@ begin
           bItem.Caption := FieldByName('Id').AsString;
           bItem.SubItems.Add(FieldByName('Name').AsString);
           bItem.SubItems.Add(FieldByName('Date').AsString);
-          bItem.SubItems.Add(FieldByName('File').AsString);
+          bItem.SubItems.Add(FieldByName('ReportFile').AsString);
           Next;
         end;
       except
@@ -236,9 +247,11 @@ end;
 
 procedure TfrmReports.lstReportsClick(Sender: TObject);
 begin
-  try
-    selectedReport := StrToInt(lstReports.Selected.Caption);
-  except
+  if lstReports.Items.Count > 0 then begin
+    try
+      selectedReport := StrToInt(lstReports.Selected.Caption);
+    except
+    end;
   end;
 end;
 
@@ -251,7 +264,7 @@ begin
 
   if not FileExists(bReportPath) then
   begin
-    ShowMessage('Rapor dosyasý yok yada yeri yanlýþ.');
+    ShowMessage('Rapor dosyasÄ± yok yada yeri yanlÄ±ÅŸ.');
     Exit;
   end;
 
@@ -295,7 +308,7 @@ begin
 
   if SaveAs then
   begin
-    bReportName := InputBox('Rapor Kayýt', 'Rapor Adý', '');
+    bReportName := InputBox('Rapor KayÄ±t', 'Rapor AdÄ±', '');
     SaveDialog.InitialDir := GetCurrentDir;
     SaveDialog.FileName := bReportName;
     if SaveDialog.Execute then
@@ -309,7 +322,7 @@ begin
           try
             SQL.Clear;
             SQL.Text :=
-              'insert into reports (Name,Date,File) values(:name,:date,:file)';
+              'insert into reports (Name,Date,ReportFile) values(:name,:date,:file)';
             ParamByName('name').Value := bReportName;
             ParamByName('date').Value := DateToStr(Now);
             ParamByName('file').Value := SaveDialog.FileName;
@@ -334,8 +347,8 @@ begin
         try
           SQL.Clear;
           SQL.Text :=
-            'update reports SET Name = :name,Date = :date,File = :file where Id = :Id';
-          ParamByName('name').Value := lstReports.Selected.Caption;
+            'update reports SET Name = :name,Date = :date,ReportFile = :file where Id = :Id';
+          ParamByName('name').Value := TPath.GetFileNameWithoutExtension(lstReports.Selected.SubItems[2])	;
           ParamByName('date').Value := DateToStr(Now);
           ParamByName('file').Value := lstReports.Selected.SubItems[2];
           ParamByName('Id').Value := selectedReport;

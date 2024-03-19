@@ -28,7 +28,7 @@ uses
   Data.DB, cxDBData, cxGridLevel, cxClasses, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, StrUtils,
   DBAccess, Uni, VirtualTable, dxSkinOffice2019Colorful, cxCustomData, cxFilter,
-  cxData, dxDateRanges, MemDS;
+  cxData, dxDateRanges, MemDS, dxScrollbarAnnotations;
 
 type
   TfrmBagis = class(TForm)

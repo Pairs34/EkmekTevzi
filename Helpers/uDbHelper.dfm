@@ -1,5 +1,4 @@
 object frmDb: TfrmDb
-  OldCreateOrder = False
   Height = 415
   Width = 592
   object dbHelper: TUniConnection
@@ -36,13 +35,16 @@ object frmDb: TfrmDb
     CloseDataSource = False
     DataSet = qUserList
     BCDToCurrency = False
+    DataSetOptions = []
     Left = 520
     Top = 272
   end
   object frxHareketList: TfrxDBDataset
     UserName = 'Hareket Listesi'
     CloseDataSource = False
+    DataSet = qHareketList
     BCDToCurrency = False
+    DataSetOptions = []
     Left = 448
     Top = 272
   end
@@ -368,5 +370,12 @@ object frmDb: TfrmDb
     DataSet = GetDailyBagis
     Left = 192
     Top = 288
+  end
+  object qHareketList: TUniQuery
+    Connection = dbHelper
+    SQL.Strings = (
+      'select * from hareket')
+    Left = 296
+    Top = 88
   end
 end

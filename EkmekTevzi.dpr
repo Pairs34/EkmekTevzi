@@ -9,7 +9,6 @@ uses
   uKisiList in 'Forms\uKisiList.pas' {frmKisiList},
   uBagis in 'Forms\uBagis.pas' {frmBagis},
   uHareketler in 'Forms\uHareketler.pas' {frmHareket},
-  uReports in 'Forms\uReports.pas' {frmReports},
   uSettings in 'Forms\uSettings.pas' {frmSettings},
   uGlobals in 'Helpers\uGlobals.pas',
   uBagisEx in 'Forms\uBagisEx.pas' {frmBagisEx},
@@ -22,7 +21,8 @@ uses
   uMazeretEdit in 'Forms\uMazeretEdit.pas' {frmMazeretEdit},
   uSQLEditor in 'Forms\uSQLEditor.pas' {frmSQLEditor},
   uViewHareket in 'Forms\uViewHareket.pas' {frmKisiHareketleri},
-  uCustomDialog in 'Forms\uCustomDialog.pas' {frmCustomDialog};
+  uCustomDialog in 'Forms\uCustomDialog.pas' {frmCustomDialog},
+  uReports in 'Forms\uReports.pas' {frmReports};
 
 {$R *.res}
 
@@ -34,5 +34,6 @@ begin
   Application.CreateForm(TfrmSplash, frmSplash);
   Application.CreateForm(TfrmLogin, frmLogin);
   Application.CreateForm(TfrmCustomDialog, frmCustomDialog);
+  Application.CreateForm(TfrmReports, frmReports);
   Application.Run;
 end.
