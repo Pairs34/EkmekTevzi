@@ -32,7 +32,8 @@ uses
   cxProgressBar, Datasnap.DBClient, DateUtils, System.Diagnostics,
   dxSkinOffice2019Colorful,
   System.ImageList, Vcl.ImgList, cxImageList, cxCustomData, cxFilter, cxData,
-  dxDateRanges, FileCtrl, cxGridExportLink, Vcl.Tabs, Vcl.DockTabSet;
+  dxDateRanges, FileCtrl, cxGridExportLink, Vcl.Tabs, Vcl.DockTabSet,
+  dxScrollbarAnnotations;
 
 type
   TfrmHareket = class(TForm)
@@ -89,9 +90,12 @@ type
     procedure popupMenuPopup(Sender: TObject);
     procedure btnExportXlsClick(Sender: TObject);
     procedure btnLoadDailyDataClick(Sender: TObject);
-    procedure cxGridDBTableViewDailyStylesGetContentStyle(
-      Sender: TcxCustomGridTableView; ARecord: TcxCustomGridRecord;
+    procedure cxGridDBTableViewDailyStylesGetContentStyle
+      (Sender: TcxCustomGridTableView; ARecord: TcxCustomGridRecord;
       AItem: TcxCustomGridTableItem; var AStyle: TcxStyle);
+    procedure cxGridMonthlyDBTableViewDataControllerSummaryFooterSummaryItemsSummary(
+      ASender: TcxDataSummaryItems; Arguments: TcxSummaryEventArguments;
+      var OutArguments: TcxSummaryEventOutArguments);
   private
     procedure LoadHareketlerYeni;
     procedure LoadHareketlerGunluk;
@@ -206,7 +210,7 @@ end;
 
 procedure TfrmHareket.btnLoadDailyDataClick(Sender: TObject);
 begin
- LoadHareketlerGunluk;
+  LoadHareketlerGunluk;
 end;
 
 procedure TfrmHareket.btnReportClick(Sender: TObject);
@@ -223,28 +227,28 @@ begin
   Action := caFree;
 end;
 
-procedure TfrmHareket.cxGridDBTableViewDailyStylesGetContentStyle(
-  Sender: TcxCustomGridTableView; ARecord: TcxCustomGridRecord;
+procedure TfrmHareket.cxGridDBTableViewDailyStylesGetContentStyle
+  (Sender: TcxCustomGridTableView; ARecord: TcxCustomGridRecord;
   AItem: TcxCustomGridTableItem; var AStyle: TcxStyle);
 begin
   if not Assigned(AItem) then
-      Exit;
+    Exit;
 
-    if AItem.Index > 4 then
+  if AItem.Index > 4 then
+  begin
+    if ARecord.Values[AItem.Index] = 'X' then
     begin
-      if ARecord.Values[AItem.Index] = 'X' then
-      begin
-        AStyle := cxGreenStyle;
-      end
-      else if ARecord.Values[AItem.Index] = 'M' then
-      begin
-        AStyle := cxBlueStyle;
-      end
-      else if VarToStr(ARecord.Values[AItem.Index]) = '' then
-      begin
-        AStyle := cxRedStyle;
-      end;
+      AStyle := cxGreenStyle;
+    end
+    else if ARecord.Values[AItem.Index] = 'M' then
+    begin
+      AStyle := cxBlueStyle;
+    end
+    else if VarToStr(ARecord.Values[AItem.Index]) = '' then
+    begin
+      AStyle := cxRedStyle;
     end;
+  end;
 end;
 
 procedure TfrmHareket.cxGridDBTableViewStylesGetContentStyle
@@ -269,6 +273,23 @@ begin
       AStyle := cxRedStyle;
     end;
   end;
+end;
+
+procedure TfrmHareket.cxGridMonthlyDBTableViewDataControllerSummaryFooterSummaryItemsSummary(
+  ASender: TcxDataSummaryItems; Arguments: TcxSummaryEventArguments;
+  var OutArguments: TcxSummaryEventOutArguments);
+begin
+   if not VarIsNull(OutArguments.Value) then
+   begin
+      if OutArguments.Value = 'X' then
+      begin
+        OutArguments.Value := 1;
+      end else begin
+         OutArguments.Value := 0;
+         OutArguments.Done := true;
+      end;
+   end;
+
 end;
 
 procedure TfrmHareket.FormShow(Sender: TObject);
@@ -361,6 +382,8 @@ begin
 end;
 
 procedure TfrmHareket.LoadHareketlerYeni;
+var
+  I: Integer;
 begin
   cxGridMonthlyDBTableView.ClearItems;
 
@@ -378,6 +401,20 @@ begin
 
   cxGridMonthlyDBTableView.DataController.DataSource := frmDb.tblBagisList;
   cxGridMonthlyDBTableView.DataController.CreateAllItems;
+
+  for I := 4 to cxGridMonthlyDBTableView.ColumnCount do
+  begin
+    var sItemCount := cxGridMonthlyDBTableView.DataController.Summary.FooterSummaryItems.Count;
+    cxGridMonthlyDBTableView.DataController.Summary.FooterSummaryItems.Add;
+      cxGridMonthlyDBTableView.DataController.Summary.FooterSummaryItems.Items[sItemCount]
+        .ItemLink := cxGridMonthlyDBTableView.Columns[I];
+      cxGridMonthlyDBTableView.DataController.Summary.FooterSummaryItems.Items[sItemCount]
+        .Kind := skSum;
+      cxGridMonthlyDBTableView.DataController.Summary.FooterSummaryItems.Items[sItemCount]
+        .Position := spFooter;
+      cxGridMonthlyDBTableView.DataController.Summary.FooterSummaryItems.Items[sItemCount].Format := '0';
+  end;
+
   with frmDb do
   begin
     with monthlyCount do

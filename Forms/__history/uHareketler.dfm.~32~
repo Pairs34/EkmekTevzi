@@ -1,47 +1,60 @@
 object frmHareket: TfrmHareket
   Left = 0
   Top = 0
+  Margins.Left = 2
+  Margins.Top = 2
+  Margins.Right = 2
+  Margins.Bottom = 2
   BorderStyle = bsNone
   Caption = 'frmHareket'
-  ClientHeight = 669
-  ClientWidth = 1092
+  ClientHeight = 535
+  ClientWidth = 874
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -13
+  Font.Height = -10
   Font.Name = 'Tahoma'
   Font.Style = []
-  OldCreateOrder = False
   OnShow = FormShow
-  PixelsPerInch = 120
-  TextHeight = 16
+  TextHeight = 12
   object PageControl: TPageControl
     Left = 0
     Top = 0
-    Width = 1092
-    Height = 669
-    ActivePage = tabDaily
+    Width = 874
+    Height = 535
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
+    ActivePage = tabMonthly
     Align = alClient
     TabOrder = 0
     object tabMonthly: TTabSheet
+      Margins.Left = 2
+      Margins.Top = 2
+      Margins.Right = 2
+      Margins.Bottom = 2
       Caption = 'Ayl'#305'k'
       object cxGridMonthly: TcxGrid
         Left = 0
-        Top = 41
-        Width = 1084
-        Height = 560
+        Top = 33
+        Width = 866
+        Height = 446
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
         Align = alClient
         PopupMenu = popupMenu
         TabOrder = 0
         LookAndFeel.NativeStyle = False
         object cxGridMonthlyDBTableView: TcxGridDBTableView
           Navigator.Buttons.CustomButtons = <>
+          ScrollbarAnnotations.CustomAnnotations = <>
           DataController.DataSource = frmDb.tblAylikRapor
           DataController.Summary.DefaultGroupSummaryItems = <>
-          DataController.Summary.FooterSummaryItems = <
-            item
-              Kind = skCount
-            end>
+          DataController.Summary.FooterSummaryItems.OnSummary = cxGridMonthlyDBTableViewDataControllerSummaryFooterSummaryItemsSummary
+          DataController.Summary.FooterSummaryItems = <>
           DataController.Summary.SummaryGroups = <>
           FilterRow.InfoText = 'Filtreleme Ekran'#305
           FilterRow.Visible = True
@@ -54,6 +67,7 @@ object frmHareket: TfrmHareket
           OptionsSelection.InvertSelect = False
           OptionsSelection.UnselectFocusedRecordOnExit = False
           OptionsView.ColumnAutoWidth = True
+          OptionsView.Footer = True
           Styles.OnGetContentStyle = cxGridDBTableViewStylesGetContentStyle
         end
         object cxGridMonthlyLevel: TcxGridLevel
@@ -62,57 +76,77 @@ object frmHareket: TfrmHareket
       end
       object pnlFooterMonthly: TPanel
         Left = 0
-        Top = 601
-        Width = 1084
-        Height = 37
+        Top = 479
+        Width = 866
+        Height = 29
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
         Align = alBottom
         Color = clGradientActiveCaption
         ParentBackground = False
         TabOrder = 1
         object lblMonthlyCount: TcxLabel
-          Left = 16
-          Top = 6
+          Left = 13
+          Top = 5
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
           Caption = 'Ayl'#305'k Toplam : '
           ParentFont = False
           Style.Font.Charset = DEFAULT_CHARSET
           Style.Font.Color = clWindowText
-          Style.Font.Height = -13
+          Style.Font.Height = -10
           Style.Font.Name = 'Tahoma'
           Style.Font.Style = [fsBold]
           Style.IsFontAssigned = True
         end
         object txtMonthlyCount: TcxLabel
-          Left = 119
-          Top = 6
+          Left = 95
+          Top = 5
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
           Caption = '0'
           ParentFont = False
           Style.Font.Charset = DEFAULT_CHARSET
           Style.Font.Color = clRed
-          Style.Font.Height = -13
+          Style.Font.Height = -10
           Style.Font.Name = 'Tahoma'
           Style.Font.Style = [fsBold]
           Style.IsFontAssigned = True
         end
         object lblDailyCount: TcxLabel
-          Left = 216
-          Top = 6
+          Left = 173
+          Top = 5
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
           Caption = 'G'#252'nl'#252'k Toplam : '
           ParentFont = False
           Style.Font.Charset = DEFAULT_CHARSET
           Style.Font.Color = clWindowText
-          Style.Font.Height = -13
+          Style.Font.Height = -10
           Style.Font.Name = 'Tahoma'
           Style.Font.Style = [fsBold]
           Style.IsFontAssigned = True
         end
         object txtDailyCount: TcxLabel
-          Left = 330
-          Top = 6
+          Left = 264
+          Top = 5
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
           Caption = '0'
           ParentFont = False
           Style.Font.Charset = DEFAULT_CHARSET
           Style.Font.Color = clRed
-          Style.Font.Height = -13
+          Style.Font.Height = -10
           Style.Font.Name = 'Tahoma'
           Style.Font.Style = [fsBold]
           Style.IsFontAssigned = True
@@ -121,36 +155,56 @@ object frmHareket: TfrmHareket
       object pnlHeaderMonthly: TPanel
         Left = 0
         Top = 0
-        Width = 1084
-        Height = 41
+        Width = 866
+        Height = 33
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
         Align = alTop
         Color = clGradientActiveCaption
         ParentBackground = False
         TabOrder = 2
         object lblYear: TLabel
-          Left = 16
-          Top = 12
-          Width = 13
-          Height = 16
+          Left = 13
+          Top = 10
+          Width = 10
+          Height = 12
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
           Caption = 'Y'#305'l'
         end
         object lblAy: TLabel
-          Left = 216
-          Top = 12
-          Width = 14
-          Height = 16
+          Left = 173
+          Top = 10
+          Width = 13
+          Height = 12
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
           Caption = 'Ay'
         end
         object lblBagisTuru: TLabel
-          Left = 440
-          Top = 12
-          Width = 61
-          Height = 16
+          Left = 352
+          Top = 10
+          Width = 48
+          Height = 12
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
           Caption = 'Ba'#287#305#351' T'#252'r'#252
         end
         object txtAy: TcxComboBox
-          Left = 248
-          Top = 9
+          Left = 198
+          Top = 7
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
           Properties.DropDownListStyle = lsEditFixedList
           Properties.Items.Strings = (
             'Ocak'
@@ -170,15 +224,20 @@ object frmHareket: TfrmHareket
           StyleDisabled.LookAndFeel.NativeStyle = False
           StyleFocused.LookAndFeel.NativeStyle = False
           StyleHot.LookAndFeel.NativeStyle = False
+          StyleReadOnly.LookAndFeel.NativeStyle = False
           TabOrder = 0
           TextHint = 'Ay Se'#231'iniz'
-          Width = 185
+          Width = 148
         end
         object btnFilter: TcxButton
-          Left = 663
-          Top = 10
-          Width = 82
-          Height = 25
+          Left = 530
+          Top = 8
+          Width = 66
+          Height = 20
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
           Caption = 'Filtrele'
           LookAndFeel.NativeStyle = False
           OptionsImage.Glyph.SourceDPI = 96
@@ -213,12 +272,17 @@ object frmHareket: TfrmHareket
             7A33595CDAD995CD9D04605872CB25865B512CDDF66903331C0EB3BD8BDA3040
             F7722E2004810B819CC9AFBC9ECF3FC08808FF8FDD131980CB0EBDF5AB73CBE2
             DF40C075D622B9E8A10000000049454E44AE426082}
+          OptionsImage.Spacing = 3
           TabOrder = 1
           OnClick = btnFilterClick
         end
         object txtYil: TcxComboBox
-          Left = 35
-          Top = 9
+          Left = 28
+          Top = 7
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
           Properties.DropDownListStyle = lsEditFixedList
           Properties.Items.Strings = (
             '2018'
@@ -239,61 +303,91 @@ object frmHareket: TfrmHareket
           StyleDisabled.LookAndFeel.NativeStyle = False
           StyleFocused.LookAndFeel.NativeStyle = False
           StyleHot.LookAndFeel.NativeStyle = False
+          StyleReadOnly.LookAndFeel.NativeStyle = False
           TabOrder = 2
           TextHint = 'Y'#305'l Se'#231'iniz'
-          Width = 175
+          Width = 140
         end
         object cbBagisTuru: TcxComboBox
-          Left = 507
-          Top = 9
+          Left = 406
+          Top = 7
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
           Properties.DropDownListStyle = lsEditFixedList
           Properties.Nullstring = 'Ay Se'#231'iniz'
           Style.LookAndFeel.NativeStyle = False
           StyleDisabled.LookAndFeel.NativeStyle = False
           StyleFocused.LookAndFeel.NativeStyle = False
           StyleHot.LookAndFeel.NativeStyle = False
+          StyleReadOnly.LookAndFeel.NativeStyle = False
           TabOrder = 3
           TextHint = 'Ba'#287#305#351' T'#252'r'#252' Se'#231'iniz'
-          Width = 150
+          Width = 120
         end
       end
     end
     object tabDaily: TTabSheet
+      Margins.Left = 2
+      Margins.Top = 2
+      Margins.Right = 2
+      Margins.Bottom = 2
       Caption = 'G'#252'nl'#252'k'
       ImageIndex = 1
       object pnlHeaderDaily: TPanel
         Left = 0
         Top = 0
-        Width = 1084
-        Height = 41
+        Width = 866
+        Height = 33
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
         Align = alTop
         Color = clGradientActiveCaption
         ParentBackground = False
         TabOrder = 0
         object lblDailyYear: TLabel
-          Left = 16
-          Top = 12
-          Width = 13
-          Height = 16
+          Left = 13
+          Top = 10
+          Width = 10
+          Height = 12
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
           Caption = 'Y'#305'l'
         end
         object lblDailyMonth: TLabel
-          Left = 216
-          Top = 12
-          Width = 14
-          Height = 16
+          Left = 173
+          Top = 10
+          Width = 13
+          Height = 12
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
           Caption = 'Ay'
         end
         object lblDailyBagisTur: TLabel
-          Left = 440
-          Top = 12
-          Width = 61
-          Height = 16
+          Left = 352
+          Top = 10
+          Width = 48
+          Height = 12
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
           Caption = 'Ba'#287#305#351' T'#252'r'#252
         end
         object txtDailyMonth: TcxComboBox
-          Left = 248
-          Top = 9
+          Left = 198
+          Top = 7
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
           Properties.DropDownListStyle = lsEditFixedList
           Properties.Items.Strings = (
             'Ocak'
@@ -313,15 +407,20 @@ object frmHareket: TfrmHareket
           StyleDisabled.LookAndFeel.NativeStyle = False
           StyleFocused.LookAndFeel.NativeStyle = False
           StyleHot.LookAndFeel.NativeStyle = False
+          StyleReadOnly.LookAndFeel.NativeStyle = False
           TabOrder = 0
           TextHint = 'Ay Se'#231'iniz'
-          Width = 185
+          Width = 148
         end
         object btnLoadDailyData: TcxButton
-          Left = 663
-          Top = 10
-          Width = 82
-          Height = 25
+          Left = 530
+          Top = 8
+          Width = 66
+          Height = 20
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
           Caption = 'Filtrele'
           LookAndFeel.NativeStyle = False
           OptionsImage.Glyph.SourceDPI = 96
@@ -356,12 +455,17 @@ object frmHareket: TfrmHareket
             7A33595CDAD995CD9D04605872CB25865B512CDDF66903331C0EB3BD8BDA3040
             F7722E2004810B819CC9AFBC9ECF3FC08808FF8FDD131980CB0EBDF5AB73CBE2
             DF40C075D622B9E8A10000000049454E44AE426082}
+          OptionsImage.Spacing = 3
           TabOrder = 1
-          OnClick = btnFilterClick
+          OnClick = btnLoadDailyDataClick
         end
         object txtDailyYear: TcxComboBox
-          Left = 35
-          Top = 9
+          Left = 28
+          Top = 7
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
           Properties.DropDownListStyle = lsEditFixedList
           Properties.Items.Strings = (
             '2018'
@@ -382,35 +486,46 @@ object frmHareket: TfrmHareket
           StyleDisabled.LookAndFeel.NativeStyle = False
           StyleFocused.LookAndFeel.NativeStyle = False
           StyleHot.LookAndFeel.NativeStyle = False
+          StyleReadOnly.LookAndFeel.NativeStyle = False
           TabOrder = 2
           TextHint = 'Y'#305'l Se'#231'iniz'
-          Width = 175
+          Width = 140
         end
         object txtDailyBagisTur: TcxComboBox
-          Left = 507
-          Top = 9
+          Left = 406
+          Top = 7
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
           Properties.DropDownListStyle = lsEditFixedList
           Properties.Nullstring = 'Ay Se'#231'iniz'
           Style.LookAndFeel.NativeStyle = False
           StyleDisabled.LookAndFeel.NativeStyle = False
           StyleFocused.LookAndFeel.NativeStyle = False
           StyleHot.LookAndFeel.NativeStyle = False
+          StyleReadOnly.LookAndFeel.NativeStyle = False
           TabOrder = 3
           TextHint = 'Ba'#287#305#351' T'#252'r'#252' Se'#231'iniz'
-          Width = 150
+          Width = 120
         end
       end
       object cxGridDaily: TcxGrid
         Left = 0
-        Top = 41
-        Width = 1084
-        Height = 597
+        Top = 33
+        Width = 866
+        Height = 475
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
         Align = alClient
         PopupMenu = popupMenu
         TabOrder = 1
         LookAndFeel.NativeStyle = False
         object cxGridDBTableViewDaily: TcxGridDBTableView
           Navigator.Buttons.CustomButtons = <>
+          ScrollbarAnnotations.CustomAnnotations = <>
           DataController.DataSource = frmDb.tblAylikRapor
           DataController.Summary.DefaultGroupSummaryItems = <>
           DataController.Summary.FooterSummaryItems = <
@@ -615,14 +730,5 @@ object frmHareket: TfrmHareket
           F5EBCD874162808AFCC5A97CA5C289081722C9679723B879F3538DB0EF612FFC
           C7276DFD47748D263CBA5B445552645BC908B30000000049454E44AE426082}
       end>
-  end
-  object monthlyDatasource: TDataSource
-    Left = 112
-    Top = 192
-  end
-  object dailyDatasource: TDataSource
-    DataSet = frmDb.GetDailyBagis
-    Left = 224
-    Top = 192
   end
 end

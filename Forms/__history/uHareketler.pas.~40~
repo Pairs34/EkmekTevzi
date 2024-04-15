@@ -45,9 +45,10 @@ type
     KartIdKopyala1: TMenuItem;
     ImgList: TcxImageList;
     cxBlueStyle: TcxStyle;
-    monthlyDatasource: TDataSource;
     btnAddEkmek: TMenuItem;
     btnExportXls: TMenuItem;
+    PageControl: TPageControl;
+    tabMonthly: TTabSheet;
     cxGridMonthly: TcxGrid;
     cxGridMonthlyDBTableView: TcxGridDBTableView;
     cxGridMonthlyLevel: TcxGridLevel;
@@ -64,8 +65,6 @@ type
     btnFilter: TcxButton;
     txtYil: TcxComboBox;
     cbBagisTuru: TcxComboBox;
-    PageControl: TPageControl;
-    tabMonthly: TTabSheet;
     tabDaily: TTabSheet;
     pnlHeaderDaily: TPanel;
     lblDailyYear: TLabel;
@@ -78,7 +77,6 @@ type
     cxGridDaily: TcxGrid;
     cxGridDBTableViewDaily: TcxGridDBTableView;
     cxGridLevelDaily: TcxGridLevel;
-    dailyDatasource: TDataSource;
     procedure FormShow(Sender: TObject);
     procedure btnReportClick(Sender: TObject);
     procedure CloseUniq(Sender: TObject; var Action: TCloseAction);
@@ -90,6 +88,7 @@ type
     procedure btnAddEkmekClick(Sender: TObject);
     procedure popupMenuPopup(Sender: TObject);
     procedure btnExportXlsClick(Sender: TObject);
+    procedure btnLoadDailyDataClick(Sender: TObject);
     procedure cxGridDBTableViewDailyStylesGetContentStyle(
       Sender: TcxCustomGridTableView; ARecord: TcxCustomGridRecord;
       AItem: TcxCustomGridTableItem; var AStyle: TcxStyle);
@@ -202,7 +201,12 @@ end;
 
 procedure TfrmHareket.btnFilterClick(Sender: TObject);
 begin
-  LoadHareketlerGunluk;
+  LoadHareketlerYeni;
+end;
+
+procedure TfrmHareket.btnLoadDailyDataClick(Sender: TObject);
+begin
+ LoadHareketlerGunluk;
 end;
 
 procedure TfrmHareket.btnReportClick(Sender: TObject);
@@ -226,21 +230,21 @@ begin
   if not Assigned(AItem) then
       Exit;
 
-  if AItem.Index > 3 then
-  begin
-    if ARecord.Values[AItem.Index] = 'X' then
+    if AItem.Index > 4 then
     begin
-      AStyle := cxGreenStyle;
-    end
-    else if ARecord.Values[AItem.Index] = 'M' then
-    begin
-      AStyle := cxBlueStyle;
-    end
-    else
-    begin
-      AStyle := cxRedStyle;
+      if ARecord.Values[AItem.Index] = 'X' then
+      begin
+        AStyle := cxGreenStyle;
+      end
+      else if ARecord.Values[AItem.Index] = 'M' then
+      begin
+        AStyle := cxBlueStyle;
+      end
+      else if VarToStr(ARecord.Values[AItem.Index]) = '' then
+      begin
+        AStyle := cxRedStyle;
+      end;
     end;
-  end;
 end;
 
 procedure TfrmHareket.cxGridDBTableViewStylesGetContentStyle
@@ -350,9 +354,10 @@ begin
     end;
   end;
 
+  frmDb.tblDailyBagis.DataSet.FindField('siralama').Visible := false;
   cxGridDBTableViewDaily.DataController.DataSource := frmDb.tblDailyBagis;
   cxGridDBTableViewDaily.DataController.CreateAllItems;
-  cxGridDBTableViewDaily.Columns[cxGridDBTableViewDaily.GetColumnByFieldName('siralama').Index].Hidden := true;
+  cxGridDBTableViewDaily.ApplyBestFit();
 end;
 
 procedure TfrmHareket.LoadHareketlerYeni;
