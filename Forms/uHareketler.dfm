@@ -45,9 +45,16 @@ object frmHareket: TfrmHareket
         Margins.Right = 2
         Margins.Bottom = 2
         Align = alClient
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -15
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
         PopupMenu = popupMenu
         TabOrder = 0
         LookAndFeel.NativeStyle = False
+        ExplicitTop = 17
         object cxGridMonthlyDBTableView: TcxGridDBTableView
           Navigator.Buttons.CustomButtons = <>
           ScrollbarAnnotations.CustomAnnotations = <>
@@ -98,14 +105,14 @@ object frmHareket: TfrmHareket
           ParentFont = False
           Style.Font.Charset = DEFAULT_CHARSET
           Style.Font.Color = clWindowText
-          Style.Font.Height = -10
+          Style.Font.Height = -13
           Style.Font.Name = 'Tahoma'
           Style.Font.Style = [fsBold]
           Style.IsFontAssigned = True
         end
         object txtMonthlyCount: TcxLabel
-          Left = 95
-          Top = 5
+          Left = 98
+          Top = 4
           Margins.Left = 2
           Margins.Top = 2
           Margins.Right = 2
@@ -114,7 +121,7 @@ object frmHareket: TfrmHareket
           ParentFont = False
           Style.Font.Charset = DEFAULT_CHARSET
           Style.Font.Color = clRed
-          Style.Font.Height = -10
+          Style.Font.Height = -13
           Style.Font.Name = 'Tahoma'
           Style.Font.Style = [fsBold]
           Style.IsFontAssigned = True
@@ -130,14 +137,14 @@ object frmHareket: TfrmHareket
           ParentFont = False
           Style.Font.Charset = DEFAULT_CHARSET
           Style.Font.Color = clWindowText
-          Style.Font.Height = -10
+          Style.Font.Height = -13
           Style.Font.Name = 'Tahoma'
           Style.Font.Style = [fsBold]
           Style.IsFontAssigned = True
         end
         object txtDailyCount: TcxLabel
-          Left = 264
-          Top = 5
+          Left = 269
+          Top = 4
           Margins.Left = 2
           Margins.Top = 2
           Margins.Right = 2
@@ -146,7 +153,7 @@ object frmHareket: TfrmHareket
           ParentFont = False
           Style.Font.Charset = DEFAULT_CHARSET
           Style.Font.Color = clRed
-          Style.Font.Height = -10
+          Style.Font.Height = -13
           Style.Font.Name = 'Tahoma'
           Style.Font.Style = [fsBold]
           Style.IsFontAssigned = True
@@ -168,43 +175,62 @@ object frmHareket: TfrmHareket
         object lblYear: TLabel
           Left = 13
           Top = 10
-          Width = 10
-          Height = 12
+          Width = 15
+          Height = 16
           Margins.Left = 2
           Margins.Top = 2
           Margins.Right = 2
           Margins.Bottom = 2
           Caption = 'Y'#305'l'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentFont = False
         end
         object lblAy: TLabel
-          Left = 173
+          Left = 176
           Top = 10
-          Width = 13
-          Height = 12
+          Width = 18
+          Height = 16
           Margins.Left = 2
           Margins.Top = 2
           Margins.Right = 2
           Margins.Bottom = 2
           Caption = 'Ay'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentFont = False
         end
         object lblBagisTuru: TLabel
-          Left = 352
-          Top = 10
-          Width = 48
-          Height = 12
+          Left = 359
+          Top = 9
+          Width = 67
+          Height = 16
           Margins.Left = 2
           Margins.Top = 2
           Margins.Right = 2
           Margins.Bottom = 2
           Caption = 'Ba'#287#305#351' T'#252'r'#252
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentFont = False
         end
         object txtAy: TcxComboBox
-          Left = 198
-          Top = 7
+          Left = 207
+          Top = 5
           Margins.Left = 2
           Margins.Top = 2
           Margins.Right = 2
           Margins.Bottom = 2
+          ParentFont = False
           Properties.DropDownListStyle = lsEditFixedList
           Properties.Items.Strings = (
             'Ocak'
@@ -220,7 +246,13 @@ object frmHareket: TfrmHareket
             'Kas'#305'm'
             'Aral'#305'k')
           Properties.Nullstring = 'Ay Se'#231'iniz'
+          Style.Font.Charset = DEFAULT_CHARSET
+          Style.Font.Color = clWindowText
+          Style.Font.Height = -13
+          Style.Font.Name = 'Tahoma'
+          Style.Font.Style = [fsBold]
           Style.LookAndFeel.NativeStyle = False
+          Style.IsFontAssigned = True
           StyleDisabled.LookAndFeel.NativeStyle = False
           StyleFocused.LookAndFeel.NativeStyle = False
           StyleHot.LookAndFeel.NativeStyle = False
@@ -230,10 +262,10 @@ object frmHareket: TfrmHareket
           Width = 148
         end
         object btnFilter: TcxButton
-          Left = 530
-          Top = 8
-          Width = 66
-          Height = 20
+          Left = 554
+          Top = 5
+          Width = 87
+          Height = 24
           Margins.Left = 2
           Margins.Top = 2
           Margins.Right = 2
@@ -274,15 +306,22 @@ object frmHareket: TfrmHareket
             DF40C075D622B9E8A10000000049454E44AE426082}
           OptionsImage.Spacing = 3
           TabOrder = 1
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentFont = False
           OnClick = btnFilterClick
         end
         object txtYil: TcxComboBox
-          Left = 28
-          Top = 7
+          Left = 32
+          Top = 5
           Margins.Left = 2
           Margins.Top = 2
           Margins.Right = 2
           Margins.Bottom = 2
+          ParentFont = False
           Properties.DropDownListStyle = lsEditFixedList
           Properties.Items.Strings = (
             '2018'
@@ -299,7 +338,13 @@ object frmHareket: TfrmHareket
             '2029'
             '2030')
           Properties.Nullstring = 'Ay Se'#231'iniz'
+          Style.Font.Charset = DEFAULT_CHARSET
+          Style.Font.Color = clWindowText
+          Style.Font.Height = -13
+          Style.Font.Name = 'Tahoma'
+          Style.Font.Style = [fsBold]
           Style.LookAndFeel.NativeStyle = False
+          Style.IsFontAssigned = True
           StyleDisabled.LookAndFeel.NativeStyle = False
           StyleFocused.LookAndFeel.NativeStyle = False
           StyleHot.LookAndFeel.NativeStyle = False
@@ -309,15 +354,22 @@ object frmHareket: TfrmHareket
           Width = 140
         end
         object cbBagisTuru: TcxComboBox
-          Left = 406
-          Top = 7
+          Left = 430
+          Top = 5
           Margins.Left = 2
           Margins.Top = 2
           Margins.Right = 2
           Margins.Bottom = 2
+          ParentFont = False
           Properties.DropDownListStyle = lsEditFixedList
           Properties.Nullstring = 'Ay Se'#231'iniz'
+          Style.Font.Charset = DEFAULT_CHARSET
+          Style.Font.Color = clWindowText
+          Style.Font.Height = -13
+          Style.Font.Name = 'Tahoma'
+          Style.Font.Style = [fsBold]
           Style.LookAndFeel.NativeStyle = False
+          Style.IsFontAssigned = True
           StyleDisabled.LookAndFeel.NativeStyle = False
           StyleFocused.LookAndFeel.NativeStyle = False
           StyleHot.LookAndFeel.NativeStyle = False

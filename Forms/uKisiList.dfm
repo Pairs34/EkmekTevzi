@@ -1,25 +1,37 @@
 object frmKisiList: TfrmKisiList
   Left = 0
   Top = 0
+  Margins.Left = 2
+  Margins.Top = 2
+  Margins.Right = 2
+  Margins.Bottom = 2
   BorderStyle = bsNone
-  ClientHeight = 690
-  ClientWidth = 832
+  ClientHeight = 552
+  ClientWidth = 666
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -13
+  Font.Height = -10
   Font.Name = 'Tahoma'
   Font.Style = []
-  OldCreateOrder = False
   OnShow = FormShow
-  PixelsPerInch = 120
-  TextHeight = 16
+  TextHeight = 12
   object cxGrid: TcxGrid
     Left = 0
     Top = 0
-    Width = 832
-    Height = 670
+    Width = 666
+    Height = 536
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
     Align = alClient
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
     PopupMenu = PopupMenu
     TabOrder = 0
     LookAndFeel.NativeStyle = False
@@ -27,6 +39,7 @@ object frmKisiList: TfrmKisiList
       OnDblClick = cxGridDBTableViewDblClick
       Navigator.Buttons.CustomButtons = <>
       Navigator.InfoPanel.Visible = True
+      ScrollbarAnnotations.CustomAnnotations = <>
       DataController.DataSource = frmDb.tblUser
       DataController.Summary.DefaultGroupSummaryItems = <>
       DataController.Summary.FooterSummaryItems = <>
@@ -53,30 +66,48 @@ object frmKisiList: TfrmKisiList
       OptionsView.ShowColumnFilterButtons = sfbAlways
       object cxGridDBTableViewId: TcxGridDBColumn
         DataBinding.FieldName = 'Id'
+        DataBinding.IsNullValueType = True
+        MinWidth = 16
       end
       object cxGridDBTableViewAdSoyad: TcxGridDBColumn
         DataBinding.FieldName = 'AdSoyad'
+        DataBinding.IsNullValueType = True
+        MinWidth = 16
       end
       object cxGridDBTableViewAdet: TcxGridDBColumn
         DataBinding.FieldName = 'Adet'
+        DataBinding.IsNullValueType = True
+        MinWidth = 16
       end
       object cxGridDBTableViewAktif: TcxGridDBColumn
         DataBinding.FieldName = 'Aktif'
+        DataBinding.IsNullValueType = True
+        MinWidth = 16
       end
       object cxGridDBTableViewAciklama: TcxGridDBColumn
         DataBinding.FieldName = 'Aciklama'
+        DataBinding.IsNullValueType = True
+        MinWidth = 16
       end
       object cxGridDBTableViewKartId: TcxGridDBColumn
         DataBinding.FieldName = 'KartId'
+        DataBinding.IsNullValueType = True
+        MinWidth = 16
       end
       object cxGridDBTableViewTelNo: TcxGridDBColumn
         DataBinding.FieldName = 'TelNo'
+        DataBinding.IsNullValueType = True
+        MinWidth = 16
       end
       object cxGridDBTableViewAdres: TcxGridDBColumn
         DataBinding.FieldName = 'Adres'
+        DataBinding.IsNullValueType = True
+        MinWidth = 16
       end
       object cxGridDBTableViewNufus: TcxGridDBColumn
         DataBinding.FieldName = 'Nufus'
+        DataBinding.IsNullValueType = True
+        MinWidth = 16
       end
     end
     object cxGridLevel: TcxGridLevel
@@ -85,9 +116,13 @@ object frmKisiList: TfrmKisiList
   end
   object statusKisilist: TdxStatusBar
     Left = 0
-    Top = 670
-    Width = 832
-    Height = 20
+    Top = 536
+    Width = 666
+    Height = 16
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
     Panels = <
       item
         PanelStyleClassName = 'TdxStatusBarTextPanelStyle'
@@ -99,7 +134,7 @@ object frmKisiList: TfrmKisiList
       end>
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -11
+    Font.Height = -9
     Font.Name = 'Tahoma'
     Font.Style = []
   end
@@ -1075,7 +1110,7 @@ object frmKisiList: TfrmKisiList
       end>
   end
   object reporter: TfrxReport
-    Version = '6.9.3'
+    Version = '2023.1.3'
     DotMatrixReport = False
     IniFile = '\Software\Fast Reports'
     PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick, pbCopy, pbSelection]

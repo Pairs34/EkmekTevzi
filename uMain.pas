@@ -196,15 +196,12 @@ begin
     openDialog.Filter := 'SQL yedek|*.bak';
     openDialog.Execute;
 
-    if sDir <> '' then
+    if openDialog.FileName <> '' then
     begin
       try
-        var
-        backupLocation := format('%s\%s-%s.bak', [sDir, 'backup_ekmektevzi',
-          FormatDateTime('yyyymmdd', Now)]);
         with uDbHelper.frmDb do
         begin
-          dbDumper.BackupToFile(backupLocation);
+          dbDumper.RestoreFromFile(openDialog.FileName,TEncoding.UTF8);
 
           ShowMessage('Yedek alındı');
         end;

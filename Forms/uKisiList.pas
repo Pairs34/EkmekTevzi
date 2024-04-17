@@ -29,7 +29,7 @@ uses
   frxDesgn, frxClass,  cxLocalization,ClipBrd,
   dxSkinOffice2019Colorful,
   dxStatusBar, cxCustomData, cxFilter, cxData, dxDateRanges, System.ImageList,
-  Vcl.ImgList, cxImageList, uMazeretEdit;
+  Vcl.ImgList, cxImageList, uMazeretEdit, dxScrollbarAnnotations;
 
 type
   TfrmKisiList = class(TForm)

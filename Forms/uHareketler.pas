@@ -405,6 +405,9 @@ begin
 
   cxGridMonthlyDBTableView.DataController.DataSource := frmDb.tblBagisList;
   cxGridMonthlyDBTableView.DataController.CreateAllItems;
+  cxGridMonthlyDBTableView.GetColumnByFieldName('AdSoyad').Width := 80;
+  cxGridMonthlyDBTableView.GetColumnByFieldName('KartId').Width := 50;
+  cxGridMonthlyDBTableView.GetColumnByFieldName('BagisTuru').Width := 50;
 
   for I := 5 to cxGridMonthlyDBTableView.ColumnCount do
   begin

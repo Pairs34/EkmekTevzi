@@ -11,9 +11,7 @@ object frmMazeretList: TfrmMazeretList
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
-  OldCreateOrder = False
   OnShow = FormShow
-  PixelsPerInch = 96
   TextHeight = 13
   object cxGrid: TcxGrid
     Left = 0
@@ -21,12 +19,19 @@ object frmMazeretList: TfrmMazeretList
     Width = 916
     Height = 525
     Align = alClient
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
     PopupMenu = PopupMenu
     TabOrder = 0
     LookAndFeel.NativeStyle = False
     object cxGridDBTableView: TcxGridDBTableView
       Navigator.Buttons.CustomButtons = <>
       Navigator.InfoPanel.Visible = True
+      ScrollbarAnnotations.CustomAnnotations = <>
       OnCustomDrawCell = cxGridDBTableViewCustomDrawCell
       DataController.DataSource = frmDb.tblMazeretList
       DataController.Summary.DefaultGroupSummaryItems = <>
@@ -52,32 +57,40 @@ object frmMazeretList: TfrmMazeretList
       OptionsView.ShowColumnFilterButtons = sfbAlways
       object cxGridDBTableViewId: TcxGridDBColumn
         DataBinding.FieldName = 'Id'
+        DataBinding.IsNullValueType = True
         Width = 53
       end
       object cxGridDBTableViewKartID: TcxGridDBColumn
         DataBinding.FieldName = 'KartID'
+        DataBinding.IsNullValueType = True
         Width = 173
       end
       object cxGridDBTableViewKiiAd: TcxGridDBColumn
         DataBinding.FieldName = 'Ki'#351'i Ad'#305
+        DataBinding.IsNullValueType = True
         Width = 342
       end
       object cxGridDBTableViewMazeretGun: TcxGridDBColumn
         DataBinding.FieldName = 'MazeretGun'
+        DataBinding.IsNullValueType = True
         Width = 155
       end
       object cxGridDBTableViewIslemTarihi: TcxGridDBColumn
         DataBinding.FieldName = 'IslemTarihi'
+        DataBinding.IsNullValueType = True
       end
       object cxGridDBTableViewGelecegiTarih: TcxGridDBColumn
         DataBinding.FieldName = 'GelecegiTarih'
+        DataBinding.IsNullValueType = True
       end
       object cxGridDBTableViewKalan: TcxGridDBColumn
         DataBinding.FieldName = 'Kalan'
+        DataBinding.IsNullValueType = True
         Visible = False
       end
       object cxGridDBTableViewEkmekAlacagiTarih: TcxGridDBColumn
         DataBinding.FieldName = 'EkmekAlacagiTarih'
+        DataBinding.IsNullValueType = True
       end
     end
     object cxGridLevel: TcxGridLevel

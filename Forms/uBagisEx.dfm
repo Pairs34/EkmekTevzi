@@ -59,7 +59,7 @@ object frmBagisEx: TfrmBagisEx
   object lblBagisTuru: TLabel
     Left = 6
     Top = 227
-    Width = 76
+    Width = 87
     Height = 19
     Margins.Left = 2
     Margins.Top = 2
@@ -70,7 +70,7 @@ object frmBagisEx: TfrmBagisEx
     Font.Color = clWindowText
     Font.Height = -16
     Font.Name = 'Tahoma'
-    Font.Style = []
+    Font.Style = [fsBold]
     ParentFont = False
   end
   object lblSonHareket: TLabel
@@ -125,7 +125,7 @@ object frmBagisEx: TfrmBagisEx
     Style.Font.Color = clWindowText
     Style.Font.Height = -16
     Style.Font.Name = 'Tahoma'
-    Style.Font.Style = []
+    Style.Font.Style = [fsBold]
     Style.LookAndFeel.NativeStyle = False
     Style.IsFontAssigned = True
     StyleDisabled.LookAndFeel.NativeStyle = False
@@ -134,8 +134,8 @@ object frmBagisEx: TfrmBagisEx
     Width = 590
     object lblAdSoyad: TLabel
       Left = 14
-      Top = 22
-      Width = 68
+      Top = 23
+      Width = 76
       Height = 19
       Margins.Left = 2
       Margins.Top = 2
@@ -146,13 +146,13 @@ object frmBagisEx: TfrmBagisEx
       Font.Color = clWindowText
       Font.Height = -16
       Font.Name = 'Tahoma'
-      Font.Style = []
+      Font.Style = [fsBold]
       ParentFont = False
     end
     object lblHak: TLabel
       Left = 14
       Top = 46
-      Width = 77
+      Width = 91
       Height = 19
       Margins.Left = 2
       Margins.Top = 2
@@ -163,13 +163,13 @@ object frmBagisEx: TfrmBagisEx
       Font.Color = clWindowText
       Font.Height = -16
       Font.Name = 'Tahoma'
-      Font.Style = []
+      Font.Style = [fsBold]
       ParentFont = False
     end
     object lblTel: TLabel
       Left = 14
       Top = 70
-      Width = 78
+      Width = 89
       Height = 19
       Margins.Left = 2
       Margins.Top = 2
@@ -180,13 +180,13 @@ object frmBagisEx: TfrmBagisEx
       Font.Color = clWindowText
       Font.Height = -16
       Font.Name = 'Tahoma'
-      Font.Style = []
+      Font.Style = [fsBold]
       ParentFont = False
     end
     object lblAdres: TLabel
       Left = 14
       Top = 118
-      Width = 41
+      Width = 47
       Height = 19
       Margins.Left = 2
       Margins.Top = 2
@@ -197,13 +197,13 @@ object frmBagisEx: TfrmBagisEx
       Font.Color = clWindowText
       Font.Height = -16
       Font.Name = 'Tahoma'
-      Font.Style = []
+      Font.Style = [fsBold]
       ParentFont = False
     end
     object lblNufus: TLabel
       Left = 14
-      Top = 94
-      Width = 41
+      Top = 95
+      Width = 46
       Height = 19
       Margins.Left = 2
       Margins.Top = 2
@@ -214,7 +214,7 @@ object frmBagisEx: TfrmBagisEx
       Font.Color = clWindowText
       Font.Height = -16
       Font.Name = 'Tahoma'
-      Font.Style = []
+      Font.Style = [fsBold]
       ParentFont = False
     end
     object txtAdsoyad: TcxTextEdit
@@ -378,7 +378,7 @@ object frmBagisEx: TfrmBagisEx
   object btnMazeretEkle: TcxButton
     Left = 575
     Top = 6
-    Width = 104
+    Width = 122
     Height = 55
     Margins.Left = 2
     Margins.Top = 2
@@ -464,6 +464,12 @@ object frmBagisEx: TfrmBagisEx
       0000000049454E44AE426082}
     OptionsImage.Spacing = 3
     TabOrder = 3
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
     OnClick = btnMazeretEkleClick
   end
   object btnSadeceSorgu: TdxToggleSwitch
@@ -480,7 +486,7 @@ object frmBagisEx: TfrmBagisEx
     Style.Font.Color = clWindowText
     Style.Font.Height = -16
     Style.Font.Name = 'Tahoma'
-    Style.Font.Style = []
+    Style.Font.Style = [fsBold]
     Style.LookAndFeel.NativeStyle = False
     Style.IsFontAssigned = True
     StyleDisabled.LookAndFeel.NativeStyle = False
@@ -738,7 +744,7 @@ object frmBagisEx: TfrmBagisEx
     Style.Font.Color = clWindowText
     Style.Font.Height = -16
     Style.Font.Name = 'Tahoma'
-    Style.Font.Style = []
+    Style.Font.Style = [fsBold]
     Style.IsFontAssigned = True
     TabOrder = 6
     Width = 357
