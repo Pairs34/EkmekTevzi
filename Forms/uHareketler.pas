@@ -24,7 +24,7 @@ uses
   dxSkinXmas2008Blue, cxDataStorage, cxEdit,
   cxNavigator, cxDataControllerConditionalFormattingRulesManagerDialog, Data.DB,
   cxDBData, cxGridLevel, cxClasses, cxGridCustomView, cxGridCustomTableView,
-  cxGridTableView, cxGridDBTableView, cxGrid,
+  cxGridTableView, cxGridDBTableView, cxGrid, cxGridDBDataDefinitions,
   cxLocalization, Vcl.Menus, cxContainer, Vcl.ComCtrls, dxCore, cxDateUtils,
   cxDropDownEdit, Vcl.StdCtrls, cxTextEdit, cxMaskEdit, cxCalendar,
   Vcl.ExtCtrls,
@@ -32,7 +32,7 @@ uses
   cxProgressBar, Datasnap.DBClient, DateUtils, System.Diagnostics,
   dxSkinOffice2019Colorful,
   System.ImageList, Vcl.ImgList, cxImageList, cxCustomData, cxFilter, cxData,
-  dxDateRanges, FileCtrl, cxGridExportLink, Vcl.Tabs, Vcl.DockTabSet,
+  dxDateRanges, FileCtrl, cxGridExportLink, Vcl.Tabs, Vcl.DockTabSet, System.Character  ,
   dxScrollbarAnnotations;
 
 type
@@ -99,7 +99,7 @@ type
   private
     procedure LoadHareketlerYeni;
     procedure LoadHareketlerGunluk;
-    procedure GetHareketler(Yil, Ay: integer);
+//    procedure GetHareketler(Yil, Ay: integer);
     procedure AddHareket(KartId: string; day: Word; paramstr: Char);
   public
     { Public declarations }
@@ -162,7 +162,7 @@ begin
       bValue := '';
     end;
 
-    if bValue = 'X' then
+    if StrToIntDef(bValue, 0) <> 0 then
     begin
       ShowMessage('Daha önce ' + cbBagisTuru.Text + ' verilmiş');
       Exit;
@@ -236,7 +236,8 @@ begin
 
   if AItem.Index > 4 then
   begin
-    if ARecord.Values[AItem.Index] = 'X' then
+   var recordValue := ARecord.Values[AItem.Index];
+    if StrToIntDef(ARecord.Values[AItem.Index], 0) <> 0 then
     begin
       AStyle := cxGreenStyle;
     end
@@ -258,20 +259,24 @@ begin
   if not Assigned(AItem) then
     Exit;
 
-  if AItem.Index > 3 then
+  if AItem.Index > 4 then
   begin
-    if ARecord.Values[AItem.Index] = 'X' then
-    begin
-      AStyle := cxGreenStyle;
-    end
-    else if ARecord.Values[AItem.Index] = 'M' then
-    begin
-      AStyle := cxBlueStyle;
-    end
-    else
-    begin
-      AStyle := cxRedStyle;
-    end;
+    var recordValue := ARecord.Values[AItem.Index];
+    if VarIsNull(recordValue) then
+       Exit;
+
+    if StrToIntDef(ARecord.Values[AItem.Index], 0) <> 0 then
+      begin
+        AStyle := cxGreenStyle;
+      end
+      else if ARecord.Values[AItem.Index] = 'M' then
+      begin
+        AStyle := cxBlueStyle;
+      end
+      else
+      begin
+        AStyle := cxRedStyle;
+      end;
   end;
 end;
 
@@ -281,15 +286,13 @@ procedure TfrmHareket.cxGridMonthlyDBTableViewDataControllerSummaryFooterSummary
 begin
    if not VarIsNull(OutArguments.Value) then
    begin
-      if OutArguments.Value = 'X' then
+      if StrToIntDef(OutArguments.Value, 0) = 0 then
       begin
-        OutArguments.Value := 1;
+        OutArguments.Done := true;
       end else begin
-         OutArguments.Value := 0;
-         OutArguments.Done := true;
+        OutArguments.Value := StrToFloat(OutArguments.Value);
       end;
    end;
-
 end;
 
 procedure TfrmHareket.FormShow(Sender: TObject);
@@ -300,6 +303,7 @@ begin
   ToTranslate(hareketlerLocalizer);
   txtYil.EditValue := FormatDateTime('yyyy', Now);
   txtDailyYear.EditValue := FormatDateTime('yyyy', Now);
+  txtAy.EditValue := FormatDateTime('mmmm', Now);
 
   bSqlCode := 'select * from bagisturu';
   bQuery := FromDatabase(bSqlCode);
@@ -321,36 +325,36 @@ begin
   ClearGrid(cxGridMonthlyDBTableView);
 end;
 
-procedure TfrmHareket.GetHareketler(Yil, Ay: integer);
-var
-  bQuery: TUniQuery;
-  bHareket: THareket;
-  bYear, bMonth, bDay: Word;
-begin
-  bQuery := TUniQuery.Create(nil);
-  with bQuery do
-  begin
-    Connection := frmDb.dbHelper;
-    Close;
-    SQL.Clear;
-    SQL.Add('select * from hareket where YEAR(IslemZamani) = ' +
-      QuotedStr(Yil.ToString) + ' and MONTH(IslemZamani) = ' +
-      QuotedStr(IfTHen(Ay < 10, '0' + Ay.ToString, Ay.ToString)));
-    ExecSql;
-
-    while not EOF do
-    begin
-      with bHareket do
-      begin
-        KartId := FieldByName('KartId').AsString;
-        Name := FieldByName('AdSoyad').AsString;
-        DecodeDate(FieldByName('IslemZamani').AsDateTime, bYear, bMonth, bDay);
-        AddHareket(KartId, bDay, 'X');
-      end;
-      Next;
-    end;
-  end;
-end;
+//procedure TfrmHareket.GetHareketler(Yil, Ay: integer);
+//var
+//  bQuery: TUniQuery;
+//  bHareket: THareket;
+//  bYear, bMonth, bDay: Word;
+//begin
+//  bQuery := TUniQuery.Create(nil);
+//  with bQuery do
+//  begin
+//    Connection := frmDb.dbHelper;
+//    Close;
+//    SQL.Clear;
+//    SQL.Add('select * from hareket where YEAR(IslemZamani) = ' +
+//      QuotedStr(Yil.ToString) + ' and MONTH(IslemZamani) = ' +
+//      QuotedStr(IfTHen(Ay < 10, '0' + Ay.ToString, Ay.ToString)));
+//    ExecSql;
+//
+//    while not EOF do
+//    begin
+//      with bHareket do
+//      begin
+//        KartId := FieldByName('KartId').AsString;
+//        Name := FieldByName('AdSoyad').AsString;
+//        DecodeDate(FieldByName('IslemZamani').AsDateTime, bYear, bMonth, bDay);
+//        AddHareket(KartId, bDay, 'X');
+//      end;
+//      Next;
+//    end;
+//  end;
+//end;
 
 procedure TfrmHareket.KartIdKopyala1Click(Sender: TObject);
 begin
@@ -402,10 +406,10 @@ begin
   cxGridMonthlyDBTableView.DataController.DataSource := frmDb.tblBagisList;
   cxGridMonthlyDBTableView.DataController.CreateAllItems;
 
-  for I := 4 to cxGridMonthlyDBTableView.ColumnCount do
+  for I := 5 to cxGridMonthlyDBTableView.ColumnCount do
   begin
     var sItemCount := cxGridMonthlyDBTableView.DataController.Summary.FooterSummaryItems.Count;
-    cxGridMonthlyDBTableView.DataController.Summary.FooterSummaryItems.Add;
+    var summaryItem := cxGridMonthlyDBTableView.DataController.Summary.FooterSummaryItems.Add;
       cxGridMonthlyDBTableView.DataController.Summary.FooterSummaryItems.Items[sItemCount]
         .ItemLink := cxGridMonthlyDBTableView.Columns[I];
       cxGridMonthlyDBTableView.DataController.Summary.FooterSummaryItems.Items[sItemCount]

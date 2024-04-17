@@ -7,11 +7,12 @@ object frmDb: TfrmDb
     Database = 'AskidaEkmek'
     Username = 'sa'
     Server = '.'
+    Connected = True
     LoginPrompt = False
     BeforeConnect = dbHelperBeforeConnect
     Left = 24
     Top = 16
-    EncryptedPassword = '9EFF8CFF'
+    EncryptedPassword = 'A6FF93FF9BFF8DFF92FFDEFFCCFFCBFF'
   end
   object myQuery: TUniQuery
     Connection = dbHelper
@@ -307,7 +308,7 @@ object frmDb: TfrmDb
         Name = 'BagisTuru'
         ParamType = ptInput
         Size = 50
-        Value = nil
+        Value = ''
       end>
     CommandStoredProcName = 'other_bagis_listesi;1'
   end
@@ -377,5 +378,12 @@ object frmDb: TfrmDb
       'select * from hareket')
     Left = 296
     Top = 88
+  end
+  object dbDumper: TUniDump
+    Connection = dbHelper
+    Options.QuoteNames = True
+    Options.CompleteInsert = True
+    Left = 32
+    Top = 288
   end
 end

@@ -5,7 +5,7 @@ interface
 uses
   System.SysUtils, System.Classes, Data.DB, MemDS, DBAccess, Uni, UniProvider,
   frxClass, frxDBSet,Vcl.Dialogs,
-  SQLServerUniProvider,Ole2,IniFiles;
+  SQLServerUniProvider,Ole2,IniFiles, DADump, UniDump;
 
 type
   TfrmDb = class(TDataModule)
@@ -31,6 +31,7 @@ type
     GetDailyBagis: TUniStoredProc;
     tblDailyBagis: TUniDataSource;
     qHareketList: TUniQuery;
+    dbDumper: TUniDump;
     procedure dbHelperBeforeConnect(Sender: TObject);
   private
     { Private declarations }
