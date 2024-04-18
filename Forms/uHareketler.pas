@@ -291,6 +291,7 @@ begin
         OutArguments.Done := true;
       end else begin
         OutArguments.Value := StrToFloat(OutArguments.Value);
+        OutArguments.SummaryValue := StrToFloat(OutArguments.Value);
       end;
    end;
 end;

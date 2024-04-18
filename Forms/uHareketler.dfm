@@ -54,7 +54,6 @@ object frmHareket: TfrmHareket
         PopupMenu = popupMenu
         TabOrder = 0
         LookAndFeel.NativeStyle = False
-        ExplicitTop = 17
         object cxGridMonthlyDBTableView: TcxGridDBTableView
           Navigator.Buttons.CustomButtons = <>
           ScrollbarAnnotations.CustomAnnotations = <>
