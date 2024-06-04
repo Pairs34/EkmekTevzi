@@ -3,18 +3,16 @@ object frmMazeret: TfrmMazeret
   Top = 0
   BorderStyle = bsToolWindow
   Caption = 'Mazeret Ekle'
-  ClientHeight = 166
-  ClientWidth = 440
+  ClientHeight = 181
+  ClientWidth = 449
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
-  OldCreateOrder = False
   Position = poOwnerFormCenter
   OnClose = FormClose
-  PixelsPerInch = 96
   TextHeight = 13
   object lblKartID: TcxLabel
     Left = 8
@@ -30,8 +28,8 @@ object frmMazeret: TfrmMazeret
     Style.IsFontAssigned = True
   end
   object btnSaveMazeret: TcxButton
-    Left = 176
-    Top = 97
+    Left = 232
+    Top = 122
     Width = 137
     Height = 49
     Caption = 'Kaydet'
@@ -82,38 +80,8 @@ object frmMazeret: TfrmMazeret
       134835D695CBBFA0C7B9B5EDF5B7004C88D99DD30E01DCC2D5BF1FE6AFF40FBE
       F7A81C7B00C6005A00DED74001A0F12532FE9D1F8FCAA1F3FE3BFE2F3E5E377F
       02C73EB2E2D2D4F54C0000000049454E44AE426082}
-    TabOrder = 2
-    OnClick = btnSaveMazeretClick
-  end
-  object cxLabel1: TcxLabel
-    Left = 8
-    Top = 46
-    Caption = 'Mazeret G'#252'n'#252
-    ParentFont = False
-    Style.Font.Charset = DEFAULT_CHARSET
-    Style.Font.Color = clWindowText
-    Style.Font.Height = -20
-    Style.Font.Name = 'Tahoma'
-    Style.Font.Style = []
-    Style.TextStyle = [fsBold]
-    Style.IsFontAssigned = True
-  end
-  object txtMazeretGun: TcxMaskEdit
-    Left = 176
-    Top = 46
-    ParentFont = False
-    Properties.MaskKind = emkRegExpr
-    Properties.EditMask = '\d+'
-    Properties.MaxLength = 0
-    Style.Font.Charset = DEFAULT_CHARSET
-    Style.Font.Color = clWindowText
-    Style.Font.Height = -20
-    Style.Font.Name = 'Tahoma'
-    Style.Font.Style = []
-    Style.IsFontAssigned = True
     TabOrder = 1
-    Text = '1'
-    Width = 256
+    OnClick = btnSaveMazeretClick
   end
   object txtKartId: TcxTextEdit
     Left = 176
@@ -127,5 +95,59 @@ object frmMazeret: TfrmMazeret
     Style.IsFontAssigned = True
     TabOrder = 0
     Width = 256
+  end
+  object dtBaslangicTarihi: TcxDateEdit
+    Left = 176
+    Top = 46
+    ParentFont = False
+    Properties.ShowTime = False
+    Style.Font.Charset = DEFAULT_CHARSET
+    Style.Font.Color = clWindowText
+    Style.Font.Height = -20
+    Style.Font.Name = 'Tahoma'
+    Style.Font.Style = []
+    Style.IsFontAssigned = True
+    TabOrder = 3
+    Width = 256
+  end
+  object lblBaslangicTarihi: TcxLabel
+    Left = 8
+    Top = 47
+    Caption = 'Ba'#351'lang'#305#231' G'#252'n'#252
+    ParentFont = False
+    Style.Font.Charset = DEFAULT_CHARSET
+    Style.Font.Color = clWindowText
+    Style.Font.Height = -20
+    Style.Font.Name = 'Tahoma'
+    Style.Font.Style = []
+    Style.TextStyle = [fsBold]
+    Style.IsFontAssigned = True
+  end
+  object dtBitisTarihi: TcxDateEdit
+    Left = 176
+    Top = 84
+    ParentFont = False
+    Properties.ShowTime = False
+    Style.Font.Charset = DEFAULT_CHARSET
+    Style.Font.Color = clWindowText
+    Style.Font.Height = -20
+    Style.Font.Name = 'Tahoma'
+    Style.Font.Style = []
+    Style.IsFontAssigned = True
+    TabOrder = 5
+    Width = 256
+  end
+  object lblBitisTarihi: TcxLabel
+    Left = 62
+    Top = 85
+    Caption = 'Biti'#351' G'#252'n'#252
+    ParentFont = False
+    Style.Font.Charset = DEFAULT_CHARSET
+    Style.Font.Color = clWindowText
+    Style.Font.Height = -20
+    Style.Font.Name = 'Tahoma'
+    Style.Font.Style = []
+    Style.TextStyle = [fsBold]
+    Style.IsFontAssigned = True
   end
 end

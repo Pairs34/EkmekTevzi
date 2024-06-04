@@ -3,7 +3,7 @@
         <ProjectGuid>{1263B09A-C34F-4499-BCB2-06CBC4A58684}</ProjectGuid>
         <MainSource>EkmekTevzi.dpr</MainSource>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Debug</Config>
+        <Config Condition="'$(Config)'==''">Release</Config>
         <TargetedPlatforms>3</TargetedPlatforms>
         <AppType>Application</AppType>
         <FrameworkType>VCL</FrameworkType>

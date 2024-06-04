@@ -3,11 +3,12 @@
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, cxGraphics, cxControls, cxLookAndFeels,
   cxLookAndFeelPainters, cxContainer, cxEdit, dxSkinsCore,
   dxSkinsDefaultPainters, Vcl.Menus, cxButtons, cxTextEdit,
-  cxMaskEdit, cxLabel , Uni,DateUtils, dxSkinBlack, dxSkinBlue, dxSkinBlueprint,
+  cxMaskEdit, cxLabel, Uni, DateUtils, dxSkinBlack, dxSkinBlue, dxSkinBlueprint,
   dxSkinCaramel, dxSkinCoffee, dxSkinDarkroom, dxSkinDarkSide,
   dxSkinDevExpressDarkStyle, dxSkinDevExpressStyle, dxSkinFoggy,
   dxSkinGlassOceans, dxSkinHighContrast, dxSkinLilian, dxSkinLiquidSky,
@@ -22,15 +23,18 @@ uses
   dxSkinTheAsphaltWorld, dxSkinTheBezier, dxSkinValentine,
   dxSkinVisualStudio2013Blue, dxSkinVisualStudio2013Dark,
   dxSkinVisualStudio2013Light, dxSkinVS2010, dxSkinWhiteprint,
-  dxSkinXmas2008Blue, Vcl.StdCtrls;
+  dxSkinXmas2008Blue, Vcl.StdCtrls, Vcl.ComCtrls, dxCore, cxDateUtils,
+  cxDropDownEdit, cxCalendar;
 
 type
   TfrmMazeret = class(TForm)
     lblKartID: TcxLabel;
     btnSaveMazeret: TcxButton;
-    cxLabel1: TcxLabel;
-    txtMazeretGun: TcxMaskEdit;
     txtKartId: TcxTextEdit;
+    dtBaslangicTarihi: TcxDateEdit;
+    lblBaslangicTarihi: TcxLabel;
+    dtBitisTarihi: TcxDateEdit;
+    lblBitisTarihi: TcxLabel;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnSaveMazeretClick(Sender: TObject);
   private
@@ -41,7 +45,7 @@ type
 
 var
   frmMazeret: TfrmMazeret;
-  KartID : Integer;
+  KartID: Integer;
 
 implementation
 
@@ -53,30 +57,37 @@ procedure TfrmMazeret.btnSaveMazeretClick(Sender: TObject);
 var
   bQuery: TUniQuery;
 begin
+  var
+  baslangicTarihi := dtBaslangicTarihi.Date;
+  var
+  bitisTarihi := dtBitisTarihi.Date;
+  var
+  mazeretGunu := DaysBetween(baslangicTarihi, bitisTarihi);
+
   bQuery := TUniQuery.Create(Self);
 
   with frmDb do
   begin
-      if not dbHelper.Connected then
-         dbHelper.Connect;
+    if not dbHelper.Connected then
+      dbHelper.Connect;
 
-      bQuery.Connection := dbHelper;
+    bQuery.Connection := dbHelper;
   end;
 
   try
     with bQuery do
     begin
-       Close;
-       SQL.Clear;
-       SQL.Add('insert into mazeretler (KartID,MazeretGun,IslemTarihi,GelecegiTarih,EkmekAlacagiTarih) ');
-       SQL.Add('values(:KartID,:MGun,:ITarih,:GTarih,:EATarih)');
+      Close;
+      SQL.Clear;
+      SQL.Add('insert into mazeretler (KartID,MazeretGun,IslemTarihi,GelecegiTarih,EkmekAlacagiTarih) ');
+      SQL.Add('values(:KartID,:MGun,:ITarih,:GTarih,:EATarih)');
 
-       ParamByName('KartID').AsString := txtKartID.Text;
-       ParamByName('MGun').AsInteger := StrToInt(txtMazeretGun.Text);
-       ParamByName('ITarih').AsDateTime := Now;
-       ParamByName('GTarih').AsDateTime := IncDay(Now,StrToInt(txtMazeretGun.Text));
-       ParamByName('EATarih').AsDateTime := IncDay(Now,StrToInt(txtMazeretGun.Text) + 1);
-       Execute;
+      ParamByName('KartID').AsString := txtKartId.Text;
+      ParamByName('MGun').AsInteger := mazeretGunu + 1;
+      ParamByName('ITarih').AsDateTime := baslangicTarihi;
+      ParamByName('GTarih').AsDateTime := bitisTarihi;
+      ParamByName('EATarih').AsDateTime := IncDay(bitisTarihi);
+      Execute;
     end;
 
     ShowMessage('Mazeret kayıt edildi.');
@@ -90,7 +101,7 @@ end;
 
 procedure TfrmMazeret.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-    Action := caFree;
+  Action := caFree;
 end;
 
 end.

@@ -24,17 +24,18 @@ uses
   dxSkinVisualStudio2013Blue, dxSkinVisualStudio2013Dark,
   dxSkinVisualStudio2013Light, dxSkinVS2010, dxSkinWhiteprint,
   dxSkinXmas2008Blue, Vcl.ComCtrls, dxNumericWheelPicker,
-  dxDateTimeWheelPicker, Vcl.StdCtrls, Data.DB;
+  dxDateTimeWheelPicker, Vcl.StdCtrls, Data.DB, dxCore, cxDateUtils,
+  cxDropDownEdit, cxCalendar;
 
 type
   TfrmMazeretEdit = class(TForm)
     lblKartID: TcxLabel;
     btnSaveMazeret: TcxButton;
-    lblMazeretGun: TcxLabel;
-    txtMazeretGun: TcxMaskEdit;
     txtKartId: TcxTextEdit;
-    lblStartDate: TcxLabel;
-    dtStart: TDatePicker;
+    dtBaslangicTarihi: TcxDateEdit;
+    lblBaslangicTarihi: TcxLabel;
+    dtBitisTarihi: TcxDateEdit;
+    lblBitisTarihi: TcxLabel;
     procedure btnSaveMazeretClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
@@ -59,6 +60,13 @@ var
   bRows : TFields;
   I: Integer;
 begin
+    var
+  baslangicTarihi := dtBaslangicTarihi.Date;
+  var
+  bitisTarihi := dtBitisTarihi.Date;
+  var
+  mazeretGunu := DaysBetween(baslangicTarihi, bitisTarihi);
+
   bQuery := TUniQuery.Create(Self);
 
   with frmDb do
@@ -80,12 +88,10 @@ begin
         SQL.Add('where Id = :bId');
 
         ParamByName('bId').AsInteger := bId;
-        ParamByName('MGun').AsInteger := StrToInt(txtMazeretGun.Text);
-        ParamByName('ITarih').AsDateTime := dtStart.Date;
-        ParamByName('GTarih').AsDateTime :=
-          IncDay(dtStart.Date, StrToInt(txtMazeretGun.Text));
-        ParamByName('EATarih').AsDateTime :=
-          IncDay(dtStart.Date, StrToInt(txtMazeretGun.Text) + 1);
+        ParamByName('MGun').AsInteger := mazeretGunu + 1;
+        ParamByName('ITarih').AsDateTime := baslangicTarihi;
+        ParamByName('GTarih').AsDateTime := bitisTarihi;
+        ParamByName('EATarih').AsDateTime := IncDay(bitisTarihi);
         Execute;
       end;
 
@@ -117,10 +123,10 @@ begin
                SQL.Add('values(:KartID,:MGun,:ITarih,:GTarih,:EATarih)');
 
                ParamByName('KartID').AsString := frmDb.qUserList.FieldByName('KartId').Value;
-               ParamByName('MGun').AsInteger := StrToInt(txtMazeretGun.Text);
-               ParamByName('ITarih').AsDateTime := dtStart.Date;
-               ParamByName('GTarih').AsDateTime := IncDay(dtStart.Date, StrToInt(txtMazeretGun.Text));
-               ParamByName('EATarih').AsDateTime := IncDay(dtStart.Date, StrToInt(txtMazeretGun.Text) + 1);
+               ParamByName('MGun').AsInteger := mazeretGunu + 1;
+               ParamByName('ITarih').AsDateTime := baslangicTarihi;
+               ParamByName('GTarih').AsDateTime := bitisTarihi;
+               ParamByName('EATarih').AsDateTime := IncDay(bitisTarihi);
                Execute;
             end;
 
