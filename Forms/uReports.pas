@@ -24,7 +24,8 @@ uses
   dxSkinXmas2008Blue,
   cxContainer, cxEdit, cxListView, Uni, frxClass,
   Vcl.Menus, cxButtons, cxGroupBox, frxDesgn, dxSkinOffice2019Colorful,
-  System.ImageList, Vcl.ImgList, cxImageList, Vcl.StdCtrls,System.IOUtils;
+  System.ImageList, Vcl.ImgList, cxImageList, Vcl.StdCtrls,System.IOUtils,
+  dxUIAClasses;
 
 type
   TfrmReports = class(TForm)

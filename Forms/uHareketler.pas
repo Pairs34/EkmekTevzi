@@ -33,7 +33,7 @@ uses
   dxSkinOffice2019Colorful,
   System.ImageList, Vcl.ImgList, cxImageList, cxCustomData, cxFilter, cxData,
   dxDateRanges, FileCtrl, cxGridExportLink, Vcl.Tabs, Vcl.DockTabSet, System.Character  ,
-  dxScrollbarAnnotations;
+  dxScrollbarAnnotations, dxUIAClasses;
 
 type
   TfrmHareket = class(TForm)
@@ -122,7 +122,7 @@ implementation
 
 {$R *.dfm}
 
-uses uDbHelper, uGlobals, uReports;
+uses uDbHelper, uGlobals;
 
 { TfrmHareket }
 
@@ -214,12 +214,12 @@ begin
 end;
 
 procedure TfrmHareket.btnReportClick(Sender: TObject);
-var
-  bReports: TfrmReports;
+//var
+//  bReports: TfrmReports;
 begin
-  bReports := TfrmReports.Create(Self);
-  bReports.OnClose := CloseUniq;
-  bReports.Show;
+//  bReports := TfrmReports.Create(Self);
+//  bReports.OnClose := CloseUniq;
+//  bReports.Show;
 end;
 
 procedure TfrmHareket.CloseUniq(Sender: TObject; var Action: TCloseAction);

@@ -30,13 +30,12 @@ object frmReports: TfrmReports
     Style.LookAndFeel.NativeStyle = False
     StyleDisabled.LookAndFeel.NativeStyle = False
     TabOrder = 0
-    ExplicitHeight = 272
     Height = 356
     Width = 180
     object btnYazdir: TcxButton
-      Left = 3
-      Top = 128
-      Width = 174
+      Left = 2
+      Top = 131
+      Width = 176
       Height = 51
       Margins.Left = 2
       Margins.Top = 2
@@ -51,12 +50,14 @@ object frmReports: TfrmReports
       OptionsImage.Spacing = 3
       TabOrder = 0
       OnClick = btnYazdirClick
+      ExplicitLeft = 3
       ExplicitTop = 102
+      ExplicitWidth = 174
     end
     object btnYeni: TcxButton
-      Left = 3
-      Top = 14
-      Width = 174
+      Left = 2
+      Top = 17
+      Width = 176
       Height = 59
       Margins.Left = 2
       Margins.Top = 2
@@ -71,11 +72,14 @@ object frmReports: TfrmReports
       OptionsImage.Spacing = 3
       TabOrder = 1
       OnClick = btnYeniClick
+      ExplicitLeft = 3
+      ExplicitTop = 14
+      ExplicitWidth = 174
     end
     object btnDuzenle: TcxButton
-      Left = 3
-      Top = 73
-      Width = 174
+      Left = 2
+      Top = 76
+      Width = 176
       Height = 55
       Margins.Left = 2
       Margins.Top = 2
@@ -89,7 +93,9 @@ object frmReports: TfrmReports
       OptionsImage.Layout = blGlyphTop
       TabOrder = 2
       OnClick = btnDuzenleClick
+      ExplicitLeft = 3
       ExplicitTop = 58
+      ExplicitWidth = 174
     end
   end
   object lstReports: TcxListView
@@ -131,7 +137,6 @@ object frmReports: TfrmReports
     ViewStyle = vsReport
     OnClick = lstReportsClick
     OnDblClick = lstReportsDblClick
-    ExplicitHeight = 272
   end
   object imgList32: TcxImageList
     SourceDPI = 96
@@ -539,53 +544,6 @@ object frmReports: TfrmReports
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000}
       end>
-  end
-  object reporter: TfrxReport
-    Version = '2023.1.3'
-    DotMatrixReport = False
-    EngineOptions.PrintIfEmpty = False
-    EngineOptions.SilentMode = True
-    EngineOptions.NewSilentMode = simSilent
-    IniFile = '\Software\Fast Reports'
-    PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick, pbCopy, pbSelection]
-    PreviewOptions.Zoom = 1.000000000000000000
-    PrintOptions.Printer = 'Varsay'#305'lan'
-    PrintOptions.PrintOnSheet = 0
-    ReportOptions.CreateDate = 43540.953113506940000000
-    ReportOptions.LastChange = 43540.953113506940000000
-    ScriptLanguage = 'PascalScript'
-    ScriptText.Strings = (
-      'begin'
-      ''
-      'end.')
-    Left = 32
-    Top = 216
-    Datasets = <>
-    Variables = <>
-    Style = <>
-  end
-  object frxDesigner: TfrxDesigner
-    DefaultScriptLanguage = 'PascalScript'
-    DefaultFont.Charset = DEFAULT_CHARSET
-    DefaultFont.Color = clWindowText
-    DefaultFont.Height = -17
-    DefaultFont.Name = 'Arial'
-    DefaultFont.Style = []
-    DefaultLeftMargin = 10.000000000000000000
-    DefaultRightMargin = 10.000000000000000000
-    DefaultTopMargin = 10.000000000000000000
-    DefaultBottomMargin = 10.000000000000000000
-    DefaultPaperSize = 9
-    DefaultOrientation = poPortrait
-    GradientEnd = 11982554
-    GradientStart = clWindow
-    TemplatesExt = 'rpr'
-    Restrictions = []
-    RTLLanguage = False
-    MemoParentFont = False
-    OnSaveReport = frxDesignerSaveReport
-    Left = 32
-    Top = 264
   end
   object SaveDialog: TSaveDialog
     DefaultExt = 'rpr'

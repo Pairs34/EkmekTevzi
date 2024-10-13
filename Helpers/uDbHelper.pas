@@ -5,7 +5,7 @@ interface
 uses
   System.SysUtils, System.Classes, Data.DB, MemDS, DBAccess, Uni, UniProvider,
   frxClass, frxDBSet,Vcl.Dialogs,
-  SQLServerUniProvider,Ole2,IniFiles, DADump, UniDump;
+  Ole2,IniFiles, DADump, UniDump, SQLServerUniProvider;
 
 type
   TfrmDb = class(TDataModule)
@@ -14,7 +14,6 @@ type
     tblUser: TUniDataSource;
     qUserList: TUniQuery;
     frxUserList: TfrxDBDataset;
-    frxHareketList: TfrxDBDataset;
     qKartKapat: TUniQuery;
     qMazeretSil: TUniQuery;
     tblMazeretList: TUniDataSource;

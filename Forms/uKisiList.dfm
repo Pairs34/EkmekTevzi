@@ -137,6 +137,7 @@ object frmKisiList: TfrmKisiList
     Font.Height = -9
     Font.Name = 'Tahoma'
     Font.Style = []
+    ParentFont = False
   end
   object PopupMenu: TPopupMenu
     Images = imgList
@@ -1110,7 +1111,7 @@ object frmKisiList: TfrmKisiList
       end>
   end
   object reporter: TfrxReport
-    Version = '2023.1.3'
+    Version = '2024.2.9'
     DotMatrixReport = False
     IniFile = '\Software\Fast Reports'
     PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick, pbCopy, pbSelection]
@@ -1128,8 +1129,6 @@ object frmKisiList: TfrmKisiList
     Top = 304
     Datasets = <
       item
-        DataSet = frmDb.frxUserList
-        DataSetName = 'Ki'#351'i Listesi'
       end>
     Variables = <>
     Style = <>

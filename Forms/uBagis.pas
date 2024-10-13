@@ -28,7 +28,7 @@ uses
   Data.DB, cxDBData, cxGridLevel, cxClasses, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, StrUtils,
   DBAccess, Uni, VirtualTable, dxSkinOffice2019Colorful, cxCustomData, cxFilter,
-  cxData, dxDateRanges, MemDS, dxScrollbarAnnotations;
+  cxData, dxDateRanges, MemDS, dxScrollbarAnnotations, dxUIAClasses;
 
 type
   TfrmBagis = class(TForm)
@@ -66,11 +66,12 @@ type
       AItem: TcxCustomGridTableItem; var AStyle: TcxStyle);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
+    procedure txtCardIDKeyPress(Sender: TObject; var Key: Char);
   private const
     sLineBreak = {$IFDEF LINUX} AnsiChar(#10) {$ENDIF}
 {$IFDEF MSWINDOWS} AnsiString(#13#10) {$ENDIF};
   public
-    procedure Custommessage(msg : string);
+    procedure Custommessage(msg: string);
   end;
 
 TYPE
@@ -123,8 +124,8 @@ end;
 
 procedure TfrmBagis.Custommessage(msg: string);
 begin
-    frmCustomDialog.lblCaption.Caption := msg;
-    frmCustomDialog.ShowModal;
+  frmCustomDialog.lblCaption.Caption := msg;
+  frmCustomDialog.ShowModal;
 end;
 
 procedure TfrmBagis.cxGridDBTableViewStylesGetContentStyle
@@ -164,133 +165,140 @@ begin
 end;
 
 procedure TfrmBagis.txtCardIDChange(Sender: TObject);
+begin
+  // if txtCardID.Text = '' then
+  // Exit;
+
+end;
+
+procedure TfrmBagis.txtCardIDKeyPress(Sender: TObject; var Key: Char);
 var
   LastAction: string;
   MResult: integer;
 begin
-  if txtCardID.Text = '' then
-    Exit;
-
-  with frmDb do
+  if Key = #13 then
   begin
-    if not dbHelper.Connected then
-      dbHelper.Connect;
-
-    with myQuery do
-    begin
-      try
-        Close;
-        SQL.Clear;
-        SQL.Add('select * from hareket where Day(IslemZamani) = DAY(GETDATE()) and MONTH(IslemZamani) = MONTH(GETDATE()) and YEAR(IslemZamani) = YEAR(GETDATE()) ');
-        SQL.Add('and KartId = :kartid ');
-        SQL.Add('and BagisTuru = :BagisTuru');
-        ParamByName('kartid').Value := txtCardID.Text;
-        ParamByName('BagisTuru').Value := 'Ekmek';
-        ExecSQL;
-        if (RecordCount > 0) and (txtCardID.Text <> '') then
-        begin
-           Custommessage('Bugün ekmek almış.Son ekmek alma tarihi : ' + myQuery.FieldByName('IslemZamani').AsString);
-          Exit;
-        end;
-
-        Close;
-        SQL.Clear;
-        SQL.Text := 'select * from users where KartId = :kartid';
-        ParamByName('kartid').Value := txtCardID.Text;
-        ExecSQL;
-
-        if (RecordCount = 0) and (txtCardID.Text <> '') then
-        begin
-          Beep;
-          CustomMessage('Bu kart sistemde kayıtlı değil.');
-          //ShowMessage('Bu kart sistemde kayıtlı değil.');
-          Exit;
-        end;
-
-        if FieldByName('Aktif').AsString = 'Pasif' then
-        begin
-          if not btnSadeceSorgu.Checked then
-          begin
-            CustomMessage(format('%s nolu kart şu sebeple pasiftir : ' +
-              sLineBreak + '%s', [txtCardID.Text, FieldByName('Aciklama')
-              .AsString]));
-              Exit
-          end
-          else
-          begin
-            Custommessage(format('%s nolu kart şu sebeple pasiftir : ' +
-              sLineBreak + '%s', [txtCardID.Text, FieldByName('Aciklama')
-              .AsString]));
-          end;
-        end;
-
-        if MyCards.Count >= 3 then
-        begin
-          MyCards.Delete(0);
-        end;
-
-        if MyCards.IndexOf(txtCardID.Text) = -1 then
-          MyCards.Add(txtCardID.Text);
-
-        txtAdsoyad.Text := FieldByName('AdSoyad').AsString;
-        txtAdet.Text := FieldByName('Adet').AsString;
-        txtTel.Text := FieldByName('TelNo').AsString;
-        txtAdres.Text := FieldByName('Adres').AsString;
-        txtNufus.Text := FieldByName('Nufus').AsString;
-        lblBuyukAdSoyad.Caption := FieldByName('AdSoyad').AsString;
-        lblBuyukHak.Caption := FieldByName('Adet').AsString;
-
-        Close;
-        SQL.Clear;
-        SQL.Text :=
-          'select * from GetLastAction where KartId = :KartId';
-        ParamByName('KartId').AsString := txtCardID.Text;
-        ExecSQL;
-
-        if (RecordCount > 0) then
-        begin
-          LastAction := FieldByName('IslemZamani').AsString;
-          if (DaysBetween(Now, VarToDateTime(LastAction)) > 1) then
-          begin
-            lblSonHareket.Font.Color := clRed;
-            lblSonHareket.Caption := LastAction;
-          end
-          else
-          begin
-            lblSonHareket.Font.Color := clDefault;
-            lblSonHareket.Caption := LastAction;
-          end;
-        end;
-
-        if not btnSadeceSorgu.Checked then
-        begin
-          EkmekVer(txtCardID.Text, 'Ekmek', txtAdsoyad.Text, Now);
-        end;
-      except
-        on E: Exception do
-          ShowMessage(E.Message);
-      end;
-    end;
-
-    cxGridDBTableView.ClearItems;
-
     with frmDb do
     begin
-      with GetAylikRapor do
-      begin
-        ParamByName('Yil').AsInteger := YearOf(Now);
-        ParamByName('Ay').AsInteger := MonthOf(Now);
-        ParamByName('kartid').AsString := MyCards.CommaText;
-        ParamByName('BagisTuru').AsString := 'Ekmek';
-        Prepare;
-        ExecProc;
-      end;
-    end;
+      if not dbHelper.Connected then
+        dbHelper.Connect;
 
-    cxGridDBTableView.DataController.DataSource := frmDb.tblAylikRapor;
-    cxGridDBTableView.DataController.CreateAllItems;
-    cxGridDBTableView.ApplyBestFit();
-  end;
+      with myQuery do
+      begin
+        try
+          Close;
+          SQL.Clear;
+          SQL.Add('select * from hareket where Day(IslemZamani) = DAY(GETDATE()) and MONTH(IslemZamani) = MONTH(GETDATE()) and YEAR(IslemZamani) = YEAR(GETDATE()) ');
+          SQL.Add('and KartId = :kartid ');
+          SQL.Add('and BagisTuru = :BagisTuru');
+          ParamByName('kartid').Value := txtCardID.Text;
+          ParamByName('BagisTuru').Value := 'Ekmek';
+          ExecSQL;
+          if (RecordCount > 0) and (txtCardID.Text <> '') then
+          begin
+            Custommessage('Bugün ekmek almış.Son ekmek alma tarihi : ' +
+              myQuery.FieldByName('IslemZamani').AsString);
+            Exit;
+          end;
+
+          Close;
+          SQL.Clear;
+          SQL.Text := 'select * from users where KartId = :kartid';
+          ParamByName('kartid').Value := txtCardID.Text;
+          ExecSQL;
+
+          if (RecordCount = 0) and (txtCardID.Text <> '') then
+          begin
+            Beep;
+            Custommessage('Bu kart sistemde kayıtlı değil.');
+            // ShowMessage('Bu kart sistemde kayıtlı değil.');
+            Exit;
+          end;
+
+          if FieldByName('Aktif').AsString = 'Pasif' then
+          begin
+            if not btnSadeceSorgu.Checked then
+            begin
+              Custommessage(format('%s nolu kart şu sebeple pasiftir : ' +
+                sLineBreak + '%s', [txtCardID.Text, FieldByName('Aciklama')
+                .AsString]));
+              Exit
+            end
+            else
+            begin
+              Custommessage(format('%s nolu kart şu sebeple pasiftir : ' +
+                sLineBreak + '%s', [txtCardID.Text, FieldByName('Aciklama')
+                .AsString]));
+            end;
+          end;
+
+          if MyCards.Count >= 3 then
+          begin
+            MyCards.Delete(0);
+          end;
+
+          if MyCards.IndexOf(txtCardID.Text) = -1 then
+            MyCards.Add(txtCardID.Text);
+
+          txtAdsoyad.Text := FieldByName('AdSoyad').AsString;
+          txtAdet.Text := FieldByName('Adet').AsString;
+          txtTel.Text := FieldByName('TelNo').AsString;
+          txtAdres.Text := FieldByName('Adres').AsString;
+          txtNufus.Text := FieldByName('Nufus').AsString;
+          lblBuyukAdSoyad.Caption := FieldByName('AdSoyad').AsString;
+          lblBuyukHak.Caption := FieldByName('Adet').AsString;
+
+          Close;
+          SQL.Clear;
+          SQL.Text := 'select * from GetLastAction where KartId = :KartId';
+          ParamByName('KartId').AsString := txtCardID.Text;
+          ExecSQL;
+
+          if (RecordCount > 0) then
+          begin
+            LastAction := FieldByName('IslemZamani').AsString;
+            if (DaysBetween(Now, VarToDateTime(LastAction)) > 1) then
+            begin
+              lblSonHareket.Font.Color := clRed;
+              lblSonHareket.Caption := LastAction;
+            end
+            else
+            begin
+              lblSonHareket.Font.Color := clDefault;
+              lblSonHareket.Caption := LastAction;
+            end;
+          end;
+
+          if not btnSadeceSorgu.Checked then
+          begin
+            EkmekVer(txtCardID.Text, 'Ekmek', txtAdsoyad.Text, Now);
+          end;
+        except
+          on E: Exception do
+            ShowMessage(E.Message);
+        end;
+      end;
+
+      cxGridDBTableView.ClearItems;
+
+      with frmDb do
+      begin
+        with GetAylikRapor do
+        begin
+          ParamByName('Yil').AsInteger := YearOf(Now);
+          ParamByName('Ay').AsInteger := MonthOf(Now);
+          ParamByName('kartid').AsString := MyCards.CommaText;
+          ParamByName('BagisTuru').AsString := 'Ekmek';
+          Prepare;
+          ExecProc;
+        end;
+      end;
+
+      cxGridDBTableView.DataController.DataSource := frmDb.tblAylikRapor;
+      cxGridDBTableView.DataController.CreateAllItems;
+      cxGridDBTableView.ApplyBestFit();
+    end;
+  end
 end;
 
 end.

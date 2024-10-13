@@ -108,6 +108,7 @@ object frmHareket: TfrmHareket
           Style.Font.Name = 'Tahoma'
           Style.Font.Style = [fsBold]
           Style.IsFontAssigned = True
+          TabOrder = 0
         end
         object txtMonthlyCount: TcxLabel
           Left = 98
@@ -124,6 +125,7 @@ object frmHareket: TfrmHareket
           Style.Font.Name = 'Tahoma'
           Style.Font.Style = [fsBold]
           Style.IsFontAssigned = True
+          TabOrder = 1
         end
         object lblDailyCount: TcxLabel
           Left = 173
@@ -140,6 +142,7 @@ object frmHareket: TfrmHareket
           Style.Font.Name = 'Tahoma'
           Style.Font.Style = [fsBold]
           Style.IsFontAssigned = True
+          TabOrder = 2
         end
         object txtDailyCount: TcxLabel
           Left = 269
@@ -156,6 +159,7 @@ object frmHareket: TfrmHareket
           Style.Font.Name = 'Tahoma'
           Style.Font.Style = [fsBold]
           Style.IsFontAssigned = True
+          TabOrder = 3
         end
       end
       object pnlHeaderMonthly: TPanel

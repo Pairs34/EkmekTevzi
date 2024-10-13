@@ -28,7 +28,8 @@ uses
   dxNavBarGroupItems, dxBarBuiltInMenu, cxPC, dxStatusBar,
   cxStyles, dxSkinOffice2019Colorful, cxImageList, System.ImageList,
   Vcl.ImgList, dxNavBarBase, cxSplitter, dxGDIPlusClasses, FileCtrl, Uni,
-  cxContainer, cxEdit, cxTextEdit, cxMaskEdit, cxDropDownEdit, dxCore;
+  cxContainer, cxEdit, cxTextEdit, cxMaskEdit, cxDropDownEdit, dxCore,
+  dxUIAClasses, Data.DB, DBAccess;
 
 type
   TfrmMain = class(TForm)

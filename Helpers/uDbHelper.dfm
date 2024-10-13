@@ -31,24 +31,6 @@ object frmDb: TfrmDb
     Left = 360
     Top = 88
   end
-  object frxUserList: TfrxDBDataset
-    UserName = 'Ki'#351'i Listesi'
-    CloseDataSource = False
-    DataSet = qUserList
-    BCDToCurrency = False
-    DataSetOptions = []
-    Left = 520
-    Top = 272
-  end
-  object frxHareketList: TfrxDBDataset
-    UserName = 'Hareket Listesi'
-    CloseDataSource = False
-    DataSet = qHareketList
-    BCDToCurrency = False
-    DataSetOptions = []
-    Left = 448
-    Top = 272
-  end
   object qKartKapat: TUniQuery
     Connection = dbHelper
     SQL.Strings = (

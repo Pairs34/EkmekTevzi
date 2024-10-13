@@ -94,6 +94,7 @@ object frmBagis: TfrmBagis
     TabOrder = 0
     TextHint = 'Kart ID'
     OnChange = txtCardIDChange
+    OnKeyPress = txtCardIDKeyPress
   end
   object cxGroupBox: TcxGroupBox
     Left = 0

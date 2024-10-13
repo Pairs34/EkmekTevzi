@@ -1,84 +1,111 @@
 object frmReports: TfrmReports
   Left = 0
   Top = 0
+  Margins.Left = 2
+  Margins.Top = 2
+  Margins.Right = 2
+  Margins.Bottom = 2
   BorderStyle = bsToolWindow
   Caption = 'Raporlar'
-  ClientHeight = 340
-  ClientWidth = 831
+  ClientHeight = 356
+  ClientWidth = 663
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -13
+  Font.Height = -10
   Font.Name = 'Tahoma'
   Font.Style = []
-  OldCreateOrder = False
   Position = poMainFormCenter
   OnShow = FormShow
-  PixelsPerInch = 120
-  TextHeight = 16
+  TextHeight = 12
   object btnGroups: TcxGroupBox
     Left = 0
     Top = 0
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
     Align = alLeft
     Caption = 'Se'#231'enekler'
     Style.LookAndFeel.NativeStyle = False
     StyleDisabled.LookAndFeel.NativeStyle = False
     TabOrder = 0
-    Height = 340
-    Width = 225
+    ExplicitHeight = 272
+    Height = 356
+    Width = 180
     object btnYazdir: TcxButton
       Left = 3
       Top = 128
-      Width = 219
-      Height = 55
+      Width = 174
+      Height = 51
+      Margins.Left = 2
+      Margins.Top = 2
+      Margins.Right = 2
+      Margins.Bottom = 2
       Align = alTop
       Caption = 'Yazd'#305'r'
       LookAndFeel.NativeStyle = False
       OptionsImage.ImageIndex = 2
       OptionsImage.Images = imgList32
       OptionsImage.Layout = blGlyphTop
+      OptionsImage.Spacing = 3
       TabOrder = 0
       OnClick = btnYazdirClick
+      ExplicitTop = 102
     end
     object btnYeni: TcxButton
       Left = 3
-      Top = 18
-      Width = 219
-      Height = 55
+      Top = 14
+      Width = 174
+      Height = 59
+      Margins.Left = 2
+      Margins.Top = 2
+      Margins.Right = 2
+      Margins.Bottom = 2
       Align = alTop
       Caption = 'Yeni Rapor'
       LookAndFeel.NativeStyle = False
       OptionsImage.ImageIndex = 0
       OptionsImage.Images = imgList32
       OptionsImage.Layout = blGlyphTop
+      OptionsImage.Spacing = 3
       TabOrder = 1
       OnClick = btnYeniClick
     end
     object btnDuzenle: TcxButton
       Left = 3
       Top = 73
-      Width = 219
+      Width = 174
       Height = 55
+      Margins.Left = 2
+      Margins.Top = 2
+      Margins.Right = 2
+      Margins.Bottom = 2
       Align = alTop
       Caption = 'Rapor D'#252'zenle'
       LookAndFeel.NativeStyle = False
       OptionsImage.ImageIndex = 1
       OptionsImage.Images = imgList32
       OptionsImage.Layout = blGlyphTop
-      OptionsImage.Spacing = 5
       TabOrder = 2
       OnClick = btnDuzenleClick
+      ExplicitTop = 58
     end
   end
   object lstReports: TcxListView
-    Left = 225
+    Left = 180
     Top = 0
-    Width = 606
-    Height = 340
+    Width = 483
+    Height = 356
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
     Align = alClient
     Columns = <
       item
         Caption = 'Id'
+        Width = 40
       end
       item
         AutoSize = True
@@ -86,7 +113,7 @@ object frmReports: TfrmReports
       end
       item
         Caption = 'Rapor Tarihi'
-        Width = 90
+        Width = 72
       end
       item
         AutoSize = True
@@ -99,10 +126,12 @@ object frmReports: TfrmReports
     StyleDisabled.LookAndFeel.NativeStyle = False
     StyleFocused.LookAndFeel.NativeStyle = False
     StyleHot.LookAndFeel.NativeStyle = False
+    StyleReadOnly.LookAndFeel.NativeStyle = False
     TabOrder = 1
     ViewStyle = vsReport
     OnClick = lstReportsClick
     OnDblClick = lstReportsDblClick
+    ExplicitHeight = 272
   end
   object imgList32: TcxImageList
     SourceDPI = 96
@@ -512,7 +541,7 @@ object frmReports: TfrmReports
       end>
   end
   object reporter: TfrxReport
-    Version = '6.4.11'
+    Version = '2023.1.3'
     DotMatrixReport = False
     EngineOptions.PrintIfEmpty = False
     EngineOptions.SilentMode = True

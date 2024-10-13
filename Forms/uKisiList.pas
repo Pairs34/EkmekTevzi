@@ -29,7 +29,8 @@ uses
   frxDesgn, frxClass,  cxLocalization,ClipBrd,
   dxSkinOffice2019Colorful,
   dxStatusBar, cxCustomData, cxFilter, cxData, dxDateRanges, System.ImageList,
-  Vcl.ImgList, cxImageList, uMazeretEdit, dxScrollbarAnnotations;
+  Vcl.ImgList, cxImageList, uMazeretEdit, dxScrollbarAnnotations, dxUIAClasses,
+  frxSmartMemo, frCoreClasses;
 
 type
   TfrmKisiList = class(TForm)
@@ -91,7 +92,7 @@ implementation
 
 {$R *.dfm}
 
-uses uDbHelper, uKisiEkle, Uni, uReports, uMazeret,cxGridExportLink,Vcl.FileCtrl,
+uses uDbHelper, uKisiEkle, Uni, uMazeret,cxGridExportLink,Vcl.FileCtrl,
   uViewHareket;
 
 procedure TfrmKisiList.btnDegistirClick(Sender: TObject);
@@ -299,12 +300,12 @@ begin
 end;
 
 procedure TfrmKisiList.btnReportClick(Sender: TObject);
-var
-  bReports : TfrmReports;
+//var
+//  bReports : TfrmReports;
 begin
-  bReports := TfrmReports.Create(Self);
-  bReports.OnClose := CloseUniq;
-  bReports.Show;
+//  bReports := TfrmReports.Create(Self);
+//  bReports.OnClose := CloseUniq;
+//  bReports.Show;
 end;
 
 procedure TfrmKisiList.LoadKisiler;
