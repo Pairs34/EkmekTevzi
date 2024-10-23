@@ -66,6 +66,7 @@ type
       AItem: TcxCustomGridTableItem; var AStyle: TcxStyle);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
+    procedure txtCardIDKeyPress(Sender: TObject; var Key: Char);
   private const
     sLineBreak = {$IFDEF LINUX} AnsiChar(#10) {$ENDIF}
 {$IFDEF MSWINDOWS} AnsiString(#13#10) {$ENDIF};
@@ -164,14 +165,20 @@ begin
 end;
 
 procedure TfrmBagis.txtCardIDChange(Sender: TObject);
+begin
+  // if txtCardID.Text = '' then
+  // Exit;
+
+end;
+
+procedure TfrmBagis.txtCardIDKeyPress(Sender: TObject; var Key: Char);
 var
   LastAction: string;
   MResult: integer;
 begin
-   if txtCardID.Text = '' then
-      Exit;
-
-   with frmDb do
+  if Key = #13 then
+  begin
+    with frmDb do
     begin
       if not dbHelper.Connected then
         dbHelper.Connect;
@@ -291,6 +298,7 @@ begin
       cxGridDBTableView.DataController.CreateAllItems;
       cxGridDBTableView.ApplyBestFit();
     end;
+  end
 end;
 
 end.
